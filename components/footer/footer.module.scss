@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  padding: 2.5rem 10px;
+  border-top: 1px solid rgba($dark,.1) 
+}
+
+.footer_container {
+  >*:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.footer_sides {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copyright {
+  color: rgba($font,.6);
+  font-size: 1.4rem;
+}

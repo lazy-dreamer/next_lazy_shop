@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.nav {
+  display: flex;
+  align-items: center;
+  >*:not(:last-child) {
+    margin-right: 2rem;
+  }
+  &:global {
+    &.header_nav {
+      
+    }
+    &.footer_nav {
+      
+    }
+  }
+  
+}
+.link {
+  display: inline-block;
+  color: $font;
+  @include transition;
+  font-weight: 500;
+  &:hover {
+    color: $green;
+  }
+  &:global {
+    &.active {
+      color: $green;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.header {
+  position: fixed;
+  z-index: 7;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #fff;
+  padding: 1.5rem 10px;
+  border-bottom: 1px solid rgba($dark,.1);
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_right {
+  display: flex;
+  align-items: center;
+  >*:not(:first-child) {
+    margin-left: 2rem;
+  }
+}
