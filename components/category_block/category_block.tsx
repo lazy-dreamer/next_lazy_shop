@@ -17,7 +17,7 @@ export const CategoryBlock:React.FC<Props> = ({className='', item}) => {
   return <Link 
     href={`/shop/${String(id)}`} 
     className={` ${className ? className: ''} ${s.cat_block} bg_img`}
-    style={image && {backgroundImage: `url(${image})`}}
+    style={{backgroundImage: `url(${image})`}}
   >
     <Title size='xs' text={name} />
   </Link>;

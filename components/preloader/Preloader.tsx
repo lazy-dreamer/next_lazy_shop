@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./preloader.module.scss"
 
 type TClass = {
-  customClass: string
+  customClass?: string
 }
 
 export const Preloader:React.FC<TClass> = ({customClass}) => {

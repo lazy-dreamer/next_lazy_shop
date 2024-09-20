@@ -1,7 +1,8 @@
 import {CategoriesSection} from "../../components/categories_section";
 
 export default function Categories() {
-  return (
-    <CategoriesSection/>
-  );
+  return <>
+    {/* @ts-expect-error Server Component */}
+    <CategoriesSection />
+  </>
 }

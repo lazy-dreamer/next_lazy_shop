@@ -1,9 +1,6 @@
-// "use client";
 import {Container} from "../components/ui/container";
 import {Title} from "../components/ui/title";
-import Link from "next/link";
 import {Api} from "../services/api-client";
-import {getAll} from "../services/products";
 
 export interface ICategory  {
   id: number;
