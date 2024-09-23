@@ -16,7 +16,7 @@ export const Footer:React.FC<Props> = ({className}) => {
         <HeaderNav className='footer_nav' />
       </div>
       <div className={s.footer_sides}>
-        <p>All rights reserved.</p>
+        <p className={s.copyright}>All rights reserved.</p>
         <p className={s.copyright}>LazyShop {year} ©</p>
       </div>
     </div>

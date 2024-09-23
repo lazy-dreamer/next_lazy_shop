@@ -13,7 +13,7 @@ export const CategoriesSection = async () => {
         <Title text='Categories' size='lg'/>
         <div className="triple_blocks">
         {
-          categories.map(item => <CategoryBlock key={item.id} item={item}/>)
+          categories.map(item => <div key={item.id}><CategoryBlock item={item}/></div>)
         }
         </div>
       </div>

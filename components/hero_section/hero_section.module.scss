@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.slider {
+  :global {
+    .screen_content {
+      transition:.5s;
+      opacity: 0;
+      top: 3rem;
+    }
+    .slick-current {
+      .screen_content {
+        top: 0;
+        opacity: 1;
+      }
+    }
+  }
+}

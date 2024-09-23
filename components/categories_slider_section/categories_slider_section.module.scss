@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+
+.slider {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  &:not(:last-child) {
+    margin-bottom: 5rem;
+  }
+  :global{
+    .slick-slide {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .slick-dots {
+      bottom: -2.5rem !important;
+    }
+  }
+}

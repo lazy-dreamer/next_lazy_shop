@@ -6,6 +6,25 @@ $border: rgba(#0C0E12, .8);
 
 /*mixins*/
 
+@mixin custom_scroll {
+  &::-webkit-scrollbar {
+    height: 3px;
+    width:3px
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(37, 135, 186, .15);
+    -webkit-border-radius: 1rem;
+    border-radius:1rem
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    background:$green
+  }
+}
+
 @mixin tr_top {
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);

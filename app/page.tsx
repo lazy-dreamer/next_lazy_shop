@@ -1,6 +1,4 @@
-import {Container} from "../components/ui/container";
-import {Title} from "../components/ui/title";
-import {Api} from "../services/api-client";
+import {HomePage} from "../components/home_page";
 
 export interface ICategory  {
   id: number;
@@ -19,18 +17,9 @@ export interface IPoduct  {
   updatedAt: string;
   category: ICategory;
 }
-const str = '?offset=0&limit=10'
 
 export default async function Home() {
-  const showItem = await Api.products.getAll()
-  
   return (
-    <Container>
-      <Title text='Products' size='lg'/>
-      <br/>
-      {
-        showItem.map(item => <p key={item.id}>{item.title + ' ' + item.id}</p>)
-      }
-    </Container>
+    <HomePage />
   );
 }

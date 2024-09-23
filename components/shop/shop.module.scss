@@ -23,24 +23,10 @@
   overflow: auto;
   width: 100%;
   padding-right: 1rem;
+  @include custom_scroll;
+  
   >*:not(:last-child) {
     margin-bottom: 1rem;
-  }
-  &::-webkit-scrollbar {
-    height: 3px;
-    width:3px
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(37, 135, 186, .15);
-    -webkit-border-radius: 1rem;
-    border-radius:1rem
-  }
-
-  &::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 1rem;
-    border-radius: 1rem;
-    background:$green
   }
 }
 .content_side {

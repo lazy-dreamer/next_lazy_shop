@@ -22,15 +22,11 @@ export const ProductBlock:React.FC<Props> = ({className='', productItem}) => {
     } />
     <div className={s.body}>
       <div className={s.body_top}>
-        <div className={s.title}>{title}</div>
+        <Link href={`/product/${id}`} className={s.title}>{title}</Link>
         <p>{descr}</p>
-        <div className={s.price}>
-          <span>Price</span>
-          <strong className='green'>{price}$</strong>
-        </div>
       </div>
       <div className={s.body_bottom}>
-        <Link href={`/product/${id}`} className={`${s.more}`}>Read more</Link>
+        <strong className='green'>{price}$</strong>
         <button className={`green ${s.cart}`}>
           <span>Add to cart</span>
           <Image src='/add_to_cart.svg' alt='add to cart' width={10} height={20} />

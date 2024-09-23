@@ -31,7 +31,12 @@
   }
 }
 .title {
+  color: $dark;
   font-weight: 600;
+  @include transition;
+  &:hover {
+    color: $green;
+  }
 }
 
 .price {
