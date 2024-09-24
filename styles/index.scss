@@ -350,6 +350,9 @@ section {
   > * {
     width: calc(50% - 1.5rem);
   }
+  &.centered {
+    align-items: center;
+  }
 }
 
 .green {
@@ -754,5 +757,39 @@ input {
       border: 1px solid rgba($green, .4);
       background: rgba($green, .2);
     }
+  }
+}
+
+.react-select {
+  &__single-value {
+    color: $font !important;
+  }
+
+  &__control {
+    border-color: rgba($font,.2) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: #fff !important;
+
+    &:hover {
+      border-color: rgba($font,.2) !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+  }
+
+  &__indicator {
+    &:hover {
+      color: green !important;
+    }
+  }
+
+  &__menu {
+    color: #000;
+
+    .react-select__option--is-disabled {
+      display: none;
+    }
+
   }
 }

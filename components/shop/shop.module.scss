@@ -24,34 +24,10 @@
   width: 100%;
   padding-right: 1rem;
   @include custom_scroll;
-  
-  >*:not(:last-child) {
-    margin-bottom: 1rem;
-  }
 }
 .content_side {
   width: calc(100% - 31rem);
+  min-height: calc(100vh - 13rem);
 }
 
-.cat_btn {
-  display: block;
-  width: 100%;
-  font-weight: 500;
-  text-align: left;
-  @include transition;
-  &:first-letter {
-    text-transform: uppercase;
-  }
-  &:not(:last-child) {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba($font,.1);
-  }
-  &:hover {
-    color: $green;
-  }
-  &:global {
-    &.active {
-      color: $green;
-    }
-  }
-}
+

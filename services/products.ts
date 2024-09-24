@@ -3,6 +3,7 @@ import {ApiRoutes} from "./constants";
 import {IPoduct} from "../app/page";
 
 export const search = async (query: string) => {
+  // console.log(query)
   const {data} = await axiosInstance.get<IPoduct[]>(ApiRoutes.PRODUCTS_SEARCH, {
     params: {query}
   })
