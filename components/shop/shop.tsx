@@ -3,8 +3,6 @@ import s from './shop.module.scss';
 import {ShopAsideLinks} from "../shop_aside_links/shop_aside_links";
 import {ShopClient} from "../shop_client";
 
-
-
 export const Shop: React.FC = () => {
   return (
     <section>

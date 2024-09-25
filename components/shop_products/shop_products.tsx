@@ -1,11 +1,11 @@
 'use client';
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState, memo} from "react";
 import {Preloader} from "../preloader/Preloader";
 import {ProductBlock} from "../product_block/product_block";
 import {Title} from "../ui/title";
-import {IPoduct} from "../../app/page";
+import {IProduct} from "../../app/page";
 import {Api} from "../../services/api-client";
-import {useSearchParams} from "next/navigation";
+import {sortProductItems} from "../../services/sorting";
 
 interface Props {
   category: string | string[],
@@ -13,28 +13,25 @@ interface Props {
   priceQuery: string
 }
 
-export const ShopProducts:React.FC<Props> = ({category, sort, priceQuery}) => {
+export const ShopProducts:React.FC<Props> = memo(({category, sort, priceQuery}) => {
   const [loading, setLoading] = useState(true);
-  const [productItems, setProductItems] = useState<IPoduct[]>();
-  const searchParams = useSearchParams();
-  
-  console.log(priceQuery)
+  const [productItems, setProductItems] = useState<IProduct[]>();
 
-  // Завантаження продуктів, коли змінюється категорія
   const fetchProducts = useCallback(async (categoryId: string | string[]) => {
     setLoading(true);
-    let reqParam = categoryId !== 'all' ? `?categoryId=${categoryId}` : '';
-    const products = await Api.products.search(reqParam);
+    
+    let reqParam:string = categoryId !== 'all' ? `?categoryId=${categoryId}${priceQuery}` : `?${priceQuery}`;
+    
+    const products:IProduct | IProduct[] = await Api.products.search(reqParam).then((data) => sortProductItems(data, sort));
+    
     setProductItems(products);
     setLoading(false);
-  }, []);
+  }, [priceQuery, sort, category]);
 
-  // Викликаємо завантаження продуктів, коли змінюється URL категорії
   useEffect(() => {
-    const myParam = searchParams.get("limit");
-    // console.log(myParam)
     fetchProducts(category);
-  }, [category, fetchProducts]);
+  }, [category, fetchProducts, priceQuery, sort]);
+  
   return <>
     {loading ? (
       <Preloader />
@@ -50,4 +47,4 @@ export const ShopProducts:React.FC<Props> = ({category, sort, priceQuery}) => {
       )
     )}
   </>;
-}
+})

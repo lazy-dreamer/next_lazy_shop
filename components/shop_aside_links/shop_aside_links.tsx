@@ -9,6 +9,10 @@ export async function ShopAsideLinks() {
   
   return (
     <div className={s.links}>
+      <ShopAsideLink key={'all'} category={{
+        id: 'all',
+        name: "All categories"
+      }} />
       {categories.map((catItem) => (
         <ShopAsideLink key={catItem.id} category={catItem} />
       ))}

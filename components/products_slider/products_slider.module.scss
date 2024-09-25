@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+.slider {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  
+  :global {
+    .slick-list {
+      padding-bottom: 1rem;
+    }
+    .slick-slide {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .slick-dots {
+      bottom: -2rem !important;
+    }
+    
+    .slick-track {
+      display: flex;
+      .slick-slide {
+        height: unset;
+        display: flex;
+        [class*='product_block_item'] {
+          height: 100%;
+        }
+        >* {
+          width: 100%;
+          display: flex;
+        }
+      }
+    }
+  }
+}

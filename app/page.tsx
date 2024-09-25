@@ -7,7 +7,7 @@ export interface ICategory  {
   creationAt: string;
   updatedAt: string;
 }
-export interface IPoduct  {
+export interface IProduct  {
   id: number;
   title: string;
   price: number;

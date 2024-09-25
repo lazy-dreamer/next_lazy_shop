@@ -1,12 +1,12 @@
 import React from "react";
-import {IPoduct} from "../../app/page";
+import {IProduct} from "../../app/page";
 import s from './product_block.module.scss'
 import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
   className?: string
-  productItem: IPoduct
+  productItem: IProduct
 }
 
 export const ProductBlock:React.FC<Props> = ({className='', productItem}) => {

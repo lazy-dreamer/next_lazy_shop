@@ -10,7 +10,7 @@ interface Props {
 
 export const ShopClient:React.FC<Props> = ({className=''}) => {
   const [sorting, setSorting] = useState('name_start')
-  const [priceQuery, setPriceQuery] = useState('&price_min=10&price_max=1000')
+  const [priceQuery, setPriceQuery] = useState('&price_min=0&price_max=10001')
   const { id } = useParams();
   
   return <>

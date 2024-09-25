@@ -1,10 +1,9 @@
 'use client';
-import React, {Dispatch, useEffect, useState} from "react";
+import React, {Dispatch, useEffect, useState, memo} from "react";
 import s from './shop_filters.module.scss'
 import Select from "react-select";
 import {SetStateAction} from "react/index";
-import {getTrackBackground, Range} from "react-range";
-import {debounce} from "../../services/debounce";
+import {DoubleRange} from "../ui/double_range";
 
 interface Props {
   className?: string,
@@ -22,33 +21,32 @@ const options = [
   {value: 'price_up', label: 'Price from low to high'},
   {value: 'price_down', label: 'Price from high to low'}
 ]
-interface IRangeVal {
+export interface IRangeState {
   initial: number[],
+  step: number,
   min: number,
   max: number
 }
-const rangeVal:IRangeVal = {
-  initial: [0, 1000],
+const rangeVal:IRangeState = {
+  initial: [0, 10001],
+  step: 1,
   min: 0,
-  max: 1000
+  max: 10001
 }
 
-export const ShopFilters:React.FC<Props> = ({setSort, setPrice}) => {
+export const ShopFilters:React.FC<Props> = memo(({setSort, setPrice}) => {
   const [range, setRange] = useState(rangeVal.initial);
   const id = Date.now().toString();
   const [isMounted, setIsMounted] = useState(false);
+  
   useEffect(() => {
     setIsMounted(true)
-  }, []);
-  useEffect(() => {
-    const debouncedSetPrice = debounce((newPrice: string) => {
-      setPrice(newPrice);
-      console.log('22222')
-    }, 1000);
-    debouncedSetPrice(`&price_min=${range[0]}&price_max=${range[1]}`);
+    const throttleTimer = setTimeout(() => {
+      setPrice(`&price_min=${range[0]}&price_max=${range[1]}`)
+    }, 500);
   
     return () => {
-      debouncedSetPrice('');
+      clearTimeout(throttleTimer);
     };
   }, [range]);
   
@@ -59,45 +57,7 @@ export const ShopFilters:React.FC<Props> = ({setSort, setPrice}) => {
           <div className="side">
             <div className={s.range}>
               <p className={s.range_title}>{`Price from ${range[0]}$ to ${range[1]}$`}</p>
-              <Range
-                label="Select your value"
-                step={1}
-                min={0}
-                max={1000}
-                values={range}
-                onChange={(values) => setRange(values)}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: "3px",
-                      width: "100%",
-                      background: getTrackBackground({
-                        values:range,
-                        colors: ["#ccc", "#15CEA1", "#ccc"],
-                        min: rangeVal.min,
-                        max: rangeVal.max,
-                      }),
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    key={props.key}
-                    style={{
-                      ...props.style,
-                      height: "15px",
-                      width: "15px",
-                      borderRadius: '50%',
-                      backgroundColor: "#15CEA1",
-                    }}
-                  />
-                )}
-              />
+              <DoubleRange rangeState={rangeVal} vals={range} setVals={setRange} />
             </div>
           </div>
           <div className="side">
@@ -118,4 +78,4 @@ export const ShopFilters:React.FC<Props> = ({setSort, setPrice}) => {
       )
     }
   </div>;
-}
+})
