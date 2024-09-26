@@ -28,9 +28,9 @@ export interface IRangeState {
   max: number
 }
 const rangeVal:IRangeState = {
-  initial: [0, 10001],
+  initial: [1, 10001],
   step: 1,
-  min: 0,
+  min: 1,
   max: 10001
 }
 

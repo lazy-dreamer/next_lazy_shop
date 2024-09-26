@@ -1,6 +1,6 @@
-import {IPoduct} from "../app/page";
+import {IProduct} from "../app/page";
 
-export function sortProductItems(products: IPoduct[], action: string) {
+export function sortProductItems(products: IProduct[], action: string) {
   const sortedProducts = [...products];
   
   switch (action) {
@@ -23,10 +23,10 @@ export function sortProductItems(products: IPoduct[], action: string) {
       });
       break;
     case 'price_up':
-      sortedProducts.sort((a, b) => parseFloat(a.price.toString()) - parseFloat(b.price.toString()));
+      sortedProducts.sort((a, b) => a.price - b.price)
       break;
     case 'price_down':
-      sortedProducts.sort((a, b) => parseFloat(b.price.toString()) - parseFloat(a.price.toString()));
+      sortedProducts.sort((a, b) => b.price - a.price)
       break;
     default:
       //name_start

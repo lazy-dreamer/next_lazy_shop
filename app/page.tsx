@@ -1,7 +1,7 @@
 import {HomePage} from "../components/home_page";
 
 export interface ICategory  {
-  id: number;
+  id: number | string;
   name: string;
   image: string;
   creationAt: string;

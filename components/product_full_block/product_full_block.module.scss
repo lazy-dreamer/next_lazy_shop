@@ -9,9 +9,17 @@
   background: #fff;
   border-radius: 1.5rem;
   box-shadow: 0 0 1rem rgba($font,.1);
+  :global {
+    .main_title, p {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    } 
+  }
   &:not(:last-child) {
     margin-bottom: 5rem;
   }
+  
 }
 
 .content_side {

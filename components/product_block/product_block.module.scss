@@ -26,6 +26,11 @@
   }
 }
 .body_top {
+  p {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   >*:not(:first-child) {
     margin-top: 1rem;
   }
@@ -34,6 +39,10 @@
   color: $dark;
   font-weight: 600;
   @include transition;
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     color: $green;
   }

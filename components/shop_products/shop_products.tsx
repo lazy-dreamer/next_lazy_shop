@@ -15,7 +15,7 @@ interface Props {
 
 export const ShopProducts:React.FC<Props> = memo(({category, sort, priceQuery}) => {
   const [loading, setLoading] = useState(true);
-  const [productItems, setProductItems] = useState<IProduct[]>();
+  const [productItems, setProductItems] = useState<IProduct[] | undefined>();
 
   const fetchProducts = useCallback(async (categoryId: string | string[]) => {
     setLoading(true);
