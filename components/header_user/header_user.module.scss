@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.header_user {
+  display: flex;
+  align-items: center;
+  width: 13rem;
+  justify-content: flex-end;
+  >*:not(:last-child) {
+    margin-right: 1rem;
+  }
+  img, svg {
+    max-width: 2rem;
+    max-height: 2rem;
+  }
+}
+
+.user_name {
+  font-weight: 600;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logout_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+
+

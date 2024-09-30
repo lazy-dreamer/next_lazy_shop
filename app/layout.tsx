@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import '../styles/index.scss';
 import {Footer} from "../components/footer/footer";
 import {Header} from "../components/header/header";
+import { Toaster } from 'react-hot-toast';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header />
         <main className="content" id="top">
           {children}
+          <Toaster />
         </main>
         <Footer />
       </body>

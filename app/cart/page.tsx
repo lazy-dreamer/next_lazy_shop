@@ -1,9 +1,6 @@
 import React from "react";
+import {CartSection} from "../../components/cart_section/cart_section";
 
 export default function CartPage() {
-  return <>
-    <div className="screen_content">
-      <p>Cart page</p>
-    </div>
-  </>;
+  return <CartSection />;
 }
