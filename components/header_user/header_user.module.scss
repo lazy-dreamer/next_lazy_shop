@@ -1,17 +1,60 @@
 @import '../../styles/variables.scss';
 
+.frame {
+  display: flex;
+  position: relative;
+  
+  &:hover {
+    .avatar {
+      background-color: $green;
+    }
+    .user_name {
+      color: $green;
+    }
+  }
+}
 .header_user {
   display: flex;
   align-items: center;
-  width: 13rem;
+  width: 14.5rem;
   justify-content: flex-end;
-  >*:not(:last-child) {
-    margin-right: 1rem;
+  position: relative;
+  >*:not(:first-child) {
+    margin-left: 1rem;
   }
   img, svg {
     max-width: 2rem;
     max-height: 2rem;
   }
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background-color: rgba($font,.2);
+  background-position: center;
+  position: relative;
+  @include transition;
+  img, svg {
+    max-width: 2rem;
+    max-height: 2rem;
+  }
+}
+
+.avatar_ico {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  border: 1px solid rgba(#000,.1);
+  border-radius: 50%;
 }
 
 .user_name {
@@ -20,13 +63,69 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: rgba($font,.8);
+  @include transition;
 }
 
 .logout_btn {
   display: flex;
+  width: 100%;
   align-items: center;
-  justify-content: center; 
+  justify-content: space-between;
+  font-weight: 600;
+  color: $green;
+  img, svg {
+    max-width: 2rem;
+    max-height: 2rem;
+    flex-shrink: 0;
+  }
 }
 
 
 
+.dropdown {
+  width: 20rem;
+  padding: 2rem;
+  background: #fff;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 3rem);
+  @include transition;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 1.5rem rgba(#000,.1);
+  color: $font;
+  &:global {
+    &.showed {
+      opacity: 1;
+      pointer-events: auto;
+      top: calc(100% + 1rem);
+    }
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 .7rem .8rem .7rem;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    bottom: 100%;
+    right: 1rem;
+  }
+  
+  >*:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.link {
+  display: block;
+  @include transition;
+  &:hover {
+    color: $green;
+  }
+}

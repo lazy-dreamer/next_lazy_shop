@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.fav {
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(#fff,.5);
+  background: rgba(#000,.2);
+  img, svg {
+    max-height: 2rem;
+    max-width: 2rem;
+  }
+  &:global {
+    &.filled_fav {
+      border-color: $green;
+      background: rgba(#000,0);
+      svg {
+        * {
+          fill: $green
+        }
+      }
+    }
+  }
+}

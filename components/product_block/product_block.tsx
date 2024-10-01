@@ -3,6 +3,7 @@ import {IProduct} from "../../app/page";
 import s from './product_block.module.scss'
 import Image from "next/image";
 import Link from "next/link";
+import {FavBtn} from "../fav_btn/fav_btn";
 
 interface Props {
   className?: string
@@ -19,7 +20,9 @@ export const ProductBlock:React.FC<Props> = ({className='', productItem}) => {
   return <div className={` ${className ? className: ''} ${s.item}`}>
     <div className={`${s.image} bg_img`} style={
       {backgroundImage: `url(${images[0]})`}
-    } />
+    }>
+      <FavBtn product={productItem} />
+    </div>
     <div className={s.body}>
       <div className={s.body_top}>
         <Link href={`/product/${id}`} className={s.title}>{title}</Link>
