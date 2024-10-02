@@ -71,17 +71,25 @@
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-weight: 600;
-  color: $green;
+  color: #fff;
+  padding: .7rem;
+  background: $green;
+  border-radius: .5rem;
+  @include transition;
+  >*:not(:last-child) {
+    margin-right: 1rem;
+  }
   img, svg {
     max-width: 2rem;
     max-height: 2rem;
     flex-shrink: 0;
   }
+  &:hover {
+    background: $dark;
+  }
 }
-
-
 
 .dropdown {
   width: 20rem;
@@ -115,6 +123,15 @@
     position: absolute;
     bottom: 100%;
     right: 1rem;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
   }
   
   >*:not(:last-child) {

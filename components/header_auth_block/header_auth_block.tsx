@@ -8,6 +8,7 @@ import {RegistrationModal} from "../registration_modal/registration_modal";
 import {onAuthStateChanged, User} from "@firebase/auth";
 import {useUserStore} from "../../store/user_store";
 import {getUserFavorites, saveUserFavorites} from "../../services/favorites";
+import {getUserOrders} from "../../services/orders";
 
 interface Props {
   className?: string
@@ -18,33 +19,36 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
   const [showUserBlock, setShowUserBlock] = useState(false);
   const [showRegModal, setShowRegModal] = useState(false);
   
-  const { isAuth, favorites, orders, changeIsAuth, changeFavorites, setOrders } = useUserStore()
+  const { isAuth, favorites, changeIsAuth, changeFavorites, setFavoritesLoaded, setOrders } = useUserStore()
   
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         getUserFavorites(user.uid).then(favorites => {
           changeFavorites(favorites)
-        }).catch(err => console.log('Favorites: ', err));
+          setFavoritesLoaded()
+        }).catch(err => console.log('Fetching favorites error: ', err));
+  
+        getUserOrders(user.uid).then(orders => {
+          setOrders(orders)
+        }).catch(err => console.log('Fetching orders error: ', err));
         
         setUser(user)
         changeIsAuth(true)
         setShowUserBlock(true)
       } else {
         setUser(null)
+        setShowUserBlock(true)
       }
     });
   }, []);
   
-  // console.log(favorites)
-  
   useEffect(() => {
     if (isAuth) {
       saveUserFavorites(user?.uid, favorites)
-      console.log('lolorent', favorites)
     }
-  }, [favorites, isAuth]);
-  // console.log(isAuth)
+  }, [favorites]);
+  
   
   return <div className={` ${className ? className: ''} `}>
     {

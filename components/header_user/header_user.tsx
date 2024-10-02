@@ -33,6 +33,7 @@ export const HeaderUser = ({className='', userName='', avatar}:Props) => {
   const logOutHandler = () => {
     signOut(auth).then(() => {
       setLogout()
+      setMenuShown(false)
       toast.success('Successfully signed out!', {
         icon: '✅',
       })
@@ -60,7 +61,7 @@ export const HeaderUser = ({className='', userName='', avatar}:Props) => {
       </button>
       
       <div className={`${s.dropdown} ${menuShown? 'showed' : ''}`}>
-        <Link href={'/personal'} className={` ${s.link}`}>View profile</Link>
+        <Link href={'/personal'} className={` ${s.link}`} onClick={()=> setMenuShown(false)}>View profile</Link>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>
           <img src="/logout.svg" alt="logout"/>
