@@ -39,7 +39,7 @@ export const CategoriesSliderSection:React.FC<Props> = ({className=''}) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
-  return <section className={` ${className ? className: ''} `}>
+  return <section className={`${className && className}`}>
     <div className="screen_content">
       <Title text='Popular Categories' size='lg' />
       <Slider className={s.slider} {...settings}>

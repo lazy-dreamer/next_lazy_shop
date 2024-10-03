@@ -9,32 +9,32 @@ import {onAuthStateChanged, User} from "@firebase/auth";
 import {useUserStore} from "../../store/user_store";
 import {getUserFavorites, saveUserFavorites} from "../../services/favorites";
 import {getUserOrders} from "../../services/orders";
+import {getUserCart, saveUserCart} from "../../services/cart";
 
 interface Props {
   className?: string
 }
 
 export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
-  const [user, setUser] = useState<User | null>(null);
   const [showUserBlock, setShowUserBlock] = useState(false);
   const [showRegModal, setShowRegModal] = useState(false);
   
-  const { isAuth, favorites, changeIsAuth, changeFavorites, setFavoritesLoaded, setOrders } = useUserStore()
+  const { isAuth, favorites, setUser, user, changeFavorites, setOrders, cart, changeCart } = useUserStore()
   
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         getUserFavorites(user.uid).then(favorites => {
           changeFavorites(favorites)
-          setFavoritesLoaded()
         }).catch(err => console.log('Fetching favorites error: ', err));
-  
+        getUserCart(user.uid).then(cart => {
+          changeCart(cart)
+        }).catch(err => console.log('Fetching favorites error: ', err));
         getUserOrders(user.uid).then(orders => {
           setOrders(orders)
         }).catch(err => console.log('Fetching orders error: ', err));
         
         setUser(user)
-        changeIsAuth(true)
         setShowUserBlock(true)
       } else {
         setUser(null)
@@ -48,9 +48,14 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
       saveUserFavorites(user?.uid, favorites)
     }
   }, [favorites]);
+  useEffect(() => {
+    if (isAuth) {
+      saveUserCart(user?.uid, cart)
+    }
+  }, [cart]);
   
   
-  return <div className={` ${className ? className: ''} `}>
+  return <div className={`${className && className}`}>
     {
       showUserBlock ?  (user != null ? <HeaderUser userName={user.email} avatar={user.photoURL} /> :
         <button type='button' className={s.reg_btn} onClick={() => setShowRegModal(true)}>

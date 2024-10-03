@@ -3,6 +3,12 @@ import {ICategory} from "../app/page";
 import {ApiRoutes} from "./constants";
 
 export const getAll = async () => {
-  const {data} = await axiosInstance.get<ICategory[]>(ApiRoutes.CATEGORIES)
-  return data
+  try {
+    const {data} = await axiosInstance.get<ICategory[]>(ApiRoutes.CATEGORIES).catch(e=> {
+      throw new Error(e.message)
+    })
+    return data
+  } catch (e) {
+    console.log('Categories fetch error:  ', e)
+  }
 }

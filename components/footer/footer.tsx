@@ -9,7 +9,7 @@ interface Props {
 
 export const Footer:React.FC<Props> = ({className}) => {
   const year = new Date().getFullYear();
-  return <footer className={` ${className ? className: ''} ${s.footer}`}>
+  return <footer className={`${className && className} ${s.footer}`}>
     <div className={`screen_content ${s.footer_container}`}>
       <div className={s.footer_sides}>
         <MainLogo/>

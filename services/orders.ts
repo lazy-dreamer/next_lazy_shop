@@ -2,7 +2,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import {db} from "./firebase-config";
 import {IProduct} from "../app/page";
 
-interface IOrder {
+export interface IOrder {
   date: string,
   products: IProduct[]
 }

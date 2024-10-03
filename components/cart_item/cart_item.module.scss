@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(#000,.1);
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

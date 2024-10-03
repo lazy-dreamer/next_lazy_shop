@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {onAuthStateChanged, User} from "@firebase/auth";
 import {auth} from "../../services/firebase-config";
-import { useRouter } from 'next/navigation';
+import {usePathname, useRouter} from 'next/navigation';
 import {Preloader} from "../preloader/Preloader";
 import s from './personal_section.module.scss'
 import {UserCard} from "../user_card/user_card";
@@ -14,14 +14,21 @@ interface Props {
 export const PersonalSection:React.FC<Props> = ({className=''}) => {
   const [user, setUser] = useState<User | null>(null)
   const router = useRouter();
+  const pathname = usePathname()
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user)
       } else {
-        router.push('/')
+        if (pathname.includes('personal')) {
+          router.push('/')
+        }
       }
     });
+  
+    return () => {
+      unsub();
+    }
   }, []);
   if (user == null) {
     return <Preloader />
@@ -32,7 +39,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
       <div className={s.info_sides}>
         <UserCard user={user} />
         <div className={s.info_side}>
-          
+        {/*  content*/}
         </div>
       </div>
     </div>

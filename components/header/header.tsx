@@ -8,8 +8,8 @@ interface Props {
   className?: string
 }
 
-export const Header:React.FC<Props> = ({className}) => {
-  return <header className={` ${className ? className: ''} ${s.header}`}>
+export const Header:React.FC<Props> = ({className=''}) => {
+  return <header className={`${className && className} ${s.header}`}>
     <div className={`screen_content ${s.header_container}`}>
       <MainLogo/>
       <div className={s.header_right}>

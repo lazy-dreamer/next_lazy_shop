@@ -24,7 +24,6 @@ export const FavoritesSection:React.FC<Props> = ({className=''}) => {
         setUser(user)
       } else {
         if (pathname.includes('favorites')) {
-          console.log('redirect favorites')
           router.push('/')
         }
       }

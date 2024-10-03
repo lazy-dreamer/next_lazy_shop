@@ -24,7 +24,7 @@ const mapStyles:any[] = stylers;
 
 export const ContactsSection:React.FC<Props> = ({className=''}) => {
   const key:string = process.env.NEXT_PUBLIC_MAP_KEY || ''
-  return <section className={` ${className ? className: ''} ${s.frame} `}>
+  return <section className={`${className && className} ${s.frame} `}>
     <div className="screen_content">
       <Title text='Contact information' size='lg' />
       <div className="simple_text bottom_offset">

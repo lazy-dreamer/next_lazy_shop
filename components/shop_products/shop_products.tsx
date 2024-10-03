@@ -22,7 +22,7 @@ export const ShopProducts:React.FC<Props> = memo(({category, sort, priceQuery}) 
     
     let reqParam:string = categoryId !== 'all' ? `?categoryId=${categoryId}${priceQuery}` : `?${priceQuery}`;
     
-    const products:IProduct | IProduct[] = await Api.products.search(reqParam).then((data) => sortProductItems(data, sort));
+    const products:undefined | IProduct[] = await Api.products.search(reqParam).then((data) => sortProductItems(data, sort));
     
     setProductItems(products);
     setLoading(false);

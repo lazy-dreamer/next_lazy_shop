@@ -2,10 +2,9 @@ import React from "react";
 import s from './product_full_block.module.scss'
 import {IProduct} from "../../app/page";
 import {Title} from "../ui/title";
-import Image from "next/image";
 import {ProductImagesSlider} from "../product_images_slider";
 import {FavBtn} from "../fav_btn/fav_btn";
-
+import {AddToCart} from "../add_to_cart/add_to_cart";
 
 interface Props {
   className?: string,
@@ -20,14 +19,13 @@ export function ProductFullBlock({className='', product}:Props) {
         <FavBtn product={product} className={s.fav} />
       </div>
       <div className={`side ${s.content_side}`}>
-        <Title size={'md'} text={product.title} />
-        <p>{product.description}</p>
-        <div className={s.body_bottom}>
+        <div className={s.top}>
+          <Title size={'md'} text={product.title} />
+          <p>{product.description}</p>
+        </div>
+        <div className={s.bottom}>
           <strong className='green'>{product.price}$</strong>
-          <button className={`green ${s.cart}`}>
-            <span>Add to cart</span>
-            <Image src='/add_to_cart.svg' alt='add to cart' width={10} height={20} />
-          </button>
+          <AddToCart product={product} />
         </div>
       </div>
     </div>
