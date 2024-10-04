@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import s from './header_user.module.scss'
 import { signOut } from "firebase/auth";
-import {auth} from "../../services/firebase-config";
+import {auth} from "../../services/firebase/firebase-config";
 import toast from 'react-hot-toast';
 import Link from "next/link";
 import {useUserStore} from "../../store/user_store";

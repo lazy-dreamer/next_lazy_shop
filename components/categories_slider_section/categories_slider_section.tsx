@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import s from './categories_slider_section.module.scss';
 import {ICategory} from "../../app/page";
-import {Api} from "../../services/api-client";
+import {Api} from "../../services/api/api-client";
 import {CategoryBlock} from "../category_block/category_block";
 import {Preloader} from "../preloader/Preloader";
 import {Title} from "../ui/title";

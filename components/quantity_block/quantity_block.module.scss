@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+
+.block {
+  width: 12rem;
+  flex-shrink: 0;
+  text-align: center;
+  display: flex;
+  position: relative;
+  
+  input {
+    width: 100%;
+    text-align: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+.btn {
+  width: 4rem;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  @include tr_top;
+  &:before {
+    content: '';
+    display: block;
+    width: 1.2rem;
+    height: .2rem;
+    background: $font;
+    @include pos_center
+  }
+}
+.minus {
+  left: 0;
+}
+.plus {
+  right: 0;
+  &:after {
+    content: '';
+    display: block;
+    height: 1.2rem;
+    width: .2rem;
+    background: $font;
+    @include pos_center
+  }
+}

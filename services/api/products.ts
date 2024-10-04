@@ -1,6 +1,6 @@
 import {axiosInstance} from "./request-instance";
-import {ApiRoutes, ERROR_PRODUCT} from "./constants";
-import {IProduct} from "../app/page";
+import {ApiRoutes, ERROR_PRODUCT} from "./../constants";
+import {IProduct} from "../../app/page";
 
 export const search = async (query: string) => {
   try {

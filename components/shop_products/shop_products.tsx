@@ -4,7 +4,7 @@ import {Preloader} from "../preloader/Preloader";
 import {ProductBlock} from "../product_block/product_block";
 import {Title} from "../ui/title";
 import {IProduct} from "../../app/page";
-import {Api} from "../../services/api-client";
+import {Api} from "../../services/api/api-client";
 import {sortProductItems} from "../../services/sorting";
 
 interface Props {

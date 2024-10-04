@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./shop_aside_links.module.scss";
 import {ICategory} from "../../app/page";
-import {Api} from "../../services/api-client";
+import {Api} from "../../services/api/api-client";
 import {ShopAsideLink} from "../shop_aside_link/shop_aside_link";
 
 export async function ShopAsideLinks() {

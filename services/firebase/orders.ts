@@ -1,6 +1,6 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {db} from "./firebase-config";
-import {IProduct} from "../app/page";
+import {IProduct} from "../../app/page";
 
 export interface IOrder {
   date: string,

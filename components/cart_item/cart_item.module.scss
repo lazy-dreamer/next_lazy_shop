@@ -3,11 +3,48 @@
 .block {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 1rem;
+  padding-right: 3rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba(#000,.1);
+  >*:not(:first-child) {
+    margin-left: 1.5rem;
+  }
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
+}
+.remove {
+  font-size: 0;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  >*:not(:last-child) {
+    margin-right: 0 !important;
+  }
+  img, svg {
+    width: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
+  }
+}
+.image {
+  flex-shrink: 0;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+.title {
+  font-weight: 500;
+  margin-left: 0;
+  margin-right: auto;
+}
+.quant {
+}
+.price {
+  width: 10rem;
+  text-align: center;
 }

@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import {onAuthStateChanged, User} from "@firebase/auth";
-import {auth} from "../../services/firebase-config";
+import {auth} from "../../services/firebase/firebase-config";
 import {usePathname, useRouter} from 'next/navigation';
 import {Preloader} from "../preloader/Preloader";
 import s from './personal_section.module.scss'

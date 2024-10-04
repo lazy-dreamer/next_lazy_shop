@@ -4,7 +4,7 @@ import s from './registration_modal.module.scss'
 import {LoginForm} from "../LoginForm";
 import {RegForm} from "../RegForm";
 import { signInWithPopup } from "firebase/auth";
-import {provider, auth} from "../../services/firebase-config";
+import {provider, auth} from "../../services/firebase/firebase-config";
 import toast from 'react-hot-toast';
 
 interface Props {

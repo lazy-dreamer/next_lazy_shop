@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.sides {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.blocks {
+  width: calc(100% - 39rem);
+}
+.aside {
+  width: 37rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 1rem rgba(#000,.1);
+}

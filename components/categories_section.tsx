@@ -1,5 +1,5 @@
 import React from "react";
-import {Api} from "../services/api-client";
+import {Api} from "../services/api/api-client";
 import {Title} from "./ui/title";
 import {CategoryBlock} from "./category_block/category_block";
 import {ICategory} from "../app/page";

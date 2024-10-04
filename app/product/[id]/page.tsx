@@ -1,6 +1,6 @@
 import React from "react";
 import {ProductFullBlock} from "../../../components/product_full_block/product_full_block";
-import {Api} from "../../../services/api-client";
+import {Api} from "../../../services/api/api-client";
 import {ProductsSlider} from "../../../components/products_slider/products_slider";
 
 export default async function ProductPage({ params }: { params: { id: string } }) {

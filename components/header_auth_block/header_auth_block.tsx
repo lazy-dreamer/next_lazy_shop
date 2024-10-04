@@ -1,15 +1,15 @@
 'use client'
 import React, {useEffect, useState} from "react";
-import {auth} from "../../services/firebase-config";
+import {auth} from "../../services/firebase/firebase-config";
 import {HeaderUser} from "../header_user/header_user";
 import s from './header_auth_block.module.scss'
 import {ModalOverlay} from "../modal_overlay/modal_overlay";
 import {RegistrationModal} from "../registration_modal/registration_modal";
-import {onAuthStateChanged, User} from "@firebase/auth";
+import {onAuthStateChanged} from "@firebase/auth";
 import {useUserStore} from "../../store/user_store";
-import {getUserFavorites, saveUserFavorites} from "../../services/favorites";
-import {getUserOrders} from "../../services/orders";
-import {getUserCart, saveUserCart} from "../../services/cart";
+import {getUserFavorites, saveUserFavorites} from "../../services/firebase/favorites";
+import {getUserOrders} from "../../services/firebase/orders";
+import {getUserCart, saveUserCart} from "../../services/firebase/cart";
 
 interface Props {
   className?: string
