@@ -10,6 +10,7 @@ interface Props {
 
 export const Title: React.FC<Props> = ({ text, size = 'lg', className='' }) => {
   const mapTagBySize = {
+    xxs: 'h6',
     xs: 'h5',
     sm: 'h4',
     md: 'h3',
@@ -18,6 +19,7 @@ export const Title: React.FC<Props> = ({ text, size = 'lg', className='' }) => {
   } as const;
   
   const mapClassNameBySize = {
+    xxs: 'title_h6',
     xs: 'title_h5',
     sm: 'title_h4',
     md: 'title_h3',

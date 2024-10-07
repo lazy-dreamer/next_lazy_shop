@@ -12,8 +12,8 @@ interface Props {
 
 export const FavBtn:React.FC<Props> = ({className='', product}) => {
   const {isAuth, favorites, changeFavorites} = useUserStore();
-  
-  let isFav = favorites.find((el:IProduct) => el.id === product.id);
+  let isInFavList = favorites.find((el:IProduct) => el.id === product.id);
+  const isFav: boolean = isInFavList !== undefined;
   
   const favAdd = () => {
     let favArr = [...favorites, product]

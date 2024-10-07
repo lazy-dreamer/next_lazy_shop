@@ -12,6 +12,7 @@
     text-align: center;
     padding-left: 4rem;
     padding-right: 4rem;
+    pointer-events: none;
   }
 }
 .btn {
@@ -28,6 +29,12 @@
     height: .2rem;
     background: $font;
     @include pos_center
+  }
+  &:global {
+    &.disabled {
+      opacity: .5;
+      pointer-events: none;
+    }
   }
 }
 .minus {

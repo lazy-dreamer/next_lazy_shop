@@ -1,6 +1,6 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {db} from "./firebase-config";
-import {IProduct} from "../../app/page";
+import {ICartItem} from "../../components/add_to_cart/add_to_cart";
 
 export async function getUserCart(userId: string) {
   const docRef = doc(db, "cart", userId);
@@ -14,7 +14,7 @@ export async function getUserCart(userId: string) {
   }
 }
 
-export async function saveUserCart(userId: string | undefined, cart: IProduct[]) {
+export async function saveUserCart(userId: string | undefined, cart: ICartItem[]) {
   if (userId === undefined) {
     userId = ''
   }

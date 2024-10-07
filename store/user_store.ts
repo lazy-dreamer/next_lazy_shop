@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import {User} from "@firebase/auth";
 import {IProduct} from "../app/page";
-import {IOrder} from "../services/orders";
+import {IOrder} from "../services/firebase/orders";
+import {ICartItem} from "../components/add_to_cart/add_to_cart";
 
 interface IUserStore {
   isAuth: boolean,
@@ -9,7 +10,7 @@ interface IUserStore {
   favorites: IProduct[],
   favLength: () => number,
   isFavoritesLoaded: false,
-  cart: IProduct[],
+  cart: ICartItem[],
   cartLength: () => number,
   isCartLoaded: boolean,
   orders: IOrder[],

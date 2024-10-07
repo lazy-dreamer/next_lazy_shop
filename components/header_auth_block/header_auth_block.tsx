@@ -20,6 +20,7 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
   const [showRegModal, setShowRegModal] = useState(false);
   
   const { isAuth, favorites, setUser, user, changeFavorites, setOrders, cart, changeCart } = useUserStore()
+  const cartString = JSON.stringify(cart);
   
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -52,8 +53,7 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
     if (isAuth) {
       saveUserCart(user?.uid, cart)
     }
-  }, [cart]);
-  
+  }, [cartString]);
   
   return <div className={`${className && className}`}>
     {

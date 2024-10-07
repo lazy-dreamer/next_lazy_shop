@@ -39,6 +39,57 @@ body {
   }
 }
 
+.form_elements {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  >* {
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    &.half {
+      width: calc(50% - 2rem);
+    }
+    &.devider {
+      height: 1rem;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+  &.no_offset {
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+  
+  &.negative_down {
+    margin-bottom: -1rem;
+  }
+}
+.form_element {
+  display: flex;
+  flex-direction: column;
+  >* {
+    width: 100%;
+  }
+}
+.fe_title {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.self_aligned {
+  align-self: center;
+}
+
 .font {
   color: $font !important;
 }
@@ -308,12 +359,23 @@ section {
   text-align: center;
   @include transition;
   font-weight: 500;
+  &.with_offset {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
   &.min_wide {
     min-width: 100%;
   }
 
   &:hover {
     background: $dark;
+  }
+  &.dark_btn {
+    background: $dark;
+    &:hover {
+      background: $green;
+    }
   }
 }
 
@@ -347,6 +409,9 @@ section {
   &.title_h5 {
     font-size: 2rem;
   }
+  &.title_h6 {
+    font-size: 1.8rem;
+  }
 }
 
 .half_sides {
@@ -369,7 +434,7 @@ section {
   text-decoration: underline;
 }
 
-input {
+input, textarea {
   width: 100%;
   height: 5rem;
   border-radius: .5rem;
@@ -385,6 +450,12 @@ input {
   }
 }
 
+textarea {
+  height: auto;
+  min-height: 10rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .modal_close {
   position: absolute;
   right: 0;
@@ -414,6 +485,26 @@ input {
     -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
     -o-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  }
+}
+
+b {
+  font-weight: 500;
+}
+
+.frame {
+  width: 100%;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 1rem rgba(#000,.1);
+  &>*:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  &.with_offset {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
   }
 }
 
