@@ -10,6 +10,7 @@ import {useUserStore} from "../../store/user_store";
 import {getUserFavorites, saveUserFavorites} from "../../services/firebase/favorites";
 import {getUserOrders} from "../../services/firebase/orders";
 import {getUserCart, saveUserCart} from "../../services/firebase/cart";
+import {getUserInfo} from "../../services/firebase/user_info";
 
 interface Props {
   className?: string
@@ -19,7 +20,7 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
   const [showUserBlock, setShowUserBlock] = useState(false);
   const [showRegModal, setShowRegModal] = useState(false);
   
-  const { isAuth, favorites, setUser, user, changeFavorites, setOrders, cart, changeCart } = useUserStore()
+  const { isAuth, favorites, setUser, user, changeFavorites, setOrders, cart, changeCart, setUserInfo } = useUserStore()
   const cartString = JSON.stringify(cart);
   
   useEffect(() => {
@@ -34,6 +35,9 @@ export const HeaderAuthBlock:React.FC<Props> = ({className=''}) => {
         getUserOrders(user.uid).then(orders => {
           setOrders(orders)
         }).catch(err => console.log('Fetching orders error: ', err));
+        getUserInfo(user.uid).then(info => {
+          setUserInfo(info)
+        }).catch(err => console.log('Fetching user info error: ', err));
         
         setUser(user)
         setShowUserBlock(true)

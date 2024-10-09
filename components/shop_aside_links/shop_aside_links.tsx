@@ -9,9 +9,9 @@ export async function ShopAsideLinks() {
   const allCat = {
     id: 'all',
     name: "All categories",
-    image: "string placehilder",
-    creationAt: "string placehilder",
-    updatedAt: "string placehilder"
+    image: "string placeholder",
+    creationAt: "string placeholder",
+    updatedAt: "string placeholder"
   }
   
   return (
