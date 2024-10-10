@@ -24,3 +24,5 @@ export const ERROR_PRODUCT = {
     updatedAt: "2024-09-19T07:10:24.000Z"
   }
 }
+
+export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

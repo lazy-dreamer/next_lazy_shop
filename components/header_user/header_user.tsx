@@ -15,7 +15,7 @@ interface Props {
 
 export const HeaderUser = ({className='', userName='', avatar}:Props) => {
   const [menuShown, setMenuShown] = useState(false);
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const { setLogout } = useUserStore()
   let noAvatar = false;
   if (userName == null) {
@@ -24,11 +24,11 @@ export const HeaderUser = ({className='', userName='', avatar}:Props) => {
   if (avatar == null) {
     noAvatar = true
   }
-  const handleClick = (event: MouseEvent) => {
+  const handleClick = (event: React.MouseEvent<Document, MouseEvent> | MouseEvent) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target as HTMLElement)) {
-      setMenuShown(false)
+      setMenuShown(false);
     }
-  }
+  };
   
   const logOutHandler = () => {
     signOut(auth).then(() => {
@@ -62,6 +62,7 @@ export const HeaderUser = ({className='', userName='', avatar}:Props) => {
       
       <div className={`${s.dropdown} ${menuShown? 'showed' : ''}`}>
         <Link href={'/personal'} className={` ${s.link}`} onClick={()=> setMenuShown(false)}>View profile</Link>
+        <Link href={'/orders'} className={` ${s.link}`} onClick={()=> setMenuShown(false)}>Your orders</Link>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>
           <img src="/logout.svg" alt="logout"/>

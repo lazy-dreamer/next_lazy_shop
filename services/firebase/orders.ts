@@ -1,10 +1,17 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {db} from "./firebase-config";
-import {IProduct} from "../../app/page";
+import {IFullUserInfo} from "./user_info";
+import {ICartItem} from "../../components/add_to_cart/add_to_cart";
+
+export interface ICheckoutForm extends IFullUserInfo {
+  comment?: string
+}
 
 export interface IOrder {
-  date: string,
-  products: IProduct[]
+  orderDate: string,
+  orderTime: string,
+  cartItems: ICartItem[],
+  orderInfo: ICheckoutForm
 }
 
 export async function getUserOrders(userId: string) {

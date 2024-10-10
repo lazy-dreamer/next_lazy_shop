@@ -1,13 +1,12 @@
 import React from "react";
-import {IProduct} from "../../app/page";
 import s from './cart_item.module.scss'
-import {AddToCart} from "../add_to_cart/add_to_cart";
+import {AddToCart, ICartItem} from "../add_to_cart/add_to_cart";
 import {QuantityBlock} from "../quantity_block/quantity_block";
 import Link from "next/link";
 
 interface Props {
   className?: string,
-  item: IProduct
+  item: ICartItem
 }
 
 export const CartItem:React.FC<Props> = ({className='', item}) => {

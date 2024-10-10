@@ -1,6 +1,6 @@
 import React from 'react';
 
-type TitleSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' ;
+type TitleSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' ;
 
 interface Props {
   size?: TitleSize;

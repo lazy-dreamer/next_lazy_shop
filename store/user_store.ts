@@ -11,15 +11,18 @@ interface IUserStore {
   userInfo: null | IFullUserInfo,
   favorites: IProduct[],
   favLength: () => number,
-  isFavoritesLoaded: false,
+  isFavoritesLoaded: boolean,
   cart: ICartItem[],
   cartLength: () => number,
   isCartLoaded: boolean,
   orders: IOrder[],
+  isCheckout: boolean,
+  isOrdersLoaded: boolean,
+  setIsCheckout: (bool:boolean) => void,
   setUser: (person:User | null) => void,
   setUserInfo: (info:IFullUserInfo) => void,
-  changeFavorites: (arr) => void,
-  changeCart: (arr) => void,
+  changeFavorites: (arr:IProduct[]) => void,
+  changeCart: (arr:ICartItem[]) => void,
   setOrders: ([]) => void,
   setLogout: () => void
 }
@@ -49,7 +52,10 @@ export const useUserStore = create<IUserStore>((set, get) => ({
   isCartLoaded: false,
   
   orders: [],
-  setOrders: (arr) => set({ orders: arr }),
+  setOrders: (arr) => set({ orders: arr, isOrdersLoaded: true }),
+  isCheckout: false,
+  isOrdersLoaded: false,
+  setIsCheckout: (bool) => set({ isCheckout: bool }),
   
   setLogout: () => set({ 
     isAuth: false,
@@ -59,6 +65,8 @@ export const useUserStore = create<IUserStore>((set, get) => ({
     isCartLoaded: false,
     cart: [],
     orders: [],
+    isCheckout: false,
+    isOrdersLoaded: false,
   }),
 }))
 

@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.block {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  >*:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(#000,.1);
+  >*:not(:last-child) {
+    margin-right: 1.5rem;
+    margin-bottom: 0;
+  }
+}
+
+.items_block {
+  >*:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -.5rem -1rem;
+  >* {
+    margin: .5rem 1rem;
+    width: calc(50% - 2rem);
+  }
+}
+
+.delivery {
+  >*:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

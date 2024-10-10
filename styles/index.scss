@@ -379,6 +379,13 @@ section {
   }
 }
 
+.remain_counter {
+  display: inline-block;
+  flex-shrink: 0;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
 .bg_img {
   background-position: left top;
   background-repeat: no-repeat;
@@ -988,3 +995,12 @@ b {
   flex-shrink: 0;
 }
 
+.user_info_sides {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.user_info_side {
+  width: calc(100% - 35rem);
+}

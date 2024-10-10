@@ -4,13 +4,13 @@ import {onAuthStateChanged, User} from "@firebase/auth";
 import {auth} from "../../services/firebase/firebase-config";
 import {usePathname, useRouter} from 'next/navigation';
 import {Preloader} from "../preloader/Preloader";
-import s from './personal_section.module.scss'
 import {UserCard} from "../user_card/user_card";
 import {Title} from "../ui/title";
 import {useForm} from "react-hook-form";
 import {useUserStore} from "../../store/user_store";
-import {saveUserInfo} from "../../services/firebase/user_info";
+import {IFullUserInfo, saveUserInfo} from "../../services/firebase/user_info";
 import toast from "react-hot-toast";
+import {signOut} from "firebase/auth";
 
 interface Props {
   className?: string
@@ -20,7 +20,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
   const [user, setUser] = useState<User | null>(null)
   const router = useRouter();
   const pathname = usePathname()
-  const {userInfo, setUserInfo} = useUserStore()
+  const {userInfo, setUserInfo, setLogout} = useUserStore()
   // console.log(userInfo)
   const {
     register,
@@ -54,6 +54,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
       unsub();
     }
   }, []);
+  
   useEffect(() => {
     if (userInfo) {
       reset({
@@ -68,6 +69,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
       });
     }
   }, [userInfo, reset]);
+  
   if (user == null) {
     return <Preloader />
   }
@@ -78,7 +80,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
     }
   }
   
-  const onSubmit = (data)=> {
+  const onSubmit = (data:IFullUserInfo)=> {
     setUserInfo(data);
     saveUserInfo(user.uid, data);
     toast.success('Information successfully saved!', {
@@ -86,11 +88,24 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
     })
   }
   
+  const logOutHandler = () => {
+    signOut(auth).then(() => {
+      setLogout()
+      toast.success('Successfully signed out!', {
+        icon: '✅',
+      })
+    }).catch((error) => {
+      toast.error('Sign out failure :(', {
+        icon: '⛔️',
+      });
+    });
+  }
+  
   return <section className={` ${className ? className: ''} `}>
     <div className="screen_content">
-      <div className={s.info_sides}>
+      <div className='user_info_sides'>
         <UserCard user={user} />
-        <div className={s.info_side}>
+        <div className="user_info_side">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/*start fields*/}
             <Title text={'User information'} size={'xs'} />
@@ -98,25 +113,11 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
               <div className="form_elements">
                 <div className="form_element half">
                   <div className="fe_title">Name</div>
-                  <input type='text' {...register('name', {
-                      required: true,
-                      minLength: {
-                        value: 3,
-                        message: 'Minimum 3 chars.'
-                      }
-                    }
-                  )} className={errors.name && 'error'} />
+                  <input type='text' {...register('name')} className={errors.name && 'error'} />
                 </div>
                 <div className="form_element half">
                   <div className="fe_title">Surname</div>
-                  <input type='text' {...register('surname', {
-                      required: true,
-                      minLength: {
-                        value: 3,
-                        message: 'Minimum 3 chars.'
-                      }
-                    }
-                  )} className={errors.surname && 'error'} />
+                  <input type='text' {...register('surname')} className={errors.surname && 'error'} />
                 </div>
                 <div className="form_element half">
                   <div className="fe_title">Email</div>
@@ -148,53 +149,30 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
               <div className="form_elements">
                 <div className="form_element half">
                   <div className="fe_title">City</div>
-                  <input type='text' {...register('city', {
-                      required: true,
-                      minLength: {
-                        value: 3,
-                        message: 'Minimum 3 chars.'
-                      }
-                    }
-                  )} className={errors.city && 'error'} />
+                  <input type='text' {...register('city')} className={errors.city && 'error'} />
                 </div>
                 <div className="form_element half">
                   <div className="fe_title">Street</div>
-                  <input type='text' {...register('street', {
-                      required: true,
-                      minLength: {
-                        value: 3,
-                        message: 'Minimum 3 chars.'
-                      }
-                    }
-                  )} className={errors.street && 'error'} />
+                  <input type='text' {...register('street')} className={errors.street && 'error'} />
                 </div>
                 <div className="form_element half">
                   <div className="fe_title">Building</div>
-                  <input type='text' {...register('building', {
-                      required: true,
-                      minLength: {
-                        value: 1,
-                        message: 'Minimum 1 chars.'
-                      }
-                    }
-                  )} className={errors.building && 'error'} />
+                  <input type='text' {...register('building')} className={errors.building && 'error'} />
                 </div>
                 <div className="form_element half">
                   <div className="fe_title">Apartment</div>
-                  <input type='text' {...register('apartment', {
-                      required: true,
-                      minLength: {
-                        value: 1,
-                        message: 'Minimum 1 chars.'
-                      }
-                    }
-                  )} className={errors.apartment && 'error'} />
+                  <input type='text' {...register('apartment')} className={errors.apartment && 'error'} />
                 </div>
               </div>
             </div>
-            <button className="main_btn" type="submit">
-              <span>Save info</span>
-            </button>
+            <div className="main_btn_wrapper">
+              <button className="main_btn" type="submit">
+                <span>Save info</span>
+              </button>
+              <button className="main_btn dark_btn" type="button" onClick={logOutHandler}>
+                <span>Log out</span>
+              </button>
+            </div>
             {/*end fields*/}
           </form>
         </div>
