@@ -2,6 +2,7 @@ import React from "react";
 import s from './shop.module.scss';
 import {ShopAsideLinks} from "../shop_aside_links/shop_aside_links";
 import {ShopClient} from "../shop_client";
+import {ProductSearch} from "../product_search/product_search";
 
 export const Shop: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const Shop: React.FC = () => {
             </div>
           </div>
           <div className={s.content_side}>
+            <ProductSearch />
             <ShopClient />
           </div>
         </div>
