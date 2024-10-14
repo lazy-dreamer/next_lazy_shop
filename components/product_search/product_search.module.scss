@@ -22,7 +22,19 @@
   width: calc(100% - 4rem);
   top: calc(100% - 2rem);
 }
-
+.otput_blocks {
+  max-height: 22rem;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: -1rem;
+  >* {
+    width: calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+}
 .loader {
   height: 10rem !important;
 }

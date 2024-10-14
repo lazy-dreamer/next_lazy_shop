@@ -7,6 +7,10 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  @include transition;
+  &:hover {
+    box-shadow: 0 0 2rem rgba($font,.3);
+  }
 }
 .image {
   width: 100%;

@@ -18,14 +18,16 @@ interface Props {
 
 export const PersonalSection:React.FC<Props> = ({className=''}) => {
   const [user, setUser] = useState<User | null>(null)
+  const [infoChanged, setInfoChanged] = useState(true)
   const router = useRouter();
   const pathname = usePathname()
   const {userInfo, setUserInfo, setLogout} = useUserStore()
-  // console.log(userInfo)
+  
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -39,6 +41,9 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
       apartment: userInfo?.apartment || ''
     }
   });
+  
+  const watchedValues = watch();
+  
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -57,18 +62,22 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
   
   useEffect(() => {
     if (userInfo) {
-      reset({
-        name: userInfo.name,
-        surname: userInfo.surname,
-        email: userInfo.email,
-        phone: userInfo.phone,
-        city: userInfo.city,
-        street: userInfo.street,
-        building: userInfo.building,
-        apartment: userInfo.apartment
-      });
+      setInfoChanged(false)
+      reset(userInfo);
     }
   }, [userInfo, reset]);
+  
+  useEffect(() => {
+    const isDifferent = Object.keys(watchedValues).some(
+      (key) => watchedValues[key as keyof IFullUserInfo] !== userInfo?.[key as keyof IFullUserInfo]
+    );
+    
+    if (isDifferent) {
+      setInfoChanged(true)
+    } else {
+      setInfoChanged(false)
+    }
+  }, [watchedValues, userInfo]);
   
   if (user == null) {
     return <Preloader />
@@ -166,7 +175,7 @@ export const PersonalSection:React.FC<Props> = ({className=''}) => {
               </div>
             </div>
             <div className="main_btn_wrapper">
-              <button className="main_btn" type="submit">
+              <button className={`main_btn ${infoChanged? '' : 'disabled'}`} type="submit">
                 <span>Save info</span>
               </button>
               <button className="main_btn dark_btn" type="button" onClick={logOutHandler}>

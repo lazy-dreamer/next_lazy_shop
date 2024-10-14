@@ -280,7 +280,7 @@ code {
   &::-webkit-scrollbar-thumb {
     -webkit-border-radius: 1rem;
     border-radius: 1rem;
-    background: #2587BA
+    background: $green
   }
 }
 
@@ -302,7 +302,16 @@ section {
 .text_center {
   text-align: center;
 }
+.half_blocks {
+  margin: -.5rem;
+  display: flex;
+  flex-wrap: wrap;
 
+  > * {
+    margin: .5rem;
+    width: calc(50% - 1rem);
+  }
+}
 .triple_blocks {
   margin: -1.5rem;
   display: flex;
@@ -376,6 +385,10 @@ section {
     &:hover {
       background: $green;
     }
+  }
+  &.disabled {
+    pointer-events: none;
+    background: rgba($font,.2);
   }
 }
 
