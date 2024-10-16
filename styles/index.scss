@@ -1017,3 +1017,7 @@ b {
 .user_info_side {
   width: calc(100% - 35rem);
 }
+
+.top_overlay {
+  z-index: 7 !important;
+}

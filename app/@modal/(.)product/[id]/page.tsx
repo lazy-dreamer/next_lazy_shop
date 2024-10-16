@@ -1,15 +1,16 @@
 import React from "react";
 import {Api} from "../../../../services/api/api-client";
+import {ModalOverlay} from "../../../../components/modal_overlay/modal_overlay";
+import {ProductFullBlock} from "../../../../components/product_full_block/product_full_block";
+import {IProduct} from "../../../page";
 
 export default async function ProductPageModal({ params }: { params: { id: string } }) {
-  let product = await Api.products.product(params.id);
-  const featuredProducts = await Api.products.search(`?categoryId=${product.category.id}`).then(data => data.slice(0,10))
+  // @ts-ignore
+  let product:IProduct = await Api.products.product(params.id);
   
-  return <section>
+  return <ModalOverlay className={'top_overlay'}>
     <div className="screen_content">
-      {/*<ProductFullBlock product={product} />*/}
-      <p>{params.id}</p>
-      {/*{product.id != 696969 && <ProductsSlider title={'Featured items'} blocks={featuredProducts} />}*/}
+      <ProductFullBlock product={product} withClose={true} />
     </div>
-  </section>
+  </ModalOverlay>
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import {Preloader} from "../../../components/preloader/Preloader";
+import {Preloader} from "../components/preloader/Preloader";
+
 
 export default function LoadingProduct() {
   return <section>
