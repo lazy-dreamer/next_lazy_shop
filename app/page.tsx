@@ -1,4 +1,6 @@
 import {HomePage} from "../components/home_page";
+import {Metadata} from "next";
+import {SITE_TITLE} from "../services/constants";
 
 export interface ICategory  {
   id: number | string;
@@ -17,6 +19,10 @@ export interface IProduct  {
   updatedAt: string;
   category: ICategory;
 }
+
+export const metadata: Metadata = {
+  title: `${SITE_TITLE}`
+};
 
 export default async function Home() {
   return (

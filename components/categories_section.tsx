@@ -5,7 +5,11 @@ import {CategoryBlock} from "./category_block/category_block";
 import {ICategory} from "../app/page";
 
 export const CategoriesSection = async () => {
-  const categories:ICategory[] = await Api.categories.getAll()
+  let isCategoriesFailed = false;
+  const categories:ICategory[] = await Api.categories.getAll();
+  if (!categories) {
+    isCategoriesFailed = true;
+  }
   
   return (
     <section>
@@ -13,7 +17,9 @@ export const CategoriesSection = async () => {
         <Title text='Categories' size='lg'/>
         <div className="triple_blocks">
         {
-          categories.map(item => <div key={item.id}><CategoryBlock item={item}/></div>)
+          isCategoriesFailed ? <div>
+            <p>Oops, something went wrong... </p><p>Can't load categories list :(</p>
+          </div> : categories.map(item => <div key={item.id}><CategoryBlock item={item}/></div>)
         }
         </div>
       </div>

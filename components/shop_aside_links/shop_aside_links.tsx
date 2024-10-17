@@ -5,7 +5,11 @@ import {Api} from "../../services/api/api-client";
 import {ShopAsideLink} from "../shop_aside_link/shop_aside_link";
 
 export async function ShopAsideLinks() {
-  const categories:ICategory[] = await Api.categories.getAll()
+  let isCategoriesFailed = false;
+  const categories:ICategory[] = await Api.categories.getAll();
+  if (!categories) {
+    isCategoriesFailed = true;
+  }
   const allCat = {
     id: 'all',
     name: "All categories",
@@ -17,9 +21,13 @@ export async function ShopAsideLinks() {
   return (
     <div className={s.links}>
       <ShopAsideLink key={'all'} category={allCat} />
-      {categories.map((catItem) => (
-        <ShopAsideLink key={catItem.id} category={catItem} />
-      ))}
+      {
+        isCategoriesFailed ? <div>
+          <p>Oops, something went wrong... </p><p>Can't load categories list :(</p>
+        </div> : categories.map((catItem) => (
+          <ShopAsideLink key={catItem.id} category={catItem} />
+        ))
+      }
     </div>
   )
 }

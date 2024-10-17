@@ -4,6 +4,8 @@ export enum ApiRoutes {
   PRODUCTS_SEARCH = 'products/search/'
 }
 
+export const SITE_TITLE = 'Next.js LazyShop';
+
 export const ERROR_PRODUCT = {
   id: 696969,
   title: "Product not available!",

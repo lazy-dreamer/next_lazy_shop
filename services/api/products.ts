@@ -11,8 +11,8 @@ export const search = async (query: string) => {
     })
     return data
   } catch (e) {
-    console.log('-------- search Error: ', e)
-    return []
+    console.error('=== Product search Error: ', e.message)
+    return null
   }
 }
 
@@ -25,18 +25,7 @@ export const product = async (id: string) => {
     })
     return data
   } catch (e) {
-    console.log('-------- product Error: ', e)
+    console.error('=== Product id Error: ', e.message)
     return ERROR_PRODUCT
-  }
-}
-
-export const getAll = async () => {
-  try {
-    const {data} = await axiosInstance.get<IProduct[]>(ApiRoutes.PRODUCTS).catch((e) => {
-      throw new Error(e.message)
-    })
-    return data
-  } catch (e) {
-    console.log('-------- getAll Error: ', e)
   }
 }

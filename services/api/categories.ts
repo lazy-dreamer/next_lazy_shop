@@ -9,6 +9,7 @@ export const getAll = async () => {
     })
     return data
   } catch (e) {
-    console.log('Categories fetch error:  ', e)
+    console.log('Categories fetch error:  ', e.message)
+    return null;
   }
 }

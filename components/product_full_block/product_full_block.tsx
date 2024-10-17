@@ -26,10 +26,14 @@ export function ProductFullBlock({className='', withClose=false, product}:Props)
           <Title size={'md'} text={product.title} />
           <p>{product.description}</p>
         </div>
-        <div className={s.bottom}>
-          <strong className='green'>{product.price}$</strong>
-          <AddToCart product={product} />
-        </div>
+        {
+          product.id != 696969 && (
+            <div className={s.bottom}>
+              <strong className='green'>{product.price}$</strong>
+              <AddToCart product={product} />
+            </div>
+          )
+        }
       </div>
     </div>
   </div>

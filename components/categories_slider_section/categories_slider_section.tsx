@@ -16,12 +16,17 @@ interface Props {
 }
 
 export const CategoriesSliderSection:React.FC<Props> = ({className=''}) => {
+  const [categoriesFailed, setCategoriesFailed] = useState(false)
   const [categories, setCategories] = useState<ICategory[] | undefined>()
   const [loading, setLoading] = useState(true)
   useEffect( () => {
     const getCategories = async () => {
       const cats:ICategory[] = await Api.categories.getAll();
-      setCategories(cats.slice(0, 10))
+      if (cats){
+        setCategories(cats.slice(0, 10))
+      } else {
+        setCategoriesFailed(true)
+      }
       setLoading(false)
     }
     getCategories()
@@ -39,19 +44,27 @@ export const CategoriesSliderSection:React.FC<Props> = ({className=''}) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+  
   return <section className={`${className && className}`}>
     <div className="screen_content">
       <Title text='Popular Categories' size='lg' />
-      <Slider className={s.slider} {...settings}>
-        {
-          categories?.map(item => <div key={item.id}><CategoryBlock item={item}/></div>)
-        }
-      </Slider>
-      <div className="main_btn_wrapper centered">
-        <Link href='/categories' className='main_btn'>
-          <span>More categories</span>
-        </Link>
-      </div>
+      {
+        categoriesFailed ? <div>
+          <p>Oops, something went wrong... </p><p>Can't load categories list :(</p>
+        </div> : <>
+          <Slider className={s.slider} {...settings}>
+            {
+              categories?.map(item => <div key={item.id}><CategoryBlock item={item}/></div>)
+            }
+          </Slider>
+          <div className="main_btn_wrapper centered">
+            <Link href='/categories' className='main_btn'>
+              <span>More categories</span>
+            </Link>
+          </div>
+        </>
+      }
+      
     </div>
   </section>;
 }

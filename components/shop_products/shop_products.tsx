@@ -19,12 +19,13 @@ export const ShopProducts:React.FC<Props> = memo(({category, sort, priceQuery}) 
 
   const fetchProducts = useCallback(async (categoryId: string | string[]) => {
     setLoading(true);
-    
     let reqParam:string = categoryId !== 'all' ? `?categoryId=${categoryId}${priceQuery}` : `?${priceQuery}`;
-    
-    const products:undefined | IProduct[] = await Api.products.search(reqParam).then((data) => sortProductItems(data, sort));
-    
-    setProductItems(products);
+    try {
+      const products:undefined | IProduct[] = await Api.products.search(reqParam).then((data) => sortProductItems(data, sort));
+      setProductItems(products);
+    } catch (e) {
+      console.error(`Uncaught Error: ${e.message}`)
+    }
     setLoading(false);
   }, [priceQuery, sort, category]);
 
@@ -36,7 +37,7 @@ export const ShopProducts:React.FC<Props> = memo(({category, sort, priceQuery}) 
     {loading ? (
       <Preloader />
     ) : (
-      productItems && productItems.length > 0 ? (
+      productItems == undefined ? <Title size="md" text="Oops, something went wrong :(" /> : productItems.length > 0 ? (
         <div className="triple_blocks">
           {productItems.map(prod => (
             <ProductBlock key={prod.id} productItem={prod} />
