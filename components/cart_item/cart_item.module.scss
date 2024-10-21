@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .block {
   display: flex;
@@ -7,8 +7,8 @@
   padding: 1rem;
   padding-right: 3rem;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgba(#000,.1);
-  >*:not(:first-child) {
+  box-shadow: 0 0 1rem rgba(#000, 0.1);
+  > *:not(:first-child) {
     margin-left: 1.5rem;
   }
   &:not(:last-child) {
@@ -20,10 +20,11 @@
   flex-shrink: 0;
   width: 3rem;
   height: 3rem;
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-right: 0 !important;
   }
-  img, svg {
+  img,
+  svg {
     width: 3rem !important;
     max-width: 3rem !important;
     max-height: 3rem !important;

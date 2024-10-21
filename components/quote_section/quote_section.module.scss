@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .quote {
   max-width: 90rem;
@@ -6,8 +6,9 @@
   margin-right: auto;
   padding: 3rem;
   position: relative;
-  &:before, &:after {
-    content: '';
+  &:before,
+  &:after {
+    content: "";
     display: block;
     width: 6rem;
     height: 3rem;
@@ -16,13 +17,13 @@
   &:before {
     left: 0;
     top: 0;
-    border-top: .2rem solid $green;
-    border-left: .2rem solid $green;
+    border-top: 0.2rem solid $green;
+    border-left: 0.2rem solid $green;
   }
   &:after {
     bottom: 0;
     right: 0;
-    border-bottom: .2rem solid $green;
-    border-right: .2rem solid $green;
+    border-bottom: 0.2rem solid $green;
+    border-right: 0.2rem solid $green;
   }
 }

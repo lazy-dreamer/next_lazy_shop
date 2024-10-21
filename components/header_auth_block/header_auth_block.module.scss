@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .reg_btn {
   display: inline-flex;
@@ -8,10 +8,11 @@
   color: $green;
   font-size: inherit;
   font-weight: 600;
-  >*:not(:last-child) {
-    margin-right: .5rem;
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
   }
-  img, svg {
+  img,
+  svg {
     max-width: 2rem;
     max-height: 2rem;
   }

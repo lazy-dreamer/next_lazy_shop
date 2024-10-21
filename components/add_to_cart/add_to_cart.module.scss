@@ -1,13 +1,14 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .cart {
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  >*:not(:last-child) {
-    margin-right: .5rem;
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
   }
-  img, svg {
+  img,
+  svg {
     width: auto;
     height: auto;
     max-width: 2.5rem;

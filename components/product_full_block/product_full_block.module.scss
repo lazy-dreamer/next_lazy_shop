@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .block {
   width: 100%;
@@ -8,14 +8,15 @@
   padding: 2rem;
   background: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 0 1rem rgba($font,.1);
+  box-shadow: 0 0 1rem rgba($font, 0.1);
   position: relative;
   :global {
-    .main_title, p {
+    .main_title,
+    p {
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
-    } 
+    }
   }
   &:not(:last-child) {
     margin-bottom: 5rem;
@@ -26,13 +27,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
-  >*:not(:last-child) {
+
+  > *:not(:last-child) {
     margin-bottom: 1.5rem;
   }
 }
 .top {
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-bottom: 1rem;
   }
 }

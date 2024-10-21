@@ -1,17 +1,15 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .nav {
   display: flex;
   align-items: center;
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-right: 2rem;
   }
   &:global {
     &.header_nav {
-      
     }
     &.footer_nav {
-      
     }
   }
 }
@@ -22,8 +20,8 @@
   @include transition;
   font-weight: 500;
   position: relative;
-  >*:not(:last-child) {
-    margin-right: .5rem;
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
   }
   &:hover {
     color: $green;
@@ -47,7 +45,7 @@
   align-items: center;
   justify-content: center;
   background: currentColor;
-  >* {
+  > * {
     color: #fff;
   }
 }

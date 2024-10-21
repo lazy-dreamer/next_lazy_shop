@@ -8,7 +8,7 @@
   top: 0;
   background: #fff;
   padding: 1.5rem 10px;
-  border-bottom: 1px solid rgba($dark,.1);
+  border-bottom: 1px solid rgba($dark, 0.1);
 }
 
 .header_container {
@@ -19,7 +19,7 @@
 .header_right {
   display: flex;
   align-items: center;
-  >*:not(:first-child) {
+  > *:not(:first-child) {
     margin-left: 2rem;
   }
 }

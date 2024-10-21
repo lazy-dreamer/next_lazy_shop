@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .block {
   width: 12rem;
@@ -6,7 +6,7 @@
   text-align: center;
   display: flex;
   position: relative;
-  
+
   input {
     width: 100%;
     text-align: center;
@@ -23,16 +23,16 @@
   top: 50%;
   @include tr_top;
   &:before {
-    content: '';
+    content: "";
     display: block;
     width: 1.2rem;
-    height: .2rem;
+    height: 0.2rem;
     background: $font;
-    @include pos_center
+    @include pos_center;
   }
   &:global {
     &.disabled {
-      opacity: .5;
+      opacity: 0.5;
       pointer-events: none;
     }
   }
@@ -43,11 +43,11 @@
 .plus {
   right: 0;
   &:after {
-    content: '';
+    content: "";
     display: block;
     height: 1.2rem;
-    width: .2rem;
+    width: 0.2rem;
     background: $font;
-    @include pos_center
+    @include pos_center;
   }
 }

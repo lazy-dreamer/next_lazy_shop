@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";;
+@import "../../styles/variables.scss";
 
 .cat_btn {
   display: block;
@@ -11,7 +11,7 @@
   }
   &:not(:last-child) {
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba($font,.1);
+    border-bottom: 1px solid rgba($font, 0.1);
   }
   &:hover {
     color: $green;

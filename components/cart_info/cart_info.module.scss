@@ -1,12 +1,12 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .block {
   width: 100%;
   padding: 2rem;
   background: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 0 1rem rgba(#000,.1);
-  &>*:not(:last-child) {
+  box-shadow: 0 0 1rem rgba(#000, 0.1);
+  & > *:not(:last-child) {
     margin-bottom: 2rem;
   }
   &:not(:last-child) {
@@ -16,8 +16,8 @@
 
 .list {
   font-size: 1.6rem;
-  &>*:not(:last-child) {
-    margin-bottom: .5rem;
+  & > *:not(:last-child) {
+    margin-bottom: 0.5rem;
   }
 }
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-type TitleSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' ;
+type TitleSize = "xxs" | "xs" | "sm" | "md" | "lg" | "xl";
 
 interface Props {
   size?: TitleSize;
@@ -8,25 +8,29 @@ interface Props {
   text: string;
 }
 
-export const Title: React.FC<Props> = ({ text, size = 'lg', className='' }) => {
+export const Title: React.FC<Props> = ({
+  text,
+  size = "lg",
+  className = "",
+}) => {
   const mapTagBySize = {
-    xxs: 'h6',
-    xs: 'h5',
-    sm: 'h4',
-    md: 'h3',
-    lg: 'h2',
-    xl: 'h1',
+    xxs: "h6",
+    xs: "h5",
+    sm: "h4",
+    md: "h3",
+    lg: "h2",
+    xl: "h1",
   } as const;
-  
+
   const mapClassNameBySize = {
-    xxs: 'title_h6',
-    xs: 'title_h5',
-    sm: 'title_h4',
-    md: 'title_h3',
-    lg: 'title_h2',
-    xl: 'title_h1',
+    xxs: "title_h6",
+    xs: "title_h5",
+    sm: "title_h4",
+    md: "title_h3",
+    lg: "title_h2",
+    xl: "title_h1",
   } as const;
-  
+
   return React.createElement(
     mapTagBySize[size],
     { className: `main_title ${mapClassNameBySize[size]} ${className}` },

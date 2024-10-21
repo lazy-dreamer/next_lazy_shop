@@ -1,11 +1,11 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .block {
   width: 100%;
   padding: 2rem;
   background: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 0 1rem rgba($font,.1);
+  box-shadow: 0 0 1rem rgba($font, 0.1);
   position: sticky;
   top: 8rem;
   z-index: 2;
@@ -14,7 +14,7 @@
   }
 }
 .range {
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-bottom: 2rem;
   }
 }

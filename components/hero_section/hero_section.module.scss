@@ -1,9 +1,9 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .slider {
   :global {
     .screen_content {
-      transition:.5s;
+      transition: 0.5s;
       opacity: 0;
       top: 3rem;
     }

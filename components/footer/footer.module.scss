@@ -1,12 +1,12 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .footer {
   padding: 2.5rem 10px;
-  border-top: 1px solid rgba($dark,.1) 
+  border-top: 1px solid rgba($dark, 0.1);
 }
 
 .footer_container {
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-bottom: 2rem;
   }
 }
@@ -18,6 +18,6 @@
 }
 
 .copyright {
-  color: rgba($font,.6);
+  color: rgba($font, 0.6);
   font-size: 1.4rem;
 }

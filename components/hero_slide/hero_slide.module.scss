@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .slide {
   width: 100%;
@@ -11,11 +11,15 @@
   padding: 5rem 10px;
   position: relative;
   &:before {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 50%;
-    background: linear-gradient(to top, rgba($dark,.6) 0, rgba($dark,0) 100%);
+    background: linear-gradient(
+      to top,
+      rgba($dark, 0.6) 0,
+      rgba($dark, 0) 100%
+    );
     position: absolute;
     left: 0;
     bottom: 0;

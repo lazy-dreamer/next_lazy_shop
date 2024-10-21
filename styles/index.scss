@@ -21,8 +21,8 @@ body {
   overflow-x: hidden;
   font-weight: 400;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
@@ -46,38 +46,46 @@ body {
   justify-content: space-between;
   margin-left: -1rem;
   margin-right: -1rem;
-  >* {
+
+  > * {
     width: calc(100% - 2rem);
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 1.5rem;
+
     &.half {
       width: calc(50% - 2rem);
     }
+
     &.devider {
       height: 1rem;
     }
   }
+
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
+
   &.no_offset {
     &:not(:last-child) {
       margin-bottom: 0;
     }
   }
-  
+
   &.negative_down {
     margin-bottom: -1rem;
   }
 }
+
 .form_element {
   display: flex;
   flex-direction: column;
-  >* {
+
+  > * {
     width: 100%;
   }
 }
+
 .fe_title {
   width: 100%;
   overflow: hidden;
@@ -86,6 +94,7 @@ body {
   font-weight: 500;
   margin-bottom: 1rem;
 }
+
 .self_aligned {
   align-self: center;
 }
@@ -111,7 +120,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
 
@@ -196,8 +205,8 @@ code {
       &:before {
         content: "";
         display: block;
-        width: .5rem;
-        height: .5rem;
+        width: 0.5rem;
+        height: 0.5rem;
         background-color: $dark;
         border-radius: 50%;
         position: absolute;
@@ -220,7 +229,7 @@ code {
 
       &:before {
         counter-increment: myCounter;
-        content: counter(myCounter) '.';
+        content: counter(myCounter) ".";
         position: absolute;
         left: 0;
         top: 0;
@@ -237,7 +246,8 @@ code {
     color: $font;
     font-style: italic;
     padding-left: 3rem;
-    >*:not(:last-child) {
+
+    > *:not(:last-child) {
       margin-bottom: 1rem;
     }
   }
@@ -268,19 +278,19 @@ code {
 .custom_styled_scroll {
   &::-webkit-scrollbar {
     height: 3px;
-    width: 3px
+    width: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(37, 135, 186, .15);
+    background: rgba(37, 135, 186, 0.15);
     -webkit-border-radius: 1rem;
-    border-radius: 1rem
+    border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-thumb {
     -webkit-border-radius: 1rem;
     border-radius: 1rem;
-    background: $green
+    background: $green;
   }
 }
 
@@ -292,26 +302,30 @@ section {
     padding: 0;
   }
 }
+
 .top_bordered {
-  border-top: 1px solid rgba($dark,.1)
+  border-top: 1px solid rgba($dark, 0.1);
 }
+
 .bottom_bordered {
-  border-bottom: 1px solid rgba($dark,.1)
+  border-bottom: 1px solid rgba($dark, 0.1);
 }
 
 .text_center {
   text-align: center;
 }
+
 .half_blocks {
-  margin: -.5rem;
+  margin: -0.5rem;
   display: flex;
   flex-wrap: wrap;
 
   > * {
-    margin: .5rem;
+    margin: 0.5rem;
     width: calc(50% - 1rem);
   }
 }
+
 .triple_blocks {
   margin: -1.5rem;
   display: flex;
@@ -341,7 +355,7 @@ section {
 }
 
 .offsets_inside {
-  >*:not(:last-child) {
+  > *:not(:last-child) {
     margin-bottom: 1.5rem;
   }
 }
@@ -349,12 +363,14 @@ section {
 .main_btn_wrapper {
   display: flex;
   align-items: center;
-  margin: -.5rem;
+  margin: -0.5rem;
+
   &.centered {
     justify-content: center;
   }
-  >* {
-    margin: .5rem;
+
+  > * {
+    margin: 0.5rem;
   }
 }
 
@@ -363,16 +379,18 @@ section {
   display: inline-block;
   background: $green;
   padding: 1.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   min-width: 20rem;
   text-align: center;
   @include transition;
   font-weight: 500;
+
   &.with_offset {
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
   }
+
   &.min_wide {
     min-width: 100%;
   }
@@ -380,15 +398,18 @@ section {
   &:hover {
     background: $dark;
   }
+
   &.dark_btn {
     background: $dark;
+
     &:hover {
       background: $green;
     }
   }
+
   &.disabled {
     pointer-events: none;
-    background: rgba($font,.2);
+    background: rgba($font, 0.2);
   }
 }
 
@@ -411,24 +432,31 @@ section {
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
+
   &.title_h1 {
     font-size: 3.4rem;
+
     &:not(:last-child) {
       margin-bottom: 3.5rem;
     }
   }
+
   &.title_h2 {
     font-size: 3rem;
   }
+
   &.title_h3 {
     font-size: 2.6rem;
   }
+
   &.title_h4 {
     font-size: 2.4rem;
   }
+
   &.title_h5 {
     font-size: 2rem;
   }
+
   &.title_h6 {
     font-size: 1.8rem;
   }
@@ -441,6 +469,7 @@ section {
   > * {
     width: calc(50% - 1.5rem);
   }
+
   &.centered {
     align-items: center;
   }
@@ -454,21 +483,23 @@ section {
   text-decoration: underline;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   height: 5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding-left: 2rem;
   padding-right: 2rem;
   color: $font;
   background: #fff;
-  border: 1px solid rgba($border,.2);
+  border: 1px solid rgba($border, 0.2);
   font-size: 1.6rem;
   @include transition;
-  
+
   &:focus {
-    border-color: rgba($green,.3);
+    border-color: rgba($green, 0.3);
   }
+
   &.error {
     border-color: red;
   }
@@ -480,14 +511,17 @@ textarea {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
 .modal_close {
   position: absolute;
   right: 0;
   top: 0;
   width: 4rem;
   height: 4rem;
-  &:before,&:after {
-    content: '';
+
+  &:before,
+  &:after {
+    content: "";
     display: block;
     width: 1.5rem;
     height: 1px;
@@ -496,6 +530,7 @@ textarea {
     left: 50%;
     top: 50%;
   }
+
   &:before {
     -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
@@ -503,6 +538,7 @@ textarea {
     -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
   }
+
   &:after {
     -moz-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
     -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
@@ -521,10 +557,12 @@ b {
   padding: 2rem;
   background: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 0 1rem rgba(#000,.1);
-  &>*:not(:last-child) {
+  box-shadow: 0 0 1rem rgba(#000, 0.1);
+
+  & > *:not(:last-child) {
     margin-bottom: 2rem;
   }
+
   &.with_offset {
     &:not(:last-child) {
       margin-bottom: 3rem;
@@ -541,12 +579,14 @@ b {
 @media screen and (max-width: 991px) {
   .quarter_blocks {
     margin: -1rem;
+
     > * {
       margin: 1rem;
       width: calc(33.333% - 2rem);
     }
   }
 }
+
 @media screen and (max-width: 799px) {
   .quarter_blocks {
     > * {
@@ -554,14 +594,17 @@ b {
     }
   }
 }
+
 @media screen and (max-width: 600px) {
   html {
     font-size: 8px;
   }
   .half_sides {
     display: block;
-    >* {
+
+    > * {
       width: 100%;
+
       &:not(:last-child) {
         margin-bottom: 2rem;
       }
@@ -587,7 +630,6 @@ b {
 //-----------------------
 //-----------------------
 
-
 .slick-dots {
   bottom: 2rem !important;
   font-size: 0;
@@ -595,6 +637,7 @@ b {
   .slick-active button:before {
     color: $green !important;
   }
+
   @media screen and (max-width: 600px) {
     bottom: 1rem !important;
   }
@@ -602,7 +645,7 @@ b {
 
 .slick-dots li {
   @media screen and (max-width: 600px) {
-    margin: .3rem !important;
+    margin: 0.3rem !important;
   }
 }
 
@@ -613,7 +656,8 @@ b {
   line-height: 1rem !important;
 }
 
-.slick-dots li button, .slick-dots li {
+.slick-dots li button,
+.slick-dots li {
   width: 1rem !important;
   height: 1rem !important;
 }
@@ -624,7 +668,7 @@ b {
   }
 
   &__control {
-    background: rgba($font, .1) !important;
+    background: rgba($font, 0.1) !important;
     border-color: $border !important;
     box-shadow: none !important;
     outline: none !important;
@@ -645,7 +689,7 @@ b {
   &__multi-value {
     background: $dark !important;
     color: #fff;
-    border-radius: .5rem !important;
+    border-radius: 0.5rem !important;
 
     &__remove {
       &:hover {
@@ -656,7 +700,7 @@ b {
 
     &__label {
       color: #fff !important;
-      padding: .5rem !important;
+      padding: 0.5rem !important;
       padding-left: 1rem !important;
     }
   }
@@ -679,13 +723,14 @@ b {
     display: flex;
   }
 
-  .break, .disabled {
+  .break,
+  .disabled {
     pointer-events: none;
   }
 
   .selected {
     a {
-      border-color: rgba($green, .5);
+      border-color: rgba($green, 0.5);
       color: $green;
     }
   }
@@ -695,31 +740,35 @@ b {
     justify-content: center;
     padding: 0 1rem;
     border: 1px solid $border;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     line-height: 3rem;
     min-width: 3rem;
     text-align: center;
   }
 
-  .previous, .next {
+  .previous,
+  .next {
     a {
       min-width: 10rem;
     }
   }
+
   @media screen and (max-width: 420px) {
     a {
-      padding-left: .5rem;
-      padding-right: .5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
-    .previous a, .next a {
+    .previous a,
+    .next a {
       min-width: 3rem;
       font-size: 0;
       position: relative;
+
       &:before {
-        content: '';
+        content: "";
         display: block;
-        width: .8rem;
-        height: .8rem;
+        width: 0.8rem;
+        height: 0.8rem;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -733,7 +782,7 @@ b {
       -o-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
       transform: translateX(-50%) translateY(-50%) rotate(-45deg);
       border-left: 1px solid $green;
-      margin-left: .2rem;
+      margin-left: 0.2rem;
     }
     .next a:before {
       -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
@@ -742,7 +791,7 @@ b {
       -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
       transform: translateX(-50%) translateY(-50%) rotate(45deg);
       border-right: 1px solid $green;
-      margin-left: -.2rem;
+      margin-left: -0.2rem;
     }
   }
 }
@@ -762,14 +811,14 @@ b {
     margin-top: -2.5rem;
     width: 5rem;
     height: 5rem;
-    border: 1px solid rgba($green, .2);
-    background: rgba($green, .1);
+    border: 1px solid rgba($green, 0.2);
+    background: rgba($green, 0.1);
     border-radius: 50%;
-    transition: .3s;
+    transition: 0.3s;
     z-index: 1;
 
     &:after {
-      content: '';
+      content: "";
       display: inline-block;
       width: 1rem;
       height: 1rem;
@@ -786,7 +835,7 @@ b {
       &:after {
         border-left: 2px solid $green;
         transform: translateY(-50%) translateX(-50%) rotate(-45deg);
-        margin-left: .2rem;
+        margin-left: 0.2rem;
       }
     }
 
@@ -797,7 +846,7 @@ b {
       &:after {
         border-right: 2px solid $green;
         transform: translateY(-50%) translateX(-50%) rotate(45deg);
-        margin-left: -.2rem;
+        margin-left: -0.2rem;
       }
     }
 
@@ -806,8 +855,8 @@ b {
     }
 
     &:hover {
-      border: 1px solid rgba($green, .4);
-      background: rgba($green, .2);
+      border: 1px solid rgba($green, 0.4);
+      background: rgba($green, 0.2);
     }
   }
 
@@ -833,14 +882,14 @@ b {
     margin-top: -2.5rem;
     width: 5rem;
     height: 5rem;
-    border: 1px solid rgba($green, .2);
-    background: rgba($green, .1);
+    border: 1px solid rgba($green, 0.2);
+    background: rgba($green, 0.1);
     border-radius: 50%;
-    transition: .3s;
+    transition: 0.3s;
     z-index: 1;
 
     &:after {
-      content: '';
+      content: "";
       display: inline-block;
       width: 1rem;
       height: 1rem;
@@ -856,7 +905,7 @@ b {
       &:after {
         border-left: 2px solid $green;
         transform: translateY(-50%) translateX(-50%) rotate(-45deg);
-        margin-left: .2rem;
+        margin-left: 0.2rem;
       }
     }
 
@@ -866,7 +915,7 @@ b {
       &:after {
         border-right: 2px solid $green;
         transform: translateY(-50%) translateX(-50%) rotate(45deg);
-        margin-left: -.2rem;
+        margin-left: -0.2rem;
       }
     }
 
@@ -875,8 +924,8 @@ b {
     }
 
     &:hover {
-      border: 1px solid rgba($green, .4);
-      background: rgba($green, .2);
+      border: 1px solid rgba($green, 0.4);
+      background: rgba($green, 0.2);
     }
   }
 }
@@ -887,13 +936,13 @@ b {
   }
 
   &__control {
-    border-color: rgba($font,.2) !important;
+    border-color: rgba($font, 0.2) !important;
     box-shadow: none !important;
     outline: none !important;
     background: #fff !important;
 
     &:hover {
-      border-color: rgba($font,.2) !important;
+      border-color: rgba($font, 0.2) !important;
       box-shadow: none !important;
       outline: none !important;
     }
@@ -911,17 +960,18 @@ b {
     .react-select__option--is-disabled {
       display: none;
     }
-
   }
 }
+
 .product_image_slider {
   width: 100%;
   font-size: 0;
+
   .img_slide {
     width: 100%;
     height: 0;
     padding-bottom: 100%;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 }
 
@@ -930,7 +980,8 @@ b {
   align-items: center;
   justify-content: center;
   width: 100%;
-  >*:not(:last-child) {
+
+  > *:not(:last-child) {
     margin-right: 1rem;
   }
 }
@@ -942,31 +993,39 @@ b {
   vertical-align: middle;
   @include transition;
   color: inherit;
-  img, svg {
+
+  img,
+  svg {
     flex-shrink: 0;
     max-width: 2rem;
     max-height: 2rem;
     display: inline-block;
   }
-  >*:not(:last-child) {
-    margin-right: .5rem;
+
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
   }
+
   &:hover {
     color: $green;
   }
 }
+
 .form_bottom_variants {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  >*:not(:last-child) {
-    margin-bottom: .5rem;
+
+  > *:not(:last-child) {
+    margin-bottom: 0.5rem;
   }
 }
+
 .font_sb {
   font-weight: 600;
 }
+
 .font_md {
   font-weight: 500;
 }
@@ -977,8 +1036,10 @@ b {
   top: 0;
   width: 4rem;
   height: 4rem;
-  &:before,&:after {
-    content: '';
+
+  &:before,
+  &:after {
+    content: "";
     display: block;
     width: 1.5rem;
     height: 1px;
@@ -987,6 +1048,7 @@ b {
     left: 50%;
     top: 50%;
   }
+
   &:before {
     -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
@@ -994,6 +1056,7 @@ b {
     -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
   }
+
   &:after {
     -moz-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
     -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);

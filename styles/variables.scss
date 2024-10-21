@@ -1,27 +1,26 @@
-$dark: #0C0E12;
-$green: #15CEA1;
-$font: #0C0E12;
-$border: rgba(#0C0E12, .8);
-
+$dark: #0c0e12;
+$green: #15cea1;
+$font: #0c0e12;
+$border: rgba(#0c0e12, 0.8);
 
 /*mixins*/
 
 @mixin custom_scroll {
   &::-webkit-scrollbar {
     height: 3px;
-    width:3px
+    width: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(37, 135, 186, .15);
+    background: rgba(37, 135, 186, 0.15);
     -webkit-border-radius: 1rem;
-    border-radius:1rem
+    border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-thumb {
     -webkit-border-radius: 1rem;
     border-radius: 1rem;
-    background:$green
+    background: $green;
   }
 }
 

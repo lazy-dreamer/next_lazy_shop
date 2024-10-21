@@ -1,15 +1,15 @@
-'use client'
+"use client";
 import React from "react";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const ProductModalClose:React.FC<Props> = ({className=''}) => {
+export const ProductModalClose: React.FC<Props> = ({ className = "" }) => {
   const router = useRouter();
   const handleClose = () => {
     router.back();
   };
-  return <button className={'modal_close'} onClick={handleClose} />;
-}
+  return <button className={"modal_close"} onClick={handleClose} />;
+};

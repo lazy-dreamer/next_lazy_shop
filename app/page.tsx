@@ -1,15 +1,15 @@
-import {HomePage} from "../components/home_page";
-import {Metadata} from "next";
-import {SITE_TITLE} from "../services/constants";
+import { HomePage } from "../components/home_page";
+import { Metadata } from "next";
+import { SITE_TITLE } from "../services/constants";
 
-export interface ICategory  {
+export interface ICategory {
   id: number | string;
   name: string;
   image: string;
   creationAt: string;
   updatedAt: string;
 }
-export interface IProduct  {
+export interface IProduct {
   id: number;
   title: string;
   price: number;
@@ -21,11 +21,9 @@ export interface IProduct  {
 }
 
 export const metadata: Metadata = {
-  title: `${SITE_TITLE}`
+  title: `${SITE_TITLE}`,
 };
 
 export default async function Home() {
-  return (
-    <HomePage />
-  );
+  return <HomePage />;
 }

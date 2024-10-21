@@ -1,10 +1,10 @@
-import {IProduct} from "../app/page";
+import { IProduct } from "../app/page";
 
 export function sortProductItems(products: IProduct[], action: string) {
   const sortedProducts = [...products];
-  
+
   switch (action) {
-    case 'name_start':
+    case "name_start":
       sortedProducts.sort((a, b) => {
         const nameA: string = a.title.toLowerCase();
         const nameB: string = b.title.toLowerCase();
@@ -13,7 +13,7 @@ export function sortProductItems(products: IProduct[], action: string) {
         return 0;
       });
       break;
-    case 'name_end':
+    case "name_end":
       sortedProducts.sort((a, b) => {
         const nameA = a.title.toLowerCase();
         const nameB = b.title.toLowerCase();
@@ -22,11 +22,11 @@ export function sortProductItems(products: IProduct[], action: string) {
         return 0;
       });
       break;
-    case 'price_up':
-      sortedProducts.sort((a, b) => a.price - b.price)
+    case "price_up":
+      sortedProducts.sort((a, b) => a.price - b.price);
       break;
-    case 'price_down':
-      sortedProducts.sort((a, b) => b.price - a.price)
+    case "price_down":
+      sortedProducts.sort((a, b) => b.price - a.price);
       break;
     default:
       //name_start
@@ -39,6 +39,6 @@ export function sortProductItems(products: IProduct[], action: string) {
       });
       break;
   }
-  
-  return sortedProducts
+
+  return sortedProducts;
 }

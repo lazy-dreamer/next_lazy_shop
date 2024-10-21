@@ -5,14 +5,16 @@ import {QuoteSection} from "./quote_section/quote_section";
 import {ContactsSection} from "./contacts_section/contacts_section";
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const HomePage:React.FC<Props> = ({className=''}) => {
-  return <>
-    <HeroSection className='no_paddings' />
-    <CategoriesSliderSection />
-    <QuoteSection />
-    <ContactsSection />
-  </>
-}
+export const HomePage: React.FC<Props> = ({className = ""}) => {
+  return (
+    <>
+      <HeroSection className="no_paddings"/>
+      <CategoriesSliderSection/>
+      <QuoteSection/>
+      <ContactsSection/>
+    </>
+  );
+};

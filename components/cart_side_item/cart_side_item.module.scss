@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .block {
   display: flex;
@@ -9,7 +9,7 @@
 .image {
   width: 4rem;
   height: 4rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   flex-shrink: 0;
 }
 
@@ -29,22 +29,22 @@
   align-items: flex-end;
   justify-content: space-between;
   position: relative;
-  margin-left: -.5rem;
-  margin-right: -.5rem;
-  >* {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  > * {
     position: relative;
     background: #fff;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   &:before {
-    content: '';
+    content: "";
     display: block;
     width: calc(100% - 1rem);
     height: 1px;
-    border-bottom: 1px dashed rgba($font,.1);
+    border-bottom: 1px dashed rgba($font, 0.1);
     position: absolute;
-    left: .5rem;
-    bottom: .5rem;
+    left: 0.5rem;
+    bottom: 0.5rem;
   }
 }

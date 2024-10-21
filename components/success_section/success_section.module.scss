@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .image {
   display: flex;
@@ -8,7 +8,8 @@
   height: 20rem;
   margin-left: auto;
   margin-right: auto;
-  img, svg {
+  img,
+  svg {
     width: 100%;
     height: 100%;
     max-width: 100%;

@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import '../styles/index.scss';
-import {Footer} from "../components/footer/footer";
-import {Header} from "../components/header/header";
-import { Toaster } from 'react-hot-toast';
+import "../styles/index.scss";
+import { Footer } from "../components/footer/footer";
+import { Header } from "../components/header/header";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '700']
-})
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Next.js LazyShop",

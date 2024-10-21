@@ -1,16 +1,16 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 .cat_block {
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgba($font,.1);
+  box-shadow: 0 0 1rem rgba($font, 0.1);
   display: flex;
   position: relative;
   overflow: hidden;
   height: 0;
   padding-bottom: 100%;
   background-position: center;
-  background-color: #ACABA9;
+  background-color: #acaba9;
   &:after {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 15rem;
@@ -20,7 +20,7 @@
     bottom: 0;
     border-radius: 0 0 1rem 1rem;
   }
-  
+
   :global {
     .main_title {
       position: absolute;
@@ -30,6 +30,6 @@
       padding: 1.5rem;
       color: #fff;
       z-index: 1;
-    } 
+    }
   }
 }
