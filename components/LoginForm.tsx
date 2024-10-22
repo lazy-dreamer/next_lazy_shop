@@ -11,11 +11,7 @@ interface Props {
   toggleForm: (arg: boolean) => void;
 }
 
-export const LoginForm: React.FC<Props> = ({
-                                             className,
-                                             toggleForm,
-                                             modalClose,
-                                           }) => {
+export const LoginForm: React.FC<Props> = ({className, toggleForm, modalClose}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
