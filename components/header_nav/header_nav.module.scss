@@ -3,16 +3,12 @@
 .nav {
   display: flex;
   align-items: center;
+
   > *:not(:last-child) {
     margin-right: 2rem;
   }
-  &:global {
-    &.header_nav {
-    }
-    &.footer_nav {
-    }
-  }
 }
+
 .link {
   display: inline-flex;
   align-items: center;
@@ -20,21 +16,26 @@
   @include transition;
   font-weight: 500;
   position: relative;
+
   > *:not(:last-child) {
     margin-right: 0.5rem;
   }
+
   &:hover {
     color: $green;
   }
+
   &:global {
     &.active {
       color: $green;
+
       .count {
         background: $green;
       }
     }
   }
 }
+
 .count {
   width: 1.8rem;
   height: 1.8rem;
@@ -45,6 +46,7 @@
   align-items: center;
   justify-content: center;
   background: currentColor;
+
   > * {
     color: #fff;
   }

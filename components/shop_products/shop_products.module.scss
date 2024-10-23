@@ -1,0 +1,19 @@
+.output_blocks {
+  position: relative;
+
+  @media screen and (max-width: 992px) {
+    &:global {
+      > * {
+        margin: 1rem;
+        width: calc(50% - 2rem);
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    &:global {
+      > * {
+        width: calc(100% - 2rem);
+      }
+    }
+  }
+}

@@ -1,16 +1,17 @@
 "use client";
 import React from "react";
 import s from "./contacts_section.module.scss";
-import { Title } from "../ui/title";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { stylers } from "../../services/map_stylers";
+import {Title} from "../ui/title";
+import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api";
+import {stylers} from "../../services/map_stylers";
 
 interface Props {
   className?: string;
 }
+
 const mapContainerStyle = {
   width: "100%",
-  height: "400px",
+  height: "100%",
 };
 
 const iconUrl = "/map_pin.svg";
@@ -22,16 +23,16 @@ const center = {
 
 const mapStyles: any[] = stylers;
 
-export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
+export const ContactsSection: React.FC<Props> = ({className = ""}) => {
   const key: string = process.env.NEXT_PUBLIC_MAP_KEY || "";
-  const { isLoaded, loadError } = useLoadScript({
+  const {isLoaded, loadError} = useLoadScript({
     googleMapsApiKey: key,
   });
-
+  
   return (
     <section className={`${className && className} ${s.frame} `}>
       <div className="screen_content">
-        <Title text="Contact information" size="lg" />
+        <Title text="Contact information" size="lg"/>
         <div className="simple_text bottom_offset">
           <p>
             <strong>Main office:</strong> Baderpl. 108, 4830 Hallstatt, Austria
@@ -47,16 +48,19 @@ export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
         ) : loadError ? (
           <div>Error loading map</div>
         ) : (
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={center}
-            zoom={14}
-            options={{
-              styles: mapStyles,
-            }}
-          >
-            <Marker position={center} icon={iconUrl} />
-          </GoogleMap>
+          <div className={s.map}>
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={center}
+              zoom={14}
+              options={{
+                styles: mapStyles,
+              }}
+            
+            >
+              <Marker position={center} icon={iconUrl}/>
+            </GoogleMap>
+          </div>
         )}
       </div>
     </section>

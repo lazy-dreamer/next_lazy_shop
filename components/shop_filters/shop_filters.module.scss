@@ -9,10 +9,17 @@
   position: sticky;
   top: 8rem;
   z-index: 2;
+
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
+
+  @media screen and (max-width: 600px) {
+    position: relative;
+    top: 0;
+  }
 }
+
 .range {
   > *:not(:last-child) {
     margin-bottom: 2rem;

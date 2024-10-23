@@ -15,9 +15,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    > *:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .copyright {
   color: rgba($font, 0.6);
   font-size: 1.4rem;
+}
+
+.footer_nav {
+  position: relative;
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    > * {
+      margin: 1rem;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
 }

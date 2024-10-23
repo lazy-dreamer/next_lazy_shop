@@ -7,6 +7,7 @@
   box-shadow: 0 0 1rem rgba(#000, 0.1);
   width: 32rem;
 }
+
 .avatar {
   width: 18rem;
   height: 18rem;
@@ -18,6 +19,7 @@
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
@@ -44,5 +46,18 @@
 .info_body {
   > *:not(:last-child) {
     margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .frame {
+    width: 30rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .frame {
+    width: 37rem;
+    max-width: 100%;
   }
 }

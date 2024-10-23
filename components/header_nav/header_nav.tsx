@@ -2,19 +2,19 @@
 import React from "react";
 import Link from "next/link";
 import s from "./header_nav.module.scss";
-import { usePathname } from "next/navigation";
-import { useUserStore } from "../../store/user_store";
+import {usePathname} from "next/navigation";
+import {useUserStore} from "../../store/user_store";
 
 interface Props {
   className?: string;
 }
 
-export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
+export const HeaderNav: React.FC<Props> = ({className = ""}) => {
   const pathname = usePathname();
-  const { isAuth, favLength, isFavoritesLoaded, cartLength } = useUserStore();
+  const {isAuth, favLength, isFavoritesLoaded, cartLength} = useUserStore();
   const favLen = favLength();
   const cartLen = cartLength();
-
+  
   return (
     <nav className={` ${className ? className : ""} ${s.nav} `}>
       <Link href="/" className={`${s.link} ${pathname == "/" ? "active" : ""}`}>

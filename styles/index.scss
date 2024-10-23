@@ -62,6 +62,12 @@ body {
     }
   }
 
+  @media screen and (max-width: 600px) {
+    > .half {
+      width: calc(100% - 2rem);
+    }
+  }
+
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
@@ -113,6 +119,9 @@ body {
   flex: 1 0 auto;
   position: relative;
   padding-top: 7rem;
+  @media screen and (max-width: 991px) {
+    padding-top: 6.5rem;
+  }
 }
 
 .accent {
@@ -271,7 +280,7 @@ code {
   }
 
   @media screen and (max-width: 991px) {
-    max-width: 106rem;
+    max-width: 92rem;
   }
 }
 
@@ -570,66 +579,6 @@ b {
   }
 }
 
-@media screen and (max-width: 1199px) {
-  html {
-    font-size: 9px;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .quarter_blocks {
-    margin: -1rem;
-
-    > * {
-      margin: 1rem;
-      width: calc(33.333% - 2rem);
-    }
-  }
-}
-
-@media screen and (max-width: 799px) {
-  .quarter_blocks {
-    > * {
-      width: calc(50% - 2rem);
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  html {
-    font-size: 8px;
-  }
-  .half_sides {
-    display: block;
-
-    > * {
-      width: 100%;
-
-      &:not(:last-child) {
-        margin-bottom: 2rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 420px) {
-  .quarter_blocks {
-    > * {
-      width: calc(100% - 2rem);
-    }
-  }
-}
-
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-//-----------------------
-
 .slick-dots {
   bottom: 2rem !important;
   font-size: 0;
@@ -672,6 +621,11 @@ b {
     border-color: $border !important;
     box-shadow: none !important;
     outline: none !important;
+    min-height: 5rem !important;
+
+    input {
+      height: auto;
+    }
 
     &:hover {
       border-color: $border !important;
@@ -1066,11 +1020,6 @@ b {
   }
 }
 
-.header_user_paceholder {
-  width: 14.5rem;
-  flex-shrink: 0;
-}
-
 .user_info_sides {
   display: flex;
   align-items: flex-start;
@@ -1081,6 +1030,147 @@ b {
   width: calc(100% - 35rem);
 }
 
+.header_user_paceholder {
+  width: 14.5rem;
+  flex-shrink: 0;
+}
+
 .top_overlay {
   z-index: 7 !important;
+}
+
+
+@media screen and (max-width: 1199px) {
+  html {
+    font-size: 9px;
+  }
+  .user_info_side {
+    width: calc(100% - 33rem);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  html {
+    font-size: 8px;
+  }
+  .quarter_blocks {
+    margin: -1rem;
+
+    > * {
+      margin: 1rem;
+      width: calc(33.333% - 2rem);
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .quarter_blocks, .triple_blocks {
+    > * {
+      margin: 1rem;
+      width: calc(50% - 2rem);
+    }
+  }
+  .user_info_sides {
+    flex-direction: column;
+    align-items: center;
+
+    > *:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+  .user_info_side {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 8px;
+  }
+  .half_sides {
+    display: block;
+
+    > * {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  .main_title {
+    &.title_h1 {
+      font-size: 3rem;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &.title_h2 {
+      font-size: 2.6rem;
+    }
+
+    &.title_h3 {
+      font-size: 2.4rem;
+    }
+
+    &.title_h4 {
+      font-size: 2.2rem;
+    }
+
+    &.title_h5 {
+      font-size: 2rem;
+    }
+
+    &.title_h6 {
+      font-size: 1.8rem;
+    }
+  }
+  .simple_text {
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+
+    h3 {
+      font-size: 2.2rem;
+    }
+
+    h4 {
+      font-size: 2rem;
+    }
+
+    h5 {
+      font-size: 1.8rem;
+    }
+
+    h6 {
+      font-size: 1.6rem;
+    }
+
+    blockquote {
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .quarter_blocks, .triple_blocks {
+    > * {
+      width: calc(100% - 2rem);
+    }
+  }
+  .user_info_side {
+    .main_btn_wrapper {
+      flex-wrap: wrap;
+    }
+
+    .main_btn {
+      width: calc(100% - 1rem);
+    }
+  }
 }
