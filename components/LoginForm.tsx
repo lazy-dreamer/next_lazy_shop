@@ -56,9 +56,7 @@ export const LoginForm: React.FC<Props> = ({className, toggleForm, modalClose}) 
         <button type="submit" className="main_btn min_wide">Login</button>
       </form>
       <div className="form_bottom_variants">
-        <button onClick={() => toggleForm(true)} className="green font_md">
-          Go to Registration
-        </button>
+        <button onClick={() => toggleForm(true)} className="green font_md">Go to Registration</button>
         <p>or</p>
       </div>
     </div>
