@@ -11,9 +11,14 @@ interface Props {
 
 export const HeaderNav: React.FC<Props> = ({className = ""}) => {
   const pathname = usePathname();
-  const {isAuth, favLength, isFavoritesLoaded, cartLength} = useUserStore();
+  const {user, favLength, isFavoritesLoaded, cartLength, localCartLength} = useUserStore();
   const favLen = favLength();
-  const cartLen = cartLength();
+  let cartLen;
+  if (user) {
+    cartLen = cartLength();
+  } else {
+    cartLen = localCartLength();
+  }
   
   return (
     <nav className={` ${className ? className : ""} ${s.nav} `}>
@@ -32,7 +37,7 @@ export const HeaderNav: React.FC<Props> = ({className = ""}) => {
       >
         About
       </Link>
-      {isAuth && (
+      {user && (
         <Link
           href="/favorites"
           className={`${s.link} ${pathname == "/favorites" ? "active" : ""}`}
@@ -56,11 +61,9 @@ export const HeaderNav: React.FC<Props> = ({className = ""}) => {
         className={`${s.link} ${pathname == "/cart" ? "active" : ""}`}
       >
         <span>Cart</span>{" "}
-        {isFavoritesLoaded && (
-          <span className={s.count}>
-            <span>{cartLen}</span>
-          </span>
-        )}
+        <span className={s.count}>
+          <span>{cartLen}</span>
+        </span>
       </Link>
     </nav>
   );

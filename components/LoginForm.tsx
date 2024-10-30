@@ -4,6 +4,7 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../services/firebase/firebase-config";
 import toast from "react-hot-toast";
 import {Title} from "./ui/title";
+import {usePathname, useRouter} from "next/navigation";
 
 interface Props {
   className?: string;
@@ -14,6 +15,8 @@ interface Props {
 export const LoginForm: React.FC<Props> = ({className, toggleForm, modalClose}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
   
   const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,9 +29,13 @@ export const LoginForm: React.FC<Props> = ({className, toggleForm, modalClose}) 
         setEmail("");
         setPassword("");
         modalClose(false);
+        if (pathname.includes('login')) {
+          router.push('/checkout')
+        }
       })
       .catch((error) => {
         const errorMessage = error.message;
+        console.log(errorMessage)
         toast.error(errorMessage, {
           icon: "⛔️",
         });

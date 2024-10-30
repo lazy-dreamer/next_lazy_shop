@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import s from "./fav_btn.module.scss";
-import { useUserStore } from "../../store/user_store";
-import { IProduct } from "../../app/page";
+import {useUserStore} from "../../store/user_store";
+import {IProduct} from "../../app/page";
 import toast from "react-hot-toast";
 
 interface Props {
@@ -10,11 +10,11 @@ interface Props {
   product: IProduct;
 }
 
-export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
-  const { isAuth, favorites, changeFavorites } = useUserStore();
+export const FavBtn: React.FC<Props> = ({className = "", product}) => {
+  const {isAuth, user, favorites, changeFavorites} = useUserStore();
   let isInFavList = favorites.find((el: IProduct) => el.id === product.id);
   const isFav: boolean = isInFavList !== undefined;
-
+  
   const favAdd = () => {
     let favArr = [...favorites, product];
     changeFavorites(favArr);
@@ -30,7 +30,7 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
     });
   };
   const onFavClick = () => {
-    if (isAuth) {
+    if (user) {
       isFav ? favRemove() : favAdd();
     } else {
       toast.error("You should be logged in or registered!", {
@@ -38,7 +38,7 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
       });
     }
   };
-
+  
   return (
     <button
       className={`${s.fav} ${className && className} ${isAuth && (isFav ? "filled_fav" : "")}  `}
