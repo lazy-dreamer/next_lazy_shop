@@ -16,10 +16,9 @@ interface Props {
 export const CartSection: React.FC<Props> = ({className = ""}) => {
   let [loaded, setLoaded] = useState(false)
   const {user, localCart, cart, isCartLoaded} = useUserStore();
-  // зробити перевірку на логін, і якщо не залогінений, виводити повідомлення про те, що корзина пуста, чи ще якось продумати це
   let executionCart;
   useEffect(() => {
-    // setLoaded(true)
+    setLoaded(true)
   }, [])
   
   if (user) {
@@ -45,7 +44,7 @@ export const CartSection: React.FC<Props> = ({className = ""}) => {
                   size={"md"}
                   className={"text_center"}
                 />
-              ) : <Title
+              ) : loaded && <Title
                 text={"Your cart is empty :("}
                 size={"md"}
                 className={"text_center"}

@@ -14,6 +14,7 @@ import {
 import {getUserOrders} from "../../services/firebase/orders";
 import {getUserCart, saveUserCart} from "../../services/firebase/cart";
 import {getUserInfo} from "../../services/firebase/user_info";
+import {mergeArrays} from "../../services/mergeArr";
 
 interface Props {
   className?: string;
@@ -22,6 +23,7 @@ interface Props {
 export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
   const [showUserBlock, setShowUserBlock] = useState(false);
   const [showRegModal, setShowRegModal] = useState(false);
+  const [isInitiallyFetched, setIsInitiallyFetched] = useState(false);
   
   const {
     isAuth,
@@ -37,8 +39,15 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
     changeLocalCart
   } = useUserStore();
   const cartString = JSON.stringify(cart);
+  const localCartString = JSON.stringify(localCart);
   
   useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('localCartItems') || '[]');
+    if (cartItems) {
+      changeLocalCart(cartItems)
+      setIsInitiallyFetched(true)
+    }
+    
     onAuthStateChanged(auth, (user) => {
       if (user) {
         getUserFavorites(user.uid)
@@ -48,11 +57,9 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
           .catch((err) => console.log("Fetching favorites error: ", err));
         getUserCart(user.uid)
           .then((cart) => {
-            // here get all cart items from LS and add them to received cart items 
-            // here get all cart items from LS and add them to received cart items 
-            // here get all cart items from LS and add them to received cart items 
-            // here get all cart items from LS and add them to received cart items 
-            changeCart(cart);
+            const local = JSON.parse(localStorage.getItem('localCartItems') || '[]');
+            const newArr = mergeArrays(cart, local)
+            changeCart(newArr);
           })
           .catch((err) => console.log("Fetching favorites error: ", err));
         getUserOrders(user.uid)
@@ -74,7 +81,11 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
       }
     });
   }, []);
-  
+  useEffect(() => {
+    if (isInitiallyFetched && !user) {
+      localStorage.setItem('localCartItems', JSON.stringify(localCart));
+    }
+  }, [localCart, localCartString]);
   useEffect(() => {
     if (isAuth) {
       saveUserFavorites(user?.uid, favorites);
@@ -82,9 +93,12 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
   }, [favorites]);
   useEffect(() => {
     if (isAuth) {
-      saveUserCart(user?.uid, cart);
+      saveUserCart(user?.uid, cart).then(() => {
+        localStorage.setItem('localCartItems', '[]');
+      });
     }
-  }, [cartString]);
+  }, [cart, cartString]);
+  
   
   return (
     <div className={`${className && className}`}>

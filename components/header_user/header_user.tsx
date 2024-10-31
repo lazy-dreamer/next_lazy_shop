@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import s from "./header_user.module.scss";
-import { signOut } from "firebase/auth";
-import { auth } from "../../services/firebase/firebase-config";
+import {signOut} from "firebase/auth";
+import {auth} from "../../services/firebase/firebase-config";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { useUserStore } from "../../store/user_store";
+import {useUserStore} from "../../store/user_store";
 
 interface Props {
   className?: string;
@@ -14,13 +14,13 @@ interface Props {
 }
 
 export const HeaderUser = ({
-  className = "",
-  userName = "",
-  avatar,
-}: Props) => {
+                             className = "",
+                             userName = "",
+                             avatar,
+                           }: Props) => {
   const [menuShown, setMenuShown] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { setLogout } = useUserStore();
+  const {setLogout} = useUserStore();
   let noAvatar = false;
   if (userName == null) {
     userName = "";
@@ -38,12 +38,13 @@ export const HeaderUser = ({
       setMenuShown(false);
     }
   };
-
+  
   const logOutHandler = () => {
     signOut(auth)
       .then(() => {
         setLogout();
         setMenuShown(false);
+        localStorage.setItem('localCartItems', '[]');
         toast.success("Successfully signed out!", {
           icon: "✅",
         });
@@ -54,15 +55,15 @@ export const HeaderUser = ({
         });
       });
   };
-
+  
   useEffect(() => {
     document.addEventListener("click", handleClick);
-
+    
     return () => {
       document.removeEventListener("click", handleClick);
     };
   }, []);
-
+  
   return (
     <div className={`${className} ${s.frame}`} ref={wrapperRef}>
       <button
@@ -75,16 +76,16 @@ export const HeaderUser = ({
         </div>
         <div className={`${s.avatar}`}>
           {noAvatar ? (
-            <img src="/user-white.svg" alt="user" />
+            <img src="/user-white.svg" alt="user"/>
           ) : (
             <div
               className={`${s.avatar_ico}  ${noAvatar ? "" : "bg_img"}`}
-              style={{ backgroundImage: `url(${avatar})` }}
+              style={{backgroundImage: `url(${avatar})`}}
             />
           )}
         </div>
       </button>
-
+      
       <div className={`${s.dropdown} ${menuShown ? "showed" : ""}`}>
         <Link
           href={"/personal"}
@@ -102,7 +103,7 @@ export const HeaderUser = ({
         </Link>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>
-          <img src="/logout.svg" alt="logout" />
+          <img src="/logout.svg" alt="logout"/>
         </button>
       </div>
     </div>

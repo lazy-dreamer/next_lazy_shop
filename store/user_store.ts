@@ -75,6 +75,7 @@ export const useUserStore = create<IUserStore>((set, get) => ({
       isCartLoaded: false,
       cart: [],
       orders: [],
+      localCart: [],
       isCheckout: false,
       isOrdersLoaded: false,
     }),
