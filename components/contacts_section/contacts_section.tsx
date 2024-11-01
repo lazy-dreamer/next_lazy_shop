@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, {useCallback} from "react";
 import s from "./contacts_section.module.scss";
 import {Title} from "../ui/title";
-import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api";
+import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
 import {stylers} from "../../services/map_stylers";
 
 interface Props {
@@ -25,7 +25,8 @@ const mapStyles: any[] = stylers;
 
 export const ContactsSection: React.FC<Props> = ({className = ""}) => {
   const key: string = process.env.NEXT_PUBLIC_MAP_KEY || "";
-  const {isLoaded, loadError} = useLoadScript({
+  const {isLoaded, loadError} = useJsApiLoader({
+    id: 'google-map-script',
     googleMapsApiKey: key,
   });
   
@@ -56,7 +57,6 @@ export const ContactsSection: React.FC<Props> = ({className = ""}) => {
               options={{
                 styles: mapStyles,
               }}
-            
             >
               <Marker position={center} icon={iconUrl}/>
             </GoogleMap>

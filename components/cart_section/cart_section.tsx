@@ -14,12 +14,8 @@ interface Props {
 }
 
 export const CartSection: React.FC<Props> = ({className = ""}) => {
-  let [loaded, setLoaded] = useState(false)
-  const {user, localCart, cart, isCartLoaded} = useUserStore();
+  const {user, localCart, cart, isCartLoaded, isAuthCheckDone} = useUserStore();
   let executionCart;
-  useEffect(() => {
-    setLoaded(true)
-  }, [])
   
   if (user) {
     executionCart = cart;
@@ -27,6 +23,7 @@ export const CartSection: React.FC<Props> = ({className = ""}) => {
   } else {
     executionCart = localCart;
   }
+  
   
   return (
     <section className={`${className && className}`}>
@@ -38,13 +35,13 @@ export const CartSection: React.FC<Props> = ({className = ""}) => {
               ? executionCart.map((item: ICartItem) => (
                 <CartItem key={item.product.id} item={item}/>
               ))
-              : user ? isCartLoaded && (
+              : user ? isAuthCheckDone && (
                 <Title
                   text={"Your cart is empty :("}
                   size={"md"}
                   className={"text_center"}
                 />
-              ) : loaded && <Title
+              ) : isAuthCheckDone && <Title
                 text={"Your cart is empty :("}
                 size={"md"}
                 className={"text_center"}

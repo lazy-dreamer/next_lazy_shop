@@ -36,7 +36,8 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
     changeCart,
     setUserInfo,
     localCart,
-    changeLocalCart
+    changeLocalCart,
+    setAuthCheckDone
   } = useUserStore();
   const cartString = JSON.stringify(cart);
   const localCartString = JSON.stringify(localCart);
@@ -75,9 +76,11 @@ export const HeaderAuthBlock: React.FC<Props> = ({className = ""}) => {
         
         setUser(user);
         setShowUserBlock(true);
+        setAuthCheckDone(true);
       } else {
         setUser(null);
         setShowUserBlock(true);
+        setAuthCheckDone(true);
       }
     });
   }, []);

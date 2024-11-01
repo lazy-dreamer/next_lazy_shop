@@ -6,6 +6,7 @@ import {ICartItem} from "../components/add_to_cart/add_to_cart";
 import {defaultUserInfo, IFullUserInfo} from "../services/firebase/user_info";
 
 interface IUserStore {
+  isAuthCheckDone: boolean;
   isAuth: boolean;
   user: null | User;
   userInfo: null | IFullUserInfo;
@@ -23,6 +24,7 @@ interface IUserStore {
   isCheckout: boolean;
   isOrdersLoaded: boolean;
   setIsCheckout: (bool: boolean) => void;
+  setAuthCheckDone: (bool: boolean) => void;
   setUser: (person: User | null) => void;
   setUserInfo: (info: IFullUserInfo) => void;
   changeFavorites: (arr: IProduct[]) => void;
@@ -31,6 +33,9 @@ interface IUserStore {
 }
 
 export const useUserStore = create<IUserStore>((set, get) => ({
+  isAuthCheckDone: false,
+  setAuthCheckDone: (bool) => set({isAuthCheckDone: bool}),
+  
   isAuth: false,
   user: null,
   setUser: (person) => set(() => ({user: person, isAuth: true})),
