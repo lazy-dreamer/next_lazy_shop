@@ -11,10 +11,21 @@ interface Props {
 
 export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
   const pathname = usePathname();
-  const { user, favLength, isFavoritesLoaded, isCartLoaded, cartLength } =
-    useUserStore();
+  const {
+    user,
+    favLength,
+    isFavoritesLoaded,
+    isCartLoaded,
+    cartLength,
+    localCartLength,
+  } = useUserStore();
   const favLen = favLength();
-  const cartLen = cartLength();
+  let cartLen;
+  if (user) {
+    cartLen = cartLength();
+  } else {
+    cartLen = localCartLength();
+  }
 
   return (
     <nav className={` ${className ? className : ""} ${s.nav} `}>

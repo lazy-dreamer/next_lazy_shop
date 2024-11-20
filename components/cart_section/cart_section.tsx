@@ -14,7 +14,15 @@ interface Props {
 }
 
 export const CartSection: React.FC<Props> = ({ className = "" }) => {
-  const { cart, isCartLoaded, user, isAuthCheck } = useUserStore();
+  const { cart, isCartLoaded, user, isAuthCheck, localCart } = useUserStore();
+  let executionCart;
+
+  if (user) {
+    executionCart = cart;
+    if (!isCartLoaded) return <Preloader />;
+  } else {
+    executionCart = localCart;
+  }
 
   console.log(isAuthCheck, isCartLoaded, cart, user);
 
@@ -27,8 +35,8 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
           <div className={s.blocks}>
             <Title text={"Cart items:"} size={"xs"} />
             {isCartLoaded &&
-              (cart.length > 0 ? (
-                cart.map((item: ICartItem) => (
+              (executionCart.length > 0 ? (
+                executionCart.map((item: ICartItem) => (
                   <CartItem key={item.product.id} item={item} />
                 ))
               ) : (
@@ -41,10 +49,10 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
           </div>
           <div className={s.aside}>
             <Title
-              text={cart.length > 0 ? "Order info" : "No order info"}
+              text={executionCart.length > 0 ? "Order info" : "No order info"}
               size={"xs"}
             />
-            {cart.length > 0 && (
+            {executionCart.length > 0 && (
               <>
                 <CartInfo />
                 <Link href={"/checkout"} className={"main_btn min_wide"}>

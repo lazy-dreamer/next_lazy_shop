@@ -17,30 +17,57 @@ export interface ICartItem {
 }
 
 export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
-  const { isAuthCheck, cart, changeCart } = useUserStore();
-  const itemInCart: ICartItem | undefined = cart.find(
-    (el: ICartItem) => el.product.id === product.id,
-  );
+  const { isAuthCheck, user, cart, changeCart, localCart, changeLocalCart } =
+    useUserStore();
+  let itemInCart: ICartItem | undefined;
+
+  if (user) {
+    itemInCart = cart.find((el: ICartItem) => el.product.id === product.id);
+  } else {
+    itemInCart = localCart.find(
+      (el: ICartItem) => el.product.id === product.id,
+    );
+  }
   const isInCart: boolean = itemInCart !== undefined;
 
   const addToCart = () => {
-    let cartArr = [
-      ...cart,
-      {
-        product,
-        quantity: 1,
-      },
-    ];
-    changeCart(cartArr);
+    if (user) {
+      let cartArr = [
+        ...cart,
+        {
+          product,
+          quantity: 1,
+        },
+      ];
+      changeCart(cartArr);
+    } else {
+      let cartArr = [
+        ...localCart,
+        {
+          product,
+          quantity: 1,
+        },
+      ];
+
+      changeLocalCart(cartArr);
+    }
+
     toast.success("Added to cart!", {
       icon: "✅",
     });
   };
   const removeFromCart = () => {
-    let cartArr: ICartItem[] = cart.filter(
-      (el: ICartItem) => el.product.id != product.id,
-    );
-    changeCart(cartArr);
+    if (user) {
+      let cartArr: ICartItem[] = cart.filter(
+        (el: ICartItem) => el.product.id != product.id,
+      );
+      changeCart(cartArr);
+    } else {
+      let cartArr: ICartItem[] = localCart.filter(
+        (el: ICartItem) => el.product.id != product.id,
+      );
+      changeLocalCart(cartArr);
+    }
     toast.success("Removed from cart!", {
       icon: "✅",
     });
@@ -48,10 +75,6 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
   const onCartClick = () => {
     if (isAuthCheck) {
       isInCart ? removeFromCart() : addToCart();
-    } else {
-      toast.error("You should be logged in or registered!", {
-        icon: "⛔️",
-      });
     }
   };
 

@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
-  const { isAuthCheck, favorites, changeFavorites } = useUserStore();
+  const { user, isAuthCheck, favorites, changeFavorites } = useUserStore();
   let isInFavList = favorites.find((el: IProduct) => el.id === product.id);
   const isFav: boolean = isInFavList !== undefined;
 
@@ -30,7 +30,7 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
     });
   };
   const onFavClick = () => {
-    if (isAuthCheck) {
+    if (user) {
       isFav ? favRemove() : favAdd();
     } else {
       toast.error("You should be logged in or registered!", {

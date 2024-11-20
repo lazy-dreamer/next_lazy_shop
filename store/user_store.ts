@@ -20,8 +20,12 @@ interface IUserStore {
   cart: ICartItem[];
   cartLength: () => number;
   isCartLoaded: boolean;
-  setIsCartLoaded: (bool) => void;
+  setIsCartLoaded: (bool: boolean) => void;
   changeCart: (arr: ICartItem[]) => void;
+
+  localCart: ICartItem[];
+  changeLocalCart: (arr: ICartItem[]) => void;
+  localCartLength: () => number;
 
   orders: IOrder[];
   setOrders: ([]) => void;
@@ -56,6 +60,12 @@ export const useUserStore = create<IUserStore>((set, get) => ({
     const cart = get().cart;
     return cart.length;
   },
+  localCart: [],
+  changeLocalCart: (arr) => set({ localCart: arr }),
+  localCartLength: () => {
+    const cart = get().localCart;
+    return cart.length;
+  },
 
   orders: [],
   isCheckout: false,
@@ -65,12 +75,11 @@ export const useUserStore = create<IUserStore>((set, get) => ({
 
   setLogout: () =>
     set({
-      isAuthCheck: false,
       user: null,
       favorites: [],
       isFavoritesLoaded: false,
-      isCartLoaded: false,
       cart: [],
+      localCart: [],
       orders: [],
       isCheckout: false,
       isOrdersLoaded: false,
