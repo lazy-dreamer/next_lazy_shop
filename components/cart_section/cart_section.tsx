@@ -15,6 +15,7 @@ interface Props {
 
 export const CartSection: React.FC<Props> = ({ className = "" }) => {
   const { cart, isCartLoaded, user, isAuthCheck } = useUserStore();
+
   console.log(isAuthCheck, isCartLoaded, cart, user);
 
   if (!isAuthCheck) return <Preloader />;
