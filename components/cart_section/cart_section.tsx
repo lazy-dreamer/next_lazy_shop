@@ -17,8 +17,7 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
   const { cart, isCartLoaded, user, isAuthCheck } = useUserStore();
 
   console.log(isAuthCheck, isCartLoaded, cart, user);
-  // console.log(isCartLoaded);
-  // зробити перевірку на логін, і якщо не залогінений, виводити повідомлення про те, що корзина пуста, чи ще якось продумати це
+
   if (!isAuthCheck) return <Preloader />;
 
   return (
