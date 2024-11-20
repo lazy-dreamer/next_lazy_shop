@@ -2,24 +2,20 @@
 import React from "react";
 import Link from "next/link";
 import s from "./header_nav.module.scss";
-import {usePathname} from "next/navigation";
-import {useUserStore} from "../../store/user_store";
+import { usePathname } from "next/navigation";
+import { useUserStore } from "../../store/user_store";
 
 interface Props {
   className?: string;
 }
 
-export const HeaderNav: React.FC<Props> = ({className = ""}) => {
+export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
   const pathname = usePathname();
-  const {user, favLength, isFavoritesLoaded, cartLength, localCartLength} = useUserStore();
+  const { user, favLength, isFavoritesLoaded, isCartLoaded, cartLength } =
+    useUserStore();
   const favLen = favLength();
-  let cartLen;
-  if (user) {
-    cartLen = cartLength();
-  } else {
-    cartLen = localCartLength();
-  }
-  
+  const cartLen = cartLength();
+
   return (
     <nav className={` ${className ? className : ""} ${s.nav} `}>
       <Link href="/" className={`${s.link} ${pathname == "/" ? "active" : ""}`}>
@@ -61,9 +57,11 @@ export const HeaderNav: React.FC<Props> = ({className = ""}) => {
         className={`${s.link} ${pathname == "/cart" ? "active" : ""}`}
       >
         <span>Cart</span>{" "}
-        <span className={s.count}>
-          <span>{cartLen}</span>
-        </span>
+        {isCartLoaded && (
+          <span className={s.count}>
+            <span>{cartLen}</span>
+          </span>
+        )}
       </Link>
     </nav>
   );

@@ -16,7 +16,7 @@ export const FavoritesSection: React.FC<Props> = ({ className = "" }) => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const { favorites, isAuth, isFavoritesLoaded } = useUserStore();
+  const { favorites, isAuthCheck, isFavoritesLoaded } = useUserStore();
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -52,7 +52,7 @@ export const FavoritesSection: React.FC<Props> = ({ className = "" }) => {
               </div>
             </>
           ) : (
-            isAuth && (
+            isAuthCheck && (
               <Title
                 text={"You have no favorite products yet :("}
                 className={"text_center"}
