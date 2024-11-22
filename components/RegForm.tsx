@@ -1,11 +1,10 @@
 "use client";
-import React, {useState} from "react";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-import {auth} from "../services/firebase/firebase-config";
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebase/firebase-config";
 import toast from "react-hot-toast";
-import {Title} from "./ui/title";
-import {checkoutRedirect} from "../services/checkoutRedirect";
-import {usePathname, useRouter} from "next/navigation";
+import { Title } from "./ui/title";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   className?: string;
@@ -14,28 +13,27 @@ interface Props {
 }
 
 export const RegForm: React.FC<Props> = ({
-                                           className,
-                                           toggleForm,
-                                           modalClose,
-                                         }) => {
+  className,
+  toggleForm,
+  modalClose,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const regHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
         toast.success("Registration successful!", {
           icon: "✅",
         });
         setEmail("");
         setPassword("");
         modalClose(false);
-        if (pathname.includes('login')) {
-          router.push('/checkout')
+        if (pathname.includes("login")) {
+          router.push("/checkout");
         }
       })
       .catch((error) => {
@@ -45,10 +43,10 @@ export const RegForm: React.FC<Props> = ({
         });
       });
   };
-  
+
   return (
     <div className={className}>
-      <Title text={"Registration form"} size={"md"}/>
+      <Title text={"Registration form"} size={"md"} />
       <form className="offsets_inside bottom_offset" onSubmit={regHandler}>
         <input
           type="email"

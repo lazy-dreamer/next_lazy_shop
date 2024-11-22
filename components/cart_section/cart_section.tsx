@@ -24,8 +24,6 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
     executionCart = localCart;
   }
 
-  console.log(isAuthCheck, isCartLoaded, cart, user);
-
   if (!isAuthCheck) return <Preloader />;
 
   return (
@@ -55,9 +53,15 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
             {executionCart.length > 0 && (
               <>
                 <CartInfo />
-                <Link href={"/checkout"} className={"main_btn min_wide"}>
-                  Go to checkout
-                </Link>
+                {user ? (
+                  <Link href={"/checkout"} className={"main_btn min_wide"}>
+                    Go to checkout
+                  </Link>
+                ) : (
+                  <Link href={"/login"} className={"main_btn min_wide"}>
+                    Login for checkout
+                  </Link>
+                )}
               </>
             )}
           </div>

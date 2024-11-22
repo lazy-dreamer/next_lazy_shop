@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import s from "./quantity_block.module.scss";
-import {useUserStore} from "../../store/user_store";
+import { useUserStore } from "../../store/user_store";
 
 interface Props {
   className?: string;
@@ -10,11 +10,11 @@ interface Props {
 }
 
 export const QuantityBlock: React.FC<Props> = ({
-                                                 className = "",
-                                                 productId,
-                                                 quantity = 1,
-                                               }) => {
-  const {user, cart, changeCart, localCart, changeLocalCart} = useUserStore();
+  className = "",
+  productId,
+  quantity = 1,
+}) => {
+  const { user, cart, changeCart, localCart, changeLocalCart } = useUserStore();
   const quantityHandler = (action: string) => {
     let cartArr;
     if (user) {
@@ -22,7 +22,7 @@ export const QuantityBlock: React.FC<Props> = ({
     } else {
       cartArr = localCart;
     }
-    
+
     if (action == "plus") {
       cartArr.map((el) => {
         if (el.product.id == productId) {
@@ -36,14 +36,14 @@ export const QuantityBlock: React.FC<Props> = ({
         }
       });
     }
-    
+
     if (user) {
       changeCart(cartArr);
     } else {
-      changeLocalCart(cartArr)
+      changeLocalCart(cartArr);
     }
   };
-  
+
   return (
     <div className={`${className && className} ${s.block}`}>
       <button
@@ -54,7 +54,7 @@ export const QuantityBlock: React.FC<Props> = ({
       <input
         type="text"
         value={quantity}
-        onChange={() => console.log("changed")}
+        onChange={() => console.log("quantity changed")}
       />
       <button
         type="button"

@@ -1,12 +1,12 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import s from "./registration_modal.module.scss";
-import {LoginForm} from "../LoginForm";
-import {RegForm} from "../RegForm";
-import {signInWithPopup} from "firebase/auth";
-import {provider, auth} from "../../services/firebase/firebase-config";
+import { LoginForm } from "../LoginForm";
+import { RegForm } from "../RegForm";
+import { signInWithPopup } from "firebase/auth";
+import { provider, auth } from "../../services/firebase/firebase-config";
 import toast from "react-hot-toast";
-import {usePathname, useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   className?: string;
@@ -14,23 +14,22 @@ interface Props {
 }
 
 export const RegistrationModal: React.FC<Props> = ({
-                                                     className,
-                                                     modalClose,
-                                                   }) => {
+  className,
+  modalClose,
+}) => {
   const [isRegistration, setIsRegistration] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const googleAuthHandler = () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         toast.success("Login successful!", {
           icon: "✅",
         });
         modalClose(false);
-        if (pathname.includes('login')) {
-          router.push('/checkout')
+        if (pathname.includes("login")) {
+          router.push("/checkout");
         }
       })
       .catch((error) => {
@@ -40,10 +39,10 @@ export const RegistrationModal: React.FC<Props> = ({
         });
       });
   };
-  
+
   return (
     <div className={`${className ? className : ""} ${s.reg_modal}`}>
-      <button className="modal_close" onClick={() => modalClose(false)}/>
+      <button className="modal_close" onClick={() => modalClose(false)} />
       {isRegistration ? (
         <RegForm
           modalClose={modalClose}
@@ -61,7 +60,7 @@ export const RegistrationModal: React.FC<Props> = ({
         <p className="variant_line pt_xs">
           <span>Sign in with</span>
           <button className="google_btn" onClick={googleAuthHandler}>
-            <img src="/google.png" alt="google ico"/> <span>Google</span>
+            <img src="/google.png" alt="google ico" /> <span>Google</span>
           </button>
         </p>
       }
