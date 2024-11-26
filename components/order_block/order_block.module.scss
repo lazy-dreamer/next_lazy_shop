@@ -45,10 +45,23 @@
   }
 }
 
+.info_sides {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .products {
     > * {
       width: calc(100% - 2rem);
     }
+  }
+  .info_sides {
+    flex-direction: column;
   }
 }

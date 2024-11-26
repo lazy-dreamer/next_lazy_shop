@@ -3,6 +3,7 @@ import { IOrder } from "../../services/firebase/orders";
 import s from "./order_block.module.scss";
 import { Title } from "../ui/title";
 import { CartSideItem } from "../cart_side_item/cart_side_item";
+import { OrderAgain } from "@/components/order_again";
 
 interface Props {
   className?: string;
@@ -41,7 +42,10 @@ export const OrderBlock: React.FC<Props> = ({
             <CartSideItem item={item} key={item.product.id} />
           ))}
         </div>
-        <Title text={`Total price: ${cartTotal}$`} size={"xxs"} />
+        <div className={s.info_sides}>
+          <Title text={`Total price: ${cartTotal}$`} size={"xxs"} />
+          <OrderAgain items={order.cartItems} />
+        </div>
       </div>
       <div className={s.delivery}>
         <Title text={`Delivery information:`} size={"xs"} />

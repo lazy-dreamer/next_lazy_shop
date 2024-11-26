@@ -1,89 +1,23 @@
 import { create } from "zustand";
-import { User } from "@firebase/auth";
-import { IProduct } from "../app/page";
-import { IOrder } from "../services/firebase/orders";
-import { ICartItem } from "../components/add_to_cart/add_to_cart";
-import { defaultUserInfo, IFullUserInfo } from "../services/firebase/user_info";
+import { cartSlice, ICartSlice } from "@/store/cart_slice";
+import { favouritesSlice, IFavoritesSlice } from "@/store/favourites_slice";
+import { ordersSlice, IOrdersSlice } from "@/store/orders_slice";
+import { checkoutSlice, ICheckoutSlice } from "@/store/checkout_slice";
+import { logoutSlice, ILogoutSlice } from "@/store/logout_slice";
+import { userSlice, IUserSlice } from "@/store/user_slice";
 
-interface IUserStore {
-  isAuthCheck: boolean;
-  user: null | User;
-  setUser: (person: User | null) => void;
-  userInfo: null | IFullUserInfo;
-  setUserInfo: (info: IFullUserInfo) => void;
+export type StoreState = IUserSlice &
+  IFavoritesSlice &
+  ICartSlice &
+  IOrdersSlice &
+  ICheckoutSlice &
+  ILogoutSlice;
 
-  favorites: IProduct[];
-  favLength: () => number;
-  changeFavorites: (arr: IProduct[]) => void;
-  isFavoritesLoaded: boolean;
-
-  cart: ICartItem[];
-  cartLength: () => number;
-  isCartLoaded: boolean;
-  setIsCartLoaded: (bool: boolean) => void;
-  changeCart: (arr: ICartItem[]) => void;
-
-  localCart: ICartItem[];
-  changeLocalCart: (arr: ICartItem[]) => void;
-  localCartLength: () => number;
-
-  orders: IOrder[];
-  setOrders: ([]) => void;
-
-  isCheckout: boolean;
-  isOrdersLoaded: boolean;
-  setIsCheckout: (bool: boolean) => void;
-
-  setLogout: () => void;
-}
-
-export const useUserStore = create<IUserStore>((set, get) => ({
-  isAuthCheck: false,
-  user: null,
-  userInfo: defaultUserInfo,
-  setUser: (person) => set(() => ({ user: person, isAuthCheck: true })),
-  setUserInfo: (info) => set(() => ({ userInfo: info })),
-
-  favorites: [],
-  isFavoritesLoaded: false,
-  changeFavorites: (arr) => set({ favorites: arr, isFavoritesLoaded: true }),
-  favLength: () => {
-    const favorites = get().favorites;
-    return favorites.length;
-  },
-
-  cart: [],
-  isCartLoaded: false,
-  setIsCartLoaded: (bool) => set({ isCartLoaded: bool }),
-  changeCart: (arr) => set({ cart: arr, isCartLoaded: true }),
-  cartLength: () => {
-    const cart = get().cart;
-    return cart.length;
-  },
-  localCart: [],
-  changeLocalCart: (arr) => set({ localCart: arr }),
-  localCartLength: () => {
-    const cart = get().localCart;
-    return cart.length;
-  },
-
-  orders: [],
-  isCheckout: false,
-  isOrdersLoaded: false,
-  setOrders: (arr) => set({ orders: arr, isOrdersLoaded: true }),
-  setIsCheckout: (bool) => set({ isCheckout: bool }),
-
-  setLogout: () =>
-    set({
-      user: null,
-      favorites: [],
-      isFavoritesLoaded: false,
-      cart: [],
-      localCart: [],
-      orders: [],
-      isCheckout: false,
-      isOrdersLoaded: false,
-    }),
+export const useUserStore = create<StoreState>((set, get, store) => ({
+  ...userSlice(set, get, store),
+  ...favouritesSlice(set, get, store),
+  ...cartSlice(set, get, store),
+  ...ordersSlice(set, get, store),
+  ...checkoutSlice(set, get, store),
+  ...logoutSlice(set, get, store),
 }));
-
-//const { isAuthCheck, setLogout } = useUserStore()
