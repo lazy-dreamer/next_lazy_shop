@@ -3,7 +3,7 @@ import { StateCreator } from "zustand";
 
 export interface IOrdersSlice {
   orders: IOrder[];
-  setOrders: ([]) => void;
+  setOrders: (arr: IOrder[]) => void;
   isOrdersLoaded: boolean;
 }
 

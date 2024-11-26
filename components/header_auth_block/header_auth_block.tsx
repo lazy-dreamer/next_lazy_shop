@@ -7,14 +7,9 @@ import { ModalOverlay } from "../modal_overlay/modal_overlay";
 import { RegistrationModal } from "../registration_modal/registration_modal";
 import { onAuthStateChanged } from "@firebase/auth";
 import { useUserStore } from "../../store/user_store";
-import {
-  getUserFavorites,
-  saveUserFavorites,
-} from "../../services/firebase/favorites";
-import { getUserOrders } from "../../services/firebase/orders";
-import { getUserCart, saveUserCart } from "../../services/firebase/cart";
-import { getUserInfo } from "../../services/firebase/user_info";
-import { mergeArrays } from "@/services/mergeArr";
+import { saveUserFavorites } from "../../services/firebase/favorites";
+import { saveUserCart } from "../../services/firebase/cart";
+import { getAllData } from "@/services/firebase/get_all_data";
 
 interface Props {
   className?: string;
@@ -53,32 +48,14 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        getUserFavorites(user.uid)
-          .then((favorites) => {
-            changeFavorites(favorites);
-          })
-          .catch((err) => console.log("Fetching favorites error: ", err));
-        getUserCart(user.uid)
-          .then((cart) => {
-            const local = JSON.parse(
-              localStorage.getItem("localCartItems") || "[]",
-            );
-            const newArr = mergeArrays(cart, local);
-            changeCart(newArr);
-          })
-          .catch((err) => console.log("Fetching favorites error: ", err));
-        getUserOrders(user.uid)
-          .then((orders) => {
-            setOrders(orders);
-          })
-          .catch((err) => console.log("Fetching orders error: ", err));
-        getUserInfo(user.uid)
-          .then((info) => {
-            setUserInfo(info);
-          })
-          .catch((err) => console.log("Fetching user info error: ", err));
-
-        setUser(user);
+        getAllData({
+          user,
+          setUser,
+          changeFavorites,
+          setOrders,
+          changeCart,
+          setUserInfo,
+        }).then();
         setShowUserBlock(true);
       } else {
         setUser(null);
@@ -94,12 +71,12 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
     }
   }, [localCart, localCartString]);
   useEffect(() => {
-    if (isAuthCheck) {
-      saveUserFavorites(user?.uid, favorites);
+    if (isAuthCheck && user) {
+      saveUserFavorites(user?.uid, favorites).then();
     }
   }, [favorites]);
   useEffect(() => {
-    if (isAuthCheck) {
+    if (isAuthCheck && user) {
       saveUserCart(user?.uid, cart).then(() => {
         localStorage.setItem("localCartItems", "[]");
       });
