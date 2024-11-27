@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { onAuthStateChanged, User } from "@firebase/auth";
-import { auth } from "../services/firebase/firebase-config";
-import { useUserStore } from "../store/user_store";
-import { Title } from "./ui/title";
-import { ProductBlock } from "./product_block/product_block";
-import { Preloader } from "./preloader/Preloader";
+import { auth } from "../../services/firebase/firebase-config";
+import { useUserStore } from "../../store/user_store";
+import { Title } from "../ui/title";
+import { ProductBlock } from "../product_block/product_block";
+import { Preloader } from "../preloader/Preloader";
 
 interface Props {
   className?: string;

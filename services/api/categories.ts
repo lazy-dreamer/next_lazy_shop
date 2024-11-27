@@ -11,7 +11,7 @@ export const getAll = async () => {
       });
     return data;
   } catch (e) {
-    console.log("Categories fetch error:  ", e.message);
+    console.log("Categories fetch error:  ", e);
     return null;
   }
 };

@@ -1,4 +1,4 @@
-import { HomePage } from "../components/home_page";
+import { HomePage } from "../components/home_page/home_page";
 import { Metadata } from "next";
 import { SITE_TITLE } from "../services/constants";
 

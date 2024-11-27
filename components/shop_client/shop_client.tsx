@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { ShopFilters } from "./shop_filters/shop_filters";
-import { ShopProducts } from "./shop_products/shop_products";
+import { ShopFilters } from "../shop_filters/shop_filters";
+import { ShopProducts } from "../shop_products/shop_products";
 import { useParams } from "next/navigation";
 
 interface Props {

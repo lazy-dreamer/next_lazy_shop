@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import s from "./registration_modal.module.scss";
-import { LoginForm } from "../LoginForm";
-import { RegForm } from "../RegForm";
+import { LoginForm } from "../login_form/LoginForm";
+import { RegForm } from "../reg_form/RegForm";
 import { signInWithPopup } from "firebase/auth";
 import { provider, auth } from "../../services/firebase/firebase-config";
 import toast from "react-hot-toast";

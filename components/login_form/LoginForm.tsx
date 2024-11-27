@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebase/firebase-config";
+import { auth } from "../../services/firebase/firebase-config";
 import toast from "react-hot-toast";
-import { Title } from "./ui/title";
+import { Title } from "../ui/title";
 import { usePathname, useRouter } from "next/navigation";
 
 interface Props {

@@ -3,7 +3,7 @@ import { IOrder } from "../../services/firebase/orders";
 import s from "./order_block.module.scss";
 import { Title } from "../ui/title";
 import { CartSideItem } from "../cart_side_item/cart_side_item";
-import { OrderAgain } from "@/components/order_again";
+import { OrderAgain } from "@/components/order_again/order_again";
 
 interface Props {
   className?: string;

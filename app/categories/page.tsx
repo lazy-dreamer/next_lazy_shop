@@ -1,4 +1,4 @@
-import { CategoriesSection } from "../../components/categories_section";
+import { CategoriesSection } from "../../components/categories_section/categories_section";
 import { Metadata } from "next";
 import { SITE_TITLE } from "../../services/constants";
 

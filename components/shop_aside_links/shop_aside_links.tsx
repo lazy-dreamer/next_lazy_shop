@@ -6,7 +6,7 @@ import { ShopAsideLink } from "../shop_aside_link/shop_aside_link";
 
 export async function ShopAsideLinks() {
   let isCategoriesFailed = false;
-  const categories: ICategory[] = await Api.categories.getAll();
+  const categories: ICategory[] | null = await Api.categories.getAll();
   if (!categories) {
     isCategoriesFailed = true;
   }
@@ -27,7 +27,7 @@ export async function ShopAsideLinks() {
           <p>Can't load categories list :(</p>
         </div>
       ) : (
-        categories.map((catItem) => (
+        categories?.map((catItem) => (
           <ShopAsideLink key={catItem.id} category={catItem} />
         ))
       )}
