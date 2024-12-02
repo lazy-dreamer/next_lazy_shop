@@ -42,3 +42,11 @@ export const MONTHS = [
   "November",
   "December",
 ];
+
+export const SHOP_DEFAULTS = {
+  sort: "name_start",
+  price_min: 1,
+  price_max: 10001,
+  default_category: "all",
+  default_search_string: "",
+};

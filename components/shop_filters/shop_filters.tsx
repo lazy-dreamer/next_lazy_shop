@@ -4,6 +4,7 @@ import s from "./shop_filters.module.scss";
 import Select from "react-select";
 import { SetStateAction } from "react/index";
 import { DoubleRange } from "../ui/double_range";
+import { SHOP_DEFAULTS } from "@/services/constants";
 
 interface Props {
   className?: string;
@@ -28,10 +29,10 @@ export interface IRangeState {
   max: number;
 }
 const rangeVal: IRangeState = {
-  initial: [1, 10001],
+  initial: [SHOP_DEFAULTS.price_min, SHOP_DEFAULTS.price_max],
   step: 1,
-  min: 1,
-  max: 10001,
+  min: SHOP_DEFAULTS.price_min,
+  max: SHOP_DEFAULTS.price_max,
 };
 
 export const ShopFilters: React.FC<Props> = memo(({ setSort, setPrice }) => {

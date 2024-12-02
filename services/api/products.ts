@@ -4,6 +4,7 @@ import { IProduct } from "../../app/page";
 
 export const search = async (query: string) => {
   try {
+    // console.log(query);
     const { data } = await axiosInstance
       .get<IProduct[]>(ApiRoutes.PRODUCTS_SEARCH, {
         params: { query },
@@ -12,7 +13,7 @@ export const search = async (query: string) => {
         throw new Error(e.message);
       });
     return data;
-  } catch (e) {
+  } catch (e: any) {
     console.error("=== Product search Error: ", e.message);
     return null;
   }
@@ -28,7 +29,7 @@ export const product = async (id: string) => {
         throw new Error(e.message);
       });
     return data;
-  } catch (e) {
+  } catch (e: any) {
     console.error("=== Product id Error: ", e.message);
     return ERROR_PRODUCT;
   }

@@ -58,7 +58,7 @@ export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
         </Link>
       )}
       <Link
-        href="/shop/all"
+        href="/shop"
         className={`${s.link} ${pathname.includes("/shop") ? "active" : ""}`}
       >
         Shop
