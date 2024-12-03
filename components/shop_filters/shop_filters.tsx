@@ -2,54 +2,53 @@
 import React, { Dispatch, useEffect, useState, memo } from "react";
 import s from "./shop_filters.module.scss";
 import Select from "react-select";
-import { SetStateAction } from "react/index";
 import { DoubleRange } from "../ui/double_range";
 import { SHOP_DEFAULTS } from "@/services/constants";
+import { useQueryParamsUpdater } from "@/hooks/use_query_params_updater";
+import { useSearchValues } from "@/hooks/use_search_values";
 
 interface Props {
   className?: string;
-  setSort: Dispatch<SetStateAction<string>>;
-  setPrice: Dispatch<SetStateAction<string>>;
 }
 export interface ISelectOption {
   value: string;
   label: string;
 }
-const options = [
-  { value: "disabledOption", label: "Sorting", isDisabled: true },
-  { value: "name_start", label: "Name A - Z" },
-  { value: "name_end", label: "Name Z - A" },
-  { value: "price_up", label: "Price from low to high" },
-  { value: "price_down", label: "Price from high to low" },
-];
-export interface IRangeState {
-  initial: number[];
-  step: number;
-  min: number;
-  max: number;
-}
-const rangeVal: IRangeState = {
-  initial: [SHOP_DEFAULTS.price_min, SHOP_DEFAULTS.price_max],
-  step: 1,
-  min: SHOP_DEFAULTS.price_min,
-  max: SHOP_DEFAULTS.price_max,
-};
 
-export const ShopFilters: React.FC<Props> = memo(({ setSort, setPrice }) => {
-  const [range, setRange] = useState(rangeVal.initial);
+export const ShopFilters: React.FC<Props> = memo(() => {
+  const { price_max, price_min, sort } = useSearchValues();
+
+  const [range, setRange] = useState([Number(price_min), Number(price_max)]);
   const id = Date.now().toString();
   const [isMounted, setIsMounted] = useState(false);
+  const updateQueryParams = useQueryParamsUpdater();
+
+  const sortDefaultOption = SHOP_DEFAULTS.sortingOptions.find(
+    (opt) => opt.value === sort,
+  );
 
   useEffect(() => {
     setIsMounted(true);
-    const throttleTimer = setTimeout(() => {
-      setPrice(`&price_min=${range[0]}&price_max=${range[1]}`);
-    }, 500);
-
-    return () => {
-      clearTimeout(throttleTimer);
-    };
+    updateQueryParams({
+      price_min: range[0],
+      price_max: range[1],
+    });
   }, [range]);
+
+  const sortingHandler = (opt: ISelectOption | null) => {
+    if (opt) {
+      updateQueryParams({
+        sort: opt.value,
+      });
+    }
+  };
+  const priceHandler = (values: number[]) => {
+    setRange(values);
+    updateQueryParams({
+      price_min: values[0],
+      price_max: values[1],
+    });
+  };
 
   return (
     <div className={`${s.block}`}>
@@ -60,25 +59,17 @@ export const ShopFilters: React.FC<Props> = memo(({ setSort, setPrice }) => {
               <p
                 className={s.range_title}
               >{`Price from ${range[0]}$ to ${range[1]}$`}</p>
-              <DoubleRange
-                rangeState={rangeVal}
-                vals={range}
-                setVals={setRange}
-              />
+              <DoubleRange vals={range} setVals={priceHandler} />
             </div>
           </div>
           <div className="side">
             <Select
               id={id}
-              defaultValue={options[0]}
-              onChange={(opt) => {
-                if (opt) {
-                  setSort(opt.value);
-                }
-              }}
+              defaultValue={sortDefaultOption}
+              onChange={(opt) => sortingHandler(opt)}
               classNamePrefix="react-select"
               placeholder="Sorting"
-              options={options}
+              options={SHOP_DEFAULTS.sortingOptions}
             />
           </div>
         </div>

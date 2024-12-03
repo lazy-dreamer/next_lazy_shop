@@ -8,22 +8,21 @@ import { Api } from "../../services/api/api-client";
 import { sortProductItems } from "../../services/sorting";
 import s from "./shop_products.module.scss";
 import { useSearchParams } from "next/navigation";
+import { SHOP_DEFAULTS } from "@/services/constants";
 
 interface Props {
-  sort: string;
   priceQuery: string;
 }
 
-export const ShopProducts: React.FC<Props> = memo(({ sort, priceQuery }) => {
+export const ShopProducts: React.FC<Props> = memo(({ priceQuery }) => {
   const [loading, setLoading] = useState(true);
   const [productItems, setProductItems] = useState<IProduct[] | undefined>();
 
   const searchParams = useSearchParams();
-  const category: string | null = searchParams.get("id")
-    ? searchParams.get("id")
-    : "all";
-  // console.log("searchParams is - ", searchParams);
-  console.log(category);
+  const category: string | null = searchParams.get("id");
+  const sort: string | null = searchParams.get("sort")
+    ? searchParams.get("sort")
+    : SHOP_DEFAULTS.sort;
 
   const fetchProducts = useCallback(
     async (categoryId: string | string[] | null) => {

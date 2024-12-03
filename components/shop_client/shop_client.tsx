@@ -9,15 +9,14 @@ interface Props {
 }
 
 export const ShopClient: React.FC<Props> = ({ className = "" }) => {
-  const [sorting, setSorting] = useState(SHOP_DEFAULTS.sort);
   const [priceQuery, setPriceQuery] = useState(
     `&price_min=${SHOP_DEFAULTS.price_min}&price_max=${SHOP_DEFAULTS.price_max}`,
   );
 
   return (
     <>
-      <ShopFilters setSort={setSorting} setPrice={setPriceQuery} />
-      <ShopProducts sort={sorting} priceQuery={priceQuery} />
+      <ShopFilters />
+      <ShopProducts priceQuery={priceQuery} />
     </>
   );
 };

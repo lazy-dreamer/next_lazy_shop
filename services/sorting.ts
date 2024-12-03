@@ -1,6 +1,9 @@
 import { IProduct } from "../app/page";
 
-export function sortProductItems(products: IProduct[] | null, action: string) {
+export function sortProductItems(
+  products: IProduct[] | null,
+  action: string | null,
+) {
   if (!products) return [];
   const sortedProducts = [...products];
 

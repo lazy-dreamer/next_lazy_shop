@@ -1,30 +1,28 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import s from "./shop_aside_link.module.scss";
 import { ICategory } from "../../app/page";
-import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { useQueryParamsUpdater } from "@/hooks/use_query_params_updater";
+import { useSearchValues } from "@/hooks/use_search_values";
 
 interface Props {
   category: ICategory;
 }
 
 export const ShopAsideLink: React.FC<Props> = ({ category }) => {
-  const router = useRouter();
-  const { id } = useParams();
+  const { categoryId } = useSearchValues();
+  const updateQueryParams = useQueryParamsUpdater();
 
-  const catChangeHandler = useCallback(
-    (cat: string) => {
-      router.push(cat, {
-        scroll: false,
-      });
-    },
-    [router],
-  );
+  const changeCategory = () => {
+    updateQueryParams({
+      id: category.id,
+    });
+  };
+
   return (
     <button
-      className={`${id == String(category.id) ? "active" : ""} ${s.cat_btn}`}
-      onClick={() => catChangeHandler(String(category.id))}
+      onClick={changeCategory}
+      className={`${categoryId == String(category.id) ? "active" : ""} ${s.cat_btn}`}
     >
       {category.name}
     </button>
