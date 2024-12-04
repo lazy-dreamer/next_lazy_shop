@@ -59,7 +59,7 @@ export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
         </Link>
       )}
       <Link
-        href={`/shop?id=${SHOP_DEFAULTS.default_category}&sort=${SHOP_DEFAULTS.sort}&price_min=${SHOP_DEFAULTS.price_min}&price_max=${SHOP_DEFAULTS.price_max}`}
+        href={`/shop?category=${SHOP_DEFAULTS.default_category}&sort=${SHOP_DEFAULTS.sort}&price_min=${SHOP_DEFAULTS.price_min}&price_max=${SHOP_DEFAULTS.price_max}`}
         className={`${s.link} ${pathname.includes("/shop") ? "active" : ""}`}
       >
         Shop

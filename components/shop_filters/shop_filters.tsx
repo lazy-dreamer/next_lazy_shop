@@ -1,11 +1,13 @@
 "use client";
-import React, { Dispatch, useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo } from "react";
 import s from "./shop_filters.module.scss";
 import Select from "react-select";
 import { DoubleRange } from "../ui/double_range";
 import { SHOP_DEFAULTS } from "@/services/constants";
 import { useQueryParamsUpdater } from "@/hooks/use_query_params_updater";
 import { useSearchValues } from "@/hooks/use_search_values";
+import { useDebounce } from "@/hooks/use_debounce";
+import { usePathname } from "next/navigation";
 
 interface Props {
   className?: string;
@@ -17,23 +19,27 @@ export interface ISelectOption {
 
 export const ShopFilters: React.FC<Props> = memo(() => {
   const { price_max, price_min, sort } = useSearchValues();
-
   const [range, setRange] = useState([Number(price_min), Number(price_max)]);
   const id = Date.now().toString();
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
   const updateQueryParams = useQueryParamsUpdater();
 
   const sortDefaultOption = SHOP_DEFAULTS.sortingOptions.find(
     (opt) => opt.value === sort,
   );
 
+  const debouncedUpdateQueryParams = useDebounce(updateQueryParams, 500);
+
   useEffect(() => {
     setIsMounted(true);
-    updateQueryParams({
-      price_min: range[0],
-      price_max: range[1],
-    });
-  }, [range]);
+    if (pathname.includes("/shop")) {
+      debouncedUpdateQueryParams({
+        price_min: range[0],
+        price_max: range[1],
+      });
+    }
+  }, [range, debouncedUpdateQueryParams]);
 
   const sortingHandler = (opt: ISelectOption | null) => {
     if (opt) {
@@ -41,13 +47,6 @@ export const ShopFilters: React.FC<Props> = memo(() => {
         sort: opt.value,
       });
     }
-  };
-  const priceHandler = (values: number[]) => {
-    setRange(values);
-    updateQueryParams({
-      price_min: values[0],
-      price_max: values[1],
-    });
   };
 
   return (
@@ -59,7 +58,7 @@ export const ShopFilters: React.FC<Props> = memo(() => {
               <p
                 className={s.range_title}
               >{`Price from ${range[0]}$ to ${range[1]}$`}</p>
-              <DoubleRange vals={range} setVals={priceHandler} />
+              <DoubleRange vals={range} setVals={setRange} />
             </div>
           </div>
           <div className="side">

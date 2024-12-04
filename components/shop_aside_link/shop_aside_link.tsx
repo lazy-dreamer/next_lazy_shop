@@ -10,12 +10,12 @@ interface Props {
 }
 
 export const ShopAsideLink: React.FC<Props> = ({ category }) => {
-  const { categoryId } = useSearchValues();
+  const { category: categoryId } = useSearchValues();
   const updateQueryParams = useQueryParamsUpdater();
 
   const changeCategory = () => {
     updateQueryParams({
-      id: category.id,
+      category: category.id,
     });
   };
 

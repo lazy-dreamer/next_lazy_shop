@@ -1,28 +1,23 @@
 "use client";
-import React, { useCallback, useEffect, useState, memo } from "react";
+import React, { useCallback, useEffect, useState, memo, useMemo } from "react";
 import { Preloader } from "../preloader/Preloader";
-import { ProductBlock } from "../product_block/product_block";
 import { Title } from "../ui/title";
 import { IProduct } from "../../app/page";
 import { Api } from "../../services/api/api-client";
 import { sortProductItems } from "../../services/sorting";
-import s from "./shop_products.module.scss";
-import { useSearchParams } from "next/navigation";
-import { SHOP_DEFAULTS } from "@/services/constants";
+import { useSearchValues } from "@/hooks/use_search_values";
+import { PaginatedProducts } from "@/components/paginated_products/paginated_products";
 
-interface Props {
-  priceQuery: string;
-}
-
-export const ShopProducts: React.FC<Props> = memo(({ priceQuery }) => {
+export const ShopProducts: React.FC = memo(() => {
   const [loading, setLoading] = useState(true);
   const [productItems, setProductItems] = useState<IProduct[] | undefined>();
 
-  const searchParams = useSearchParams();
-  const category: string | null = searchParams.get("id");
-  const sort: string | null = searchParams.get("sort")
-    ? searchParams.get("sort")
-    : SHOP_DEFAULTS.sort;
+  const { category, sort, price_min, price_max } = useSearchValues();
+
+  const priceQuery = useMemo(
+    () => `&price_min=${price_min}&price_max=${price_max}`,
+    [price_min, price_max],
+  );
 
   const fetchProducts = useCallback(
     async (categoryId: string | string[] | null) => {
@@ -46,7 +41,7 @@ export const ShopProducts: React.FC<Props> = memo(({ priceQuery }) => {
 
   useEffect(() => {
     fetchProducts(category);
-  }, [category, fetchProducts, priceQuery, sort]);
+  }, [category, fetchProducts, sort, priceQuery]);
 
   return (
     <>
@@ -55,11 +50,7 @@ export const ShopProducts: React.FC<Props> = memo(({ priceQuery }) => {
       ) : productItems == undefined ? (
         <Title size="md" text="Oops, something went wrong :(" />
       ) : productItems.length > 0 ? (
-        <div className={`${s.output_blocks} triple_blocks`}>
-          {productItems.map((prod) => (
-            <ProductBlock key={prod.id} productItem={prod} />
-          ))}
-        </div>
+        <PaginatedProducts products={productItems} />
       ) : (
         <Title size="md" text="There are no products in this category :(" />
       )}

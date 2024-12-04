@@ -22,8 +22,8 @@ body {
   font-weight: 400;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -130,7 +130,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    monospace;
 }
 
 .simple_text {
@@ -750,6 +750,39 @@ b {
   }
 }
 
+.pagi_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+  a {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid rgba($font, 0.1);
+    border-radius: 0.5rem;
+    line-height: 1;
+    @include transition;
+    &:hover {
+      border-color: $green;
+      color: $green;
+    }
+  }
+  .selected {
+    a {
+      border-color: $green;
+      color: $green;
+    }
+  }
+}
+
 .quarter_slider {
   margin-left: -1rem;
   margin-right: -1rem;
@@ -917,6 +950,10 @@ b {
   }
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .product_image_slider {
   width: 100%;
   font-size: 0;
@@ -1039,7 +1076,6 @@ b {
   z-index: 7 !important;
 }
 
-
 @media screen and (max-width: 1199px) {
   html {
     font-size: 9px;
@@ -1064,7 +1100,8 @@ b {
 }
 
 @media screen and (max-width: 767px) {
-  .quarter_blocks, .triple_blocks {
+  .quarter_blocks,
+  .triple_blocks {
     > * {
       margin: 1rem;
       width: calc(50% - 2rem);
@@ -1159,7 +1196,8 @@ b {
 }
 
 @media screen and (max-width: 420px) {
-  .quarter_blocks, .triple_blocks {
+  .quarter_blocks,
+  .triple_blocks {
     > * {
       width: calc(100% - 2rem);
     }

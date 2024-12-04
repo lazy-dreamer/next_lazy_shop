@@ -49,8 +49,7 @@ export const SHOP_DEFAULTS = {
   price_max: 10001,
   price_range_step: 1,
   default_category: "all",
-  default_search_string:
-    "/shop?id=all&sort=name_start&price_min=1&price_max10001",
+  items_per_page: 6,
   sortingOptions: [
     { value: "disabledOption", label: "Sorting", isDisabled: true },
     { value: "name_start", label: "Name A - Z" },
