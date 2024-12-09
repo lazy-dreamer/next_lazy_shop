@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { SHOP_DEFAULTS } from "@/services/constants";
+import { useMemo } from "react";
 
 export const useSearchValues = () => {
   const searchParams = useSearchParams();
@@ -17,11 +18,20 @@ export const useSearchValues = () => {
   const price_max: string | null = searchParams.get("price_max")
     ? searchParams.get("price_max")
     : String(SHOP_DEFAULTS.price_max);
+  const offset: string | null = searchParams.get("offset")
+    ? searchParams.get("offset")
+    : "0";
+  const paramsString: string = searchParams.toString();
 
-  return {
-    category,
-    sort,
-    price_min,
-    price_max,
-  };
+  return useMemo(
+    () => ({
+      category,
+      sort,
+      price_min,
+      price_max,
+      offset,
+      paramsString,
+    }),
+    [category, sort, price_min, price_max, offset, paramsString],
+  );
 };

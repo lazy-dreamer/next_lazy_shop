@@ -7,12 +7,17 @@ import { Api } from "../../services/api/api-client";
 import { sortProductItems } from "../../services/sorting";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { PaginatedProducts } from "@/components/paginated_products/paginated_products";
+import { usePathname } from "next/navigation";
 
 export const ShopProducts: React.FC = memo(() => {
   const [loading, setLoading] = useState(true);
   const [productItems, setProductItems] = useState<IProduct[] | undefined>();
 
   const { category, sort, price_min, price_max } = useSearchValues();
+
+  console.log(category, sort, price_min, price_max);
+
+  const pathname = usePathname();
 
   const priceQuery = useMemo(
     () => `&price_min=${price_min}&price_max=${price_max}`,
@@ -40,7 +45,9 @@ export const ShopProducts: React.FC = memo(() => {
   );
 
   useEffect(() => {
-    fetchProducts(category);
+    if (pathname.includes("/shop")) {
+      fetchProducts(category);
+    }
   }, [category, fetchProducts, sort, priceQuery]);
 
   return (

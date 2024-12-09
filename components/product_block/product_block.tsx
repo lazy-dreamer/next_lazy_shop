@@ -4,6 +4,7 @@ import s from "./product_block.module.scss";
 import Link from "next/link";
 import { FavBtn } from "../fav_btn/fav_btn";
 import { AddToCart } from "../add_to_cart/add_to_cart";
+import { ProductLink } from "@/components/product_link/product_link";
 
 interface Props {
   className?: string;
@@ -33,9 +34,7 @@ export const ProductBlock: React.FC<Props> = ({
       </div>
       <div className={s.body}>
         <div className={s.body_top}>
-          <Link href={`/product/${id}`} className={s.title}>
-            {title}
-          </Link>
+          <ProductLink className={s.title} id={id} title={title} />
           <p>{descr}</p>
         </div>
         <div className={s.body_bottom}>

@@ -16,6 +16,7 @@ export const ShopAsideLink: React.FC<Props> = ({ category }) => {
   const changeCategory = () => {
     updateQueryParams({
       category: category.id,
+      offset: "0",
     });
   };
 
