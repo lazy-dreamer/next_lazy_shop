@@ -6,17 +6,11 @@
   background: #fff;
   border-radius: 1.5rem;
   box-shadow: 0 0 1rem rgba($font, 0.1);
-  position: sticky;
-  top: 8rem;
+  position: relative;
   z-index: 2;
 
   &:not(:last-child) {
     margin-bottom: 2rem;
-  }
-
-  @media screen and (max-width: 600px) {
-    position: relative;
-    top: 0;
   }
 }
 

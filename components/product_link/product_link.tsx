@@ -11,6 +11,7 @@ interface Props {
 
 export const ProductLink: React.FC<Props> = ({ className, id, title }) => {
   const { paramsString } = useSearchValues();
+
   return (
     <Link href={`/product/${id}?${paramsString}`} className={className}>
       {title}

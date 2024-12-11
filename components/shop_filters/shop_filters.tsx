@@ -32,8 +32,11 @@ export const ShopFilters: React.FC<Props> = memo(() => {
   const debouncedUpdateQueryParams = useDebounce(updateQueryParams, 500);
 
   useEffect(() => {
-    setIsMounted(true);
-    if (pathname.includes("/shop")) {
+    if (!isMounted) setIsMounted(true);
+    if (
+      pathname.includes("/shop") &&
+      (price_min !== String(range[0]) || price_max !== String(range[1]))
+    ) {
       debouncedUpdateQueryParams({
         price_min: range[0],
         price_max: range[1],

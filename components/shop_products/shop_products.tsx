@@ -14,9 +14,6 @@ export const ShopProducts: React.FC = memo(() => {
   const [productItems, setProductItems] = useState<IProduct[] | undefined>();
 
   const { category, sort, price_min, price_max } = useSearchValues();
-
-  console.log(category, sort, price_min, price_max);
-
   const pathname = usePathname();
 
   const priceQuery = useMemo(
