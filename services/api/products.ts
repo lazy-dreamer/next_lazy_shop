@@ -4,7 +4,6 @@ import { IProduct } from "../../app/page";
 
 export const search = async (query: string) => {
   try {
-    // console.log(query);
     const { data } = await axiosInstance
       .get<IProduct[]>(ApiRoutes.PRODUCTS_SEARCH, {
         params: { query },

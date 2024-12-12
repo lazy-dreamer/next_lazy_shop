@@ -23,6 +23,7 @@ export const ShopProducts: React.FC = memo(() => {
 
   const fetchProducts = useCallback(
     async (categoryId: string | string[] | null) => {
+      // console.log(priceQuery, sort, category);
       setLoading(true);
       let reqParam: string =
         categoryId !== "all"
