@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState, memo, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { Preloader } from "../preloader/Preloader";
 import { Title } from "../ui/title";
 import { IProduct } from "../../app/page";
@@ -7,55 +7,46 @@ import { Api } from "../../services/api/api-client";
 import { sortProductItems } from "../../services/sorting";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { PaginatedProducts } from "@/components/paginated_products/paginated_products";
-import { usePathname } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 export const ShopProducts: React.FC = memo(() => {
-  const [loading, setLoading] = useState(true);
-  const [productItems, setProductItems] = useState<IProduct[] | undefined>();
-
-  const { category, sort, price_min, price_max } = useSearchValues();
-  const pathname = usePathname();
+  const { category, sort, price_min, price_max, paramsString } =
+    useSearchValues();
 
   const priceQuery = useMemo(
     () => `&price_min=${price_min}&price_max=${price_max}`,
     [price_min, price_max],
   );
+  const reqParam = useMemo(() => {
+    return category !== "all"
+      ? `?categoryId=${category}${priceQuery}`
+      : `?${priceQuery}`;
+  }, [category, priceQuery]);
 
-  const fetchProducts = useCallback(
-    async (categoryId: string | string[] | null) => {
-      // console.log(priceQuery, sort, category);
-      setLoading(true);
-      let reqParam: string =
-        categoryId !== "all"
-          ? `?categoryId=${categoryId}${priceQuery}`
-          : `?${priceQuery}`;
-      try {
-        const products: IProduct[] = await Api.products
-          .search(reqParam)
-          .then((data) => sortProductItems(data, sort));
-        setProductItems(products);
-      } catch (e: any) {
-        console.error(`Uncaught Error: ${e.message}`);
-      }
-      setLoading(false);
-    },
-    [priceQuery, sort, category],
-  );
+  const getProducts = async () => {
+    const products: IProduct[] = await Api.products
+      .search(reqParam)
+      .then((data) => sortProductItems(data, sort));
+    return products;
+  };
 
-  useEffect(() => {
-    if (pathname.includes("/shop")) {
-      fetchProducts(category);
-    }
-  }, [category, fetchProducts, sort, priceQuery]);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products, productsList", paramsString],
+    queryFn: getProducts,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <>
-      {loading ? (
-        <Preloader />
-      ) : productItems == undefined ? (
+      {data == undefined || error ? (
         <Title size="md" text="Oops, something went wrong :(" />
-      ) : productItems.length > 0 ? (
-        <PaginatedProducts products={productItems} />
+      ) : data.length > 0 ? (
+        <PaginatedProducts products={data} />
       ) : (
         <Title size="md" text="There are no products in this category :(" />
       )}

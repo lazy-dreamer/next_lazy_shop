@@ -1,14 +1,21 @@
+"use client";
 import React from "react";
-import { Api } from "../../services/api/api-client";
 import { Title } from "../ui/title";
 import { CategoryBlock } from "../category_block/category_block";
-import { ICategory } from "../../app/page";
+import { useQuery } from "@tanstack/react-query";
+import { Preloader } from "@/components/preloader/Preloader";
+import { getCategories } from "@/services/api/request_functions";
 
-export const CategoriesSection = async () => {
-  let isCategoriesFailed = false;
-  const categories: ICategory[] = await Api.categories.getAll();
-  if (!categories) {
-    isCategoriesFailed = true;
+export const CategoriesSection: React.FC = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["categories, categoriesList"],
+    queryFn: getCategories,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  if (isLoading) {
+    return <Preloader />;
   }
 
   return (
@@ -16,17 +23,19 @@ export const CategoriesSection = async () => {
       <div className="screen_content">
         <Title text="Categories" size="lg" />
         <div className="triple_blocks">
-          {isCategoriesFailed ? (
+          {data == undefined || error ? (
             <div>
               <p>Oops, something went wrong... </p>
               <p>Can't load categories list :(</p>
             </div>
-          ) : (
-            categories.map((item) => (
+          ) : data.length > 0 ? (
+            data?.map((item) => (
               <div key={item.id}>
                 <CategoryBlock item={item} />
               </div>
             ))
+          ) : (
+            <Title size="md" text="There are no categories :(" />
           )}
         </div>
       </div>

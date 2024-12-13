@@ -1,40 +1,32 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import s from "./categories_slider_section.module.scss";
-import {ICategory} from "../../app/page";
-import {Api} from "../../services/api/api-client";
-import {CategoryBlock} from "../category_block/category_block";
-import {Preloader} from "../preloader/Preloader";
-import {Title} from "../ui/title";
+import { CategoryBlock } from "../category_block/category_block";
+import { Preloader } from "../preloader/Preloader";
+import { Title } from "../ui/title";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "@/services/api/request_functions";
 
 interface Props {
   className?: string;
 }
 
 export const CategoriesSliderSection: React.FC<Props> = ({
-                                                           className = "",
-                                                         }) => {
-  const [categoriesFailed, setCategoriesFailed] = useState(false);
-  const [categories, setCategories] = useState<ICategory[] | undefined>();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getCategories = async () => {
-      const cats: ICategory[] = await Api.categories.getAll();
-      if (cats) {
-        setCategories(cats.slice(0, 10));
-      } else {
-        setCategoriesFailed(true);
-      }
-      setLoading(false);
-    };
-    getCategories();
-  }, []);
-  if (loading) {
-    return <Preloader/>;
+  className = "",
+}) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["categories, categoriesList"],
+    queryFn: getCategories,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  if (isLoading) {
+    return <Preloader />;
   }
   let settings = {
     dots: true,
@@ -45,24 +37,27 @@ export const CategoriesSliderSection: React.FC<Props> = ({
     speed: 900,
     slidesToShow: 3,
     slidesToScroll: 1,
-    responsive: [{
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2
-      }
-    }, {
-      breakpoint: 420,
-      settings: {
-        slidesToShow: 1
-      }
-    }]
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
-  
+
   return (
     <section className={`${className && className}`}>
       <div className="screen_content">
-        <Title text="Popular Categories" size="lg"/>
-        {categoriesFailed ? (
+        <Title text="Popular Categories" size="lg" />
+        {error ? (
           <div>
             <p>Oops, something went wrong... </p>
             <p>Can't load categories list :(</p>
@@ -70,9 +65,9 @@ export const CategoriesSliderSection: React.FC<Props> = ({
         ) : (
           <>
             <Slider className={s.slider} {...settings}>
-              {categories?.map((item) => (
+              {data?.slice(0, 10).map((item) => (
                 <div key={item.id}>
-                  <CategoryBlock item={item}/>
+                  <CategoryBlock item={item} />
                 </div>
               ))}
             </Slider>
