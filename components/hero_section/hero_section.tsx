@@ -37,19 +37,19 @@ const slides: ISlide[] = [
     subtitle: "Shop everywhere!",
   },
 ];
+let settings = {
+  dots: true,
+  arrows: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  speed: 900,
+  fade: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 
 export const HeroSection: React.FC<Props> = ({ className = "" }) => {
-  let settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    speed: 900,
-    fade: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   return (
     <section className={` ${className ? className : ""} `}>
       <Slider className={s.slider} {...settings}>

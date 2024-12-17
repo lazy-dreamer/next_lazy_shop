@@ -1,7 +1,6 @@
 import React from "react";
 import { IProduct } from "../../app/page";
 import s from "./product_block.module.scss";
-import Link from "next/link";
 import { FavBtn } from "../fav_btn/fav_btn";
 import { AddToCart } from "../add_to_cart/add_to_cart";
 import { ProductLink } from "@/components/product_link/product_link";
@@ -42,7 +41,6 @@ export const ProductBlock: React.FC<Props> = ({
           <AddToCart product={productItem} />
         </div>
       </div>
-      {/*<div className={s.modal}></div>*/}
     </div>
   );
 };
