@@ -9,6 +9,7 @@ export default async function ProductPageModal({
 }: {
   params: { id: string };
 }) {
+  // @ts-ignore
   let product: IProduct = await Api.products.product(params.id);
 
   return (
