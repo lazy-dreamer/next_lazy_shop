@@ -3,6 +3,7 @@ import { ProductFullBlock } from "../../../components/product_full_block/product
 import { Api } from "../../../services/api/api-client";
 import { ProductsSlider } from "../../../components/products_slider/products_slider";
 import { Metadata } from "next";
+import { IProduct } from "@/app/page";
 
 interface ProductPageProps {
   params: { id: string };
@@ -11,7 +12,7 @@ interface ProductPageProps {
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
-  let product = await Api.products.product(params.id);
+  const product: IProduct = await Api.products.product(params.id);
   return {
     title: product ? `${product.title}` : "Product Not Found",
     description: product
@@ -21,10 +22,10 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  let product = await Api.products.product(params.id);
+  const product: IProduct = await Api.products.product(params.id);
   const featuredProducts = await Api.products
     .search(`?categoryId=${product.category.id}`)
-    .then((data) => data.slice(0, 10));
+    .then((data) => data?.slice(0, 10));
 
   return (
     <section>
