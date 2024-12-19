@@ -12,6 +12,7 @@ interface ProductPageProps {
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
+  // @ts-expect-error
   const product: IProduct = await Api.products.product(params.id);
   return {
     title: product ? `${product.title}` : "Product Not Found",
@@ -22,10 +23,12 @@ export async function generateMetadata({
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
+  // @ts-expect-error
   const product: IProduct = await Api.products.product(params.id);
   const featuredProducts = await Api.products
     .search(`?categoryId=${product.category.id}`)
-    .then((data) => data?.slice(0, 10));
+    // @ts-expect-error
+    .then((data) => data.slice(0, 10));
 
   return (
     <section>

@@ -32,7 +32,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
 
   const addToCart = () => {
     if (user) {
-      let cartArr = [
+      const cartArr = [
         ...cart,
         {
           product,
@@ -41,7 +41,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
       ];
       changeCart(cartArr);
     } else {
-      let cartArr = [
+      const cartArr = [
         ...localCart,
         {
           product,
@@ -58,12 +58,12 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
   };
   const removeFromCart = () => {
     if (user) {
-      let cartArr: ICartItem[] = cart.filter(
+      const cartArr: ICartItem[] = cart.filter(
         (el: ICartItem) => el.product.id != product.id,
       );
       changeCart(cartArr);
     } else {
-      let cartArr: ICartItem[] = localCart.filter(
+      const cartArr: ICartItem[] = localCart.filter(
         (el: ICartItem) => el.product.id != product.id,
       );
       changeLocalCart(cartArr);

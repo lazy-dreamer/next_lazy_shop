@@ -26,7 +26,7 @@ export const CategoriesSection: React.FC = () => {
           {data == undefined || error ? (
             <div>
               <p>Oops, something went wrong... </p>
-              <p>Can't load categories list :(</p>
+              <p>Can&apos;t load categories list :(</p>
             </div>
           ) : data.length > 0 ? (
             data?.map((item) => (

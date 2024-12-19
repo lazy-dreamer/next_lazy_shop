@@ -28,7 +28,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
   if (isLoading) {
     return <Preloader />;
   }
-  let settings = {
+  const settings = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -60,7 +60,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
         {error ? (
           <div>
             <p>Oops, something went wrong... </p>
-            <p>Can't load categories list :(</p>
+            <p>Can&apos;t load categories list :(</p>
           </div>
         ) : (
           <>
