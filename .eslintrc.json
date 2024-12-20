@@ -2,5 +2,10 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "ignorePatterns": [
     "_test/**"
-  ]
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-console": "warn",
+    "prefer-const": "off"
+  }
 }
