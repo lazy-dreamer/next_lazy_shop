@@ -4,30 +4,13 @@ import { ICategory } from "../../app/page";
 import { Api } from "../../services/api/api-client";
 import { ShopAsideLink } from "../shop_aside_link/shop_aside_link";
 
-// Використовуємо getServerSideProps для отримання категорій
-export async function getServerSideProps() {
+export async function ShopAsideLinks() {
   let isCategoriesFailed = false;
   let categories: ICategory[] | null = await Api.categories.getAll();
   if (!categories) {
     isCategoriesFailed = true;
     categories = [];
   }
-
-  return {
-    props: {
-      categories,
-      isCategoriesFailed,
-    },
-  };
-}
-
-export const ShopAsideLinks = ({
-  categories,
-  isCategoriesFailed,
-}: {
-  categories: ICategory[];
-  isCategoriesFailed: boolean;
-}) => {
   const allCat = {
     id: "all",
     name: "All categories",
@@ -48,7 +31,8 @@ export const ShopAsideLinks = ({
         categories.map((catItem) => (
           <ShopAsideLink key={catItem.id} category={catItem} />
         ))
+        // <p>cat list</p>
       )}
     </div>
   );
-};
+}
