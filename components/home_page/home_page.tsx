@@ -12,7 +12,7 @@ export const HomePage: React.FC<Props> = ({ className = "" }) => {
   return (
     <>
       <HeroSection className="no_paddings" />
-      <CategoriesSliderSection />
+      {/*<CategoriesSliderSection />*/}
       <QuoteSection />
       <ContactsSection />
     </>
