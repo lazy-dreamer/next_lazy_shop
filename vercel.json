@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "NEXT_PUBLIC_IGNORE_ESLINT": "true"
+      "DISABLE_ESLINT": "true"
     }
   }
 }

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: process.env.DISABLE_ESLINT === "true",
   },
   experimental: {
     scrollRestoration: false
