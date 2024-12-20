@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function Categories() {
   return (
     <>
-      {/* @ts-expect-error Server Component */}
       <CategoriesSection />
     </>
   );
