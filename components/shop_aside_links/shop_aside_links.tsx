@@ -6,9 +6,10 @@ import { ShopAsideLink } from "../shop_aside_link/shop_aside_link";
 
 export async function ShopAsideLinks() {
   let isCategoriesFailed = false;
-  const categories: ICategory[] | null = await Api.categories.getAll();
+  let categories: ICategory[] | null = await Api.categories.getAll();
   if (!categories) {
     isCategoriesFailed = true;
+    categories = [];
   }
   const allCat = {
     id: "all",
@@ -30,7 +31,6 @@ export async function ShopAsideLinks() {
         categories.map((catItem) => (
           <ShopAsideLink key={catItem.id} category={catItem} />
         ))
-        // <p>cat list</p>
       )}
     </div>
   );
