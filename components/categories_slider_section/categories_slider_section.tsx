@@ -24,6 +24,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
+  const catSlides = data?.slice(0, 10);
 
   if (isLoading) {
     return <Preloader />;
@@ -65,7 +66,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
         ) : (
           <>
             <Slider className={s.slider} {...settings}>
-              {data?.slice(0, 10).map((item) => (
+              {catSlides?.map((item) => (
                 <div key={item.id}>
                   <CategoryBlock item={item} />
                 </div>
