@@ -21,7 +21,7 @@ export async function getServerSideProps() {
   };
 }
 
-const ShopAsideLinks = ({
+export const ShopAsideLinks = ({
   categories,
   isCategoriesFailed,
 }: {
@@ -52,5 +52,3 @@ const ShopAsideLinks = ({
     </div>
   );
 };
-
-export default ShopAsideLinks;
