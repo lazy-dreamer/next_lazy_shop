@@ -34,7 +34,7 @@ export const ShopProducts: React.FC = memo(() => {
       return products;
     } catch (e: any) {
       console.error("=== getProducts: ", e.message);
-      return null;
+      return [];
     }
   };
 
