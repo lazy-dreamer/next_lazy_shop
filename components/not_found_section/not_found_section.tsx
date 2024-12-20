@@ -4,7 +4,7 @@ import s from "./not_found_section.module.scss";
 import { Title } from "../ui/title";
 import Link from "next/link";
 
-export const NotFoundSection: React.FC = ({ className = "" }) => {
+export const NotFoundSection: React.FC = () => {
   return (
     <section>
       <div className="screen_content">
