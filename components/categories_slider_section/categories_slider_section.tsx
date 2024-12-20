@@ -66,7 +66,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
         ) : (
           <>
             <Slider className={s.slider} {...settings}>
-              {catSlides?.map((item) => (
+              {catSlides.map((item) => (
                 <div key={item.id}>
                   <CategoryBlock item={item} />
                 </div>

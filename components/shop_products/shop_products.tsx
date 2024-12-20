@@ -31,10 +31,10 @@ export const ShopProducts: React.FC = memo(() => {
         .catch((e) => {
           throw new Error(e.message);
         });
-      return products || [];
+      return products;
     } catch (e: any) {
       console.error("=== getProducts: ", e.message);
-      return [];
+      return null;
     }
   };
 

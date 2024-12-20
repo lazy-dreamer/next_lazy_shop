@@ -29,7 +29,7 @@ export const CategoriesSection: React.FC = () => {
               <p>Can&apos;t load categories list :(</p>
             </div>
           ) : data.length > 0 ? (
-            data?.map((item) => (
+            data.map((item) => (
               <div key={item.id}>
                 <CategoryBlock item={item} />
               </div>

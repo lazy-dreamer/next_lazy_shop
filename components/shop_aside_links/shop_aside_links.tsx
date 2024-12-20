@@ -27,10 +27,10 @@ export async function ShopAsideLinks() {
           <p>Can't load categories list :(</p>
         </div>
       ) : (
-        // categories?.map((catItem) => (
-        //   <ShopAsideLink key={catItem.id} category={catItem} />
-        // ))
-        <p>cat list</p>
+        categories.map((catItem) => (
+          <ShopAsideLink key={catItem.id} category={catItem} />
+        ))
+        // <p>cat list</p>
       )}
     </div>
   );
