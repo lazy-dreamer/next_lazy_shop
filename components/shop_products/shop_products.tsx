@@ -24,10 +24,18 @@ export const ShopProducts: React.FC = memo(() => {
   }, [category, priceQuery]);
 
   const getProducts = async () => {
-    const products: IProduct[] = await Api.products
-      .search(reqParam)
-      .then((data) => sortProductItems(data, sort));
-    return products;
+    try {
+      const products: IProduct[] = await Api.products
+        .search(reqParam)
+        .then((data) => sortProductItems(data, sort))
+        .catch((e) => {
+          throw new Error(e.message);
+        });
+      return products;
+    } catch (e: any) {
+      console.error("=== getProducts: ", e.message);
+      return null;
+    }
   };
 
   const { data, error, isLoading } = useQuery({
