@@ -10,9 +10,7 @@ export const Shop: React.FC = () => {
       <div className="screen_content">
         <div className={s.sides}>
           <div className={s.categories_side}>
-            <div className={s.categories_side_in}>
-              <ShopAsideLinks />
-            </div>
+            <div className={s.categories_side_in}>{/*<ShopAsideLinks />*/}</div>
           </div>
           <div className={s.content_side}>
             <ProductSearch />
