@@ -52,8 +52,8 @@ let settings = {
 export const HeroSection: React.FC<Props> = ({ className = "" }) => {
   return (
     <section className={` ${className ? className : ""} `}>
-      <Slider className={s.slider} {...settings}>
-        {slides.map((slide, index) => (
+      <Slider className={`${s.slider}`} {...settings}>
+        {slides.map((slide) => (
           <HeroSlide key={slide.title} slide={slide} />
         ))}
       </Slider>

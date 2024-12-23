@@ -29,12 +29,9 @@ export const CategoriesSliderSection: React.FC<Props> = ({
     catSlides = [];
   }
 
-  if (isLoading) {
-    return <Preloader />;
-  }
   const settings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     autoplay: true,
     autoplaySpeed: 5000,
@@ -57,6 +54,10 @@ export const CategoriesSliderSection: React.FC<Props> = ({
     ],
   };
 
+  if (isLoading) {
+    return <Preloader />;
+  }
+
   return (
     <section className={`${className && className}`}>
       <div className="screen_content">
@@ -68,7 +69,10 @@ export const CategoriesSliderSection: React.FC<Props> = ({
           </div>
         ) : (
           <>
-            <Slider className={s.slider} {...settings}>
+            <Slider
+              className={`${s.slider} hidden_buttons_slider`}
+              {...settings}
+            >
               {catSlides.map((item) => (
                 <div key={item.id}>
                   <CategoryBlock item={item} />
