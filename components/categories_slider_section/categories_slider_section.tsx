@@ -68,23 +68,25 @@ export const CategoriesSliderSection: React.FC<Props> = ({
             <p>Can&apos;t load categories list :(</p>
           </div>
         ) : (
-          <>
-            <Slider
-              className={`${s.slider} hidden_buttons_slider`}
-              {...settings}
-            >
-              {catSlides.map((item) => (
-                <div key={item.id}>
-                  <CategoryBlock item={item} />
-                </div>
-              ))}
-            </Slider>
-            <div className="main_btn_wrapper centered">
-              <Link href="/categories" className="main_btn">
-                <span>More categories</span>
-              </Link>
-            </div>
-          </>
+          catSlides && (
+            <>
+              <Slider
+                className={`${s.slider} hidden_buttons_slider`}
+                {...settings}
+              >
+                {catSlides.map((item) => (
+                  <div key={item.id}>
+                    <CategoryBlock item={item} />
+                  </div>
+                ))}
+              </Slider>
+              <div className="main_btn_wrapper centered">
+                <Link href="/categories" className="main_btn">
+                  <span>More categories</span>
+                </Link>
+              </div>
+            </>
+          )
         )}
       </div>
     </section>

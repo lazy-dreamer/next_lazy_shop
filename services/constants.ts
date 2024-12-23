@@ -1,7 +1,7 @@
 export enum ApiRoutes {
   PRODUCTS = "products/",
   CATEGORIES = "categories/",
-  PRODUCTS_SEARCH = "products/search/",
+  PRODUCTS_SEARCH = "api/products/search/",
 }
 
 export const SITE_TITLE = "Next.js LazyShop";
