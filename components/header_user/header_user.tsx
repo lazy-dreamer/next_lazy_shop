@@ -6,6 +6,8 @@ import { auth } from "../../services/firebase/firebase-config";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { useUserStore } from "../../store/user_store";
+import axios from "axios";
+import { createProductList } from "@/services/create_product_list";
 
 interface Props {
   className?: string;
@@ -21,6 +23,7 @@ export const HeaderUser = ({
   const [menuShown, setMenuShown] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { setLogout } = useUserStore();
+
   let noAvatar = false;
   if (userName == null) {
     userName = "";
@@ -64,6 +67,23 @@ export const HeaderUser = ({
     };
   }, []);
 
+  const createProductsHandler = () => {
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}products/`, createProductList[0])
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // axios({
+    //   method: "post",
+    //   url: `${process.env.NEXT_PUBLIC_API_URL}products/`,
+    //   data: createProductList,
+    // });
+  };
+
   return (
     <div className={`${className} ${s.frame}`} ref={wrapperRef}>
       <button
@@ -101,6 +121,7 @@ export const HeaderUser = ({
         >
           Your orders
         </Link>
+        <button onClick={createProductsHandler}>Create products</button>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>
           <img src="/logout.svg" alt="logout" />

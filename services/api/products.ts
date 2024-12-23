@@ -21,8 +21,8 @@ export const search = async (query: string) => {
 export const product = async (id: string) => {
   try {
     const { data } = await axiosInstance
-      .get<IProduct[]>(`${ApiRoutes.PRODUCTS + id}`, {
-        params: { id },
+      .get<IProduct[]>(`${ApiRoutes.PRODUCTS_SEARCH}`, {
+        params: { query: id },
       })
       .catch((e) => {
         throw new Error(e.message);

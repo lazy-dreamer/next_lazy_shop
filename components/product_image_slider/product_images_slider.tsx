@@ -16,6 +16,7 @@ export const ProductImagesSlider: React.FC<Props> = ({ images }) => {
     slidesToShow: 1,
     autoplay: true,
   };
+
   if (images.length == 1) {
     images = [
       `https://picsum.photos/401`,

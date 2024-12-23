@@ -3,6 +3,7 @@ import axios from "axios";
 
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get("id");
+  console.log("===== id =====", id);
   const products = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}products/${id}`,
   );
