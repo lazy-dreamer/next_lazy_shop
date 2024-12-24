@@ -11,6 +11,10 @@ interface Props {
 export const UserCard: React.FC<Props> = ({ className = "", user }) => {
   const { displayName, email, photoURL, providerData, metadata } = user;
   let noAvatar = false;
+  let userName = displayName || "";
+  if (userName.length == 0 && email) {
+    userName = email.substring(0, email.indexOf("@"));
+  }
   if (photoURL == null) {
     noAvatar = true;
   }
@@ -27,12 +31,7 @@ export const UserCard: React.FC<Props> = ({ className = "", user }) => {
         )}
       </div>
       <div className={s.info_body}>
-        <Title
-          text={
-            displayName ? displayName : email?.substring(0, email?.indexOf("@"))
-          }
-          size={"sm"}
-        />
+        <Title text={userName} size={"sm"} />
         <p>
           <strong>Email:</strong> <br />
           {email}
