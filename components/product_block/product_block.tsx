@@ -4,6 +4,7 @@ import s from "./product_block.module.scss";
 import { FavBtn } from "../fav_btn/fav_btn";
 import { AddToCart } from "../add_to_cart/add_to_cart";
 import { ProductLink } from "@/components/product_link/product_link";
+import { fixImageLinks } from "@/services/utils/fix_image_links";
 
 interface Props {
   className?: string;
@@ -15,8 +16,9 @@ export const ProductBlock: React.FC<Props> = ({
   productItem,
 }) => {
   const { id, title, price, description, images } = productItem;
-  if (images[0].charAt(0) !== "h") {
-    images[0] = `https://picsum.photos/${400 + id}`;
+  let fixedImages = fixImageLinks(images);
+  if (fixedImages[0] == "https://placeimg.com/640/480/any") {
+    fixedImages[0] = `https://picsum.photos/${400 + id}`;
   }
   const descr =
     description.length > 35
@@ -27,7 +29,7 @@ export const ProductBlock: React.FC<Props> = ({
     <div className={` ${className ? className : ""} ${s.item}`}>
       <div
         className={`${s.image} bg_img`}
-        style={{ backgroundImage: `url(${images[0]})` }}
+        style={{ backgroundImage: `url(${fixedImages[0]})` }}
       >
         <FavBtn product={productItem} />
       </div>

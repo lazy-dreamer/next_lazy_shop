@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: process.env.DISABLE_ESLINT === "true",
   },
   typescript: {
-    ignoreBuildErrors: true,
+    // ignoreBuildErrors: true,
   },
   experimental: {
     scrollRestoration: false

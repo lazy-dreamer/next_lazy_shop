@@ -1,6 +1,6 @@
 import { getUserFavorites } from "@/services/firebase/favorites";
 import { getUserCart } from "@/services/firebase/cart";
-import { mergeArrays } from "@/services/mergeArr";
+import { mergeArrays } from "@/services/utils/mergeArr";
 import { getUserOrders, IOrder } from "@/services/firebase/orders";
 import { getUserInfo, IFullUserInfo } from "@/services/firebase/user_info";
 import { User } from "@firebase/auth";

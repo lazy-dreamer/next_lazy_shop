@@ -4,7 +4,7 @@ import { Preloader } from "../preloader/Preloader";
 import { Title } from "../ui/title";
 import { IProduct } from "../../app/page";
 import { Api } from "../../services/api/api-client";
-import { sortProductItems } from "../../services/sorting";
+import { sortProductItems } from "../../services/utils/sorting";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { PaginatedProducts } from "@/components/paginated_products/paginated_products";
 import { useQuery } from "@tanstack/react-query";

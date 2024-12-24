@@ -3,6 +3,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { fixImageLinks } from "@/services/utils/fix_image_links";
+import { defaultProductImages } from "@/services/defaults/default_product_images";
 
 interface Props {
   images: string[];
@@ -12,22 +14,23 @@ export const ProductImagesSlider: React.FC<Props> = ({ images }) => {
   let settings = {
     infinite: true,
     dots: true,
-    arrows: false,
+    arrows: true,
     slidesToShow: 1,
     autoplay: true,
   };
 
-  if (images.length == 1) {
-    images = [
-      `https://picsum.photos/401`,
-      `https://picsum.photos/402`,
-      `https://picsum.photos/403`,
-    ];
+  let fixedImages = fixImageLinks(images);
+
+  if (fixedImages.length == 1) {
+    fixedImages = defaultProductImages;
   }
 
   return (
-    <Slider {...settings} className={"product_image_slider"}>
-      {images.map((image, index) => (
+    <Slider
+      {...settings}
+      className={`product_image_slider hidden_buttons_slider ${fixedImages.length == 0 && "no_images"}`}
+    >
+      {fixedImages.map((image, index) => (
         <div key={index}>
           <div
             className="img_slide bg_img"

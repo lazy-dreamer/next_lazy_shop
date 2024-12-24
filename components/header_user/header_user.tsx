@@ -7,7 +7,8 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { useUserStore } from "../../store/user_store";
 import axios from "axios";
-import { createProductList } from "@/services/create_product_list";
+import { createProductList } from "@/services/defaults/create_product_list";
+import { getRandomNumber } from "@/services/utils/random_number";
 
 interface Props {
   className?: string;
@@ -68,20 +69,19 @@ export const HeaderUser = ({
   }, []);
 
   const createProductsHandler = () => {
+    const productNumber = getRandomNumber(createProductList.length);
+
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}products/`, createProductList[0])
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}products/`,
+        createProductList[productNumber],
+      )
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.messages);
       });
-
-    // axios({
-    //   method: "post",
-    //   url: `${process.env.NEXT_PUBLIC_API_URL}products/`,
-    //   data: createProductList,
-    // });
   };
 
   return (
@@ -121,7 +121,9 @@ export const HeaderUser = ({
         >
           Your orders
         </Link>
-        <button onClick={createProductsHandler}>Create products</button>
+        <button className={s.create} onClick={createProductsHandler}>
+          Create random product
+        </button>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>
           <img src="/logout.svg" alt="logout" />

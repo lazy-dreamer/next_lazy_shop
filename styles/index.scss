@@ -795,7 +795,6 @@ b {
 
 .hidden_buttons_slider {
   .slick-arrow {
-    margin-top: -2.5rem;
     width: 5rem;
     height: 5rem;
     border: 1px solid rgba($green, 0.2);
@@ -957,6 +956,13 @@ b {
 .product_image_slider {
   width: 100%;
   font-size: 0;
+
+  &.no_images {
+    min-height: 30rem;
+    .slick-arrow {
+      visibility: hidden;
+    }
+  }
 
   .img_slide {
     width: 100%;

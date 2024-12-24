@@ -3,7 +3,7 @@ import React from "react";
 import { IProduct } from "@/app/page";
 import s from "@/components/shop_products/shop_products.module.scss";
 import { ProductBlock } from "@/components/product_block/product_block";
-import { SHOP_DEFAULTS } from "@/services/constants";
+import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
 import ReactPaginate from "react-paginate";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { useQueryParamsUpdater } from "@/hooks/use_query_params_updater";

@@ -10,7 +10,7 @@ export default async function ProductPageModal({
   params: { id: string };
 }) {
   // @ts-expect-error
-  const product: IProduct = await Api.products.product(params.id);
+  const product: IProduct = await Api.products.search(params.id);
 
   return (
     <ModalOverlay className={"top_overlay"}>

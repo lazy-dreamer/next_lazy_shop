@@ -3,8 +3,8 @@ import React from "react";
 import Link from "next/link";
 import s from "./header_nav.module.scss";
 import { usePathname } from "next/navigation";
-import { useUserStore } from "../../store/user_store";
-import { SHOP_DEFAULTS } from "@/services/constants";
+import { useUserStore } from "@/store/user_store";
+import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
 
 interface Props {
   className?: string;

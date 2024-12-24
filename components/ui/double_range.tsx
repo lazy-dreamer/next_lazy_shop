@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { getTrackBackground, Range } from "react-range";
-import { SHOP_DEFAULTS } from "@/services/constants";
+import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
 
 interface Props {
   className?: string;

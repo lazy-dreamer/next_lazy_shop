@@ -1,9 +1,9 @@
 "use client";
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import s from "./contacts_section.module.scss";
-import {Title} from "../ui/title";
-import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
-import {stylers} from "../../services/map_stylers";
+import { Title } from "../ui/title";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { stylers } from "../../services/defaults/map_stylers";
 
 interface Props {
   className?: string;
@@ -23,17 +23,17 @@ const center = {
 
 const mapStyles: any[] = stylers;
 
-export const ContactsSection: React.FC<Props> = ({className = ""}) => {
+export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
   const key: string = process.env.NEXT_PUBLIC_MAP_KEY || "";
-  const {isLoaded, loadError} = useJsApiLoader({
-    id: 'google-map-script',
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: "google-map-script",
     googleMapsApiKey: key,
   });
-  
+
   return (
     <section className={`${className && className} ${s.frame} `}>
       <div className="screen_content">
-        <Title text="Contact information" size="lg"/>
+        <Title text="Contact information" size="lg" />
         <div className="simple_text bottom_offset">
           <p>
             <strong>Main office:</strong> Baderpl. 108, 4830 Hallstatt, Austria
@@ -58,7 +58,7 @@ export const ContactsSection: React.FC<Props> = ({className = ""}) => {
                 styles: mapStyles,
               }}
             >
-              <Marker position={center} icon={iconUrl}/>
+              <Marker position={center} icon={iconUrl} />
             </GoogleMap>
           </div>
         )}

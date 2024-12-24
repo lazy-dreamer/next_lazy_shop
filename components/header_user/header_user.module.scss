@@ -93,7 +93,14 @@
     background: $dark;
   }
 }
-
+.create {
+  text-align: left;
+  color: rgba($font, 0.8);
+  @include transition;
+  &:hover {
+    color: $green;
+  }
+}
 .dropdown {
   width: 20rem;
   padding: 2rem;
@@ -107,6 +114,7 @@
   border-radius: 1rem;
   box-shadow: 0 0 1.5rem rgba(#000, 0.1);
   color: $font;
+
   &:global {
     &.showed {
       opacity: 1;

@@ -2,7 +2,7 @@
 import React from "react";
 import { ICartItem } from "@/components/add_to_cart/add_to_cart";
 import { useUserStore } from "@/store/user_store";
-import { mergeArrays } from "@/services/mergeArr";
+import { mergeArrays } from "@/services/utils/mergeArr";
 import { useRouter } from "next/navigation";
 
 interface Props {

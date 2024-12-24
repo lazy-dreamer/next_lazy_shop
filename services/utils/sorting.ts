@@ -1,4 +1,4 @@
-import { IProduct } from "../app/page";
+import { IProduct } from "../../app/page";
 
 export function sortProductItems(
   products: IProduct[] | null,

@@ -13,7 +13,7 @@ export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
   // @ts-expect-error
-  const product: IProduct = await Api.products.product(params.id);
+  const product: IProduct = await Api.products.search(params.id);
   return {
     title: product ? `${product.title}` : "Product Not Found",
     description: product
@@ -24,7 +24,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   // @ts-expect-error
-  const product: IProduct = await Api.products.product(params.id);
+  const product: IProduct = await Api.products.search(params.id);
   const featuredProducts = await Api.products
     .search(`?categoryId=${product.category.id}`)
     // @ts-expect-error
