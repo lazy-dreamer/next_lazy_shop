@@ -27,7 +27,7 @@ export const ShopProducts: React.FC = memo(() => {
     try {
       const products: IProduct[] = await Api.products
         .search(reqParam)
-        .then((data) => sortProductItems(data, sort))
+        .then((data: any) => sortProductItems(data, sort))
         .catch((e) => {
           throw new Error(e.message);
         });
