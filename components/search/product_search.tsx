@@ -3,21 +3,31 @@ import React, { useEffect, useRef, useState } from "react";
 import s from "./product_search.module.scss";
 import { IProduct } from "../../app/page";
 import { Preloader } from "../preloader/Preloader";
-import { ApiRoutes } from "../../services/constants";
 import { useDebounce } from "../../hooks/use_debounce";
 import { SearchItem } from "../search_item/search_item";
 import axios from "axios";
+import { ERROR_PRODUCT } from "@/services/defaults/error_product";
 
 interface Props {
   className?: string;
 }
 
 const fetchProducts = async (query: string): Promise<IProduct[]> => {
-  const response = await axios(
-    `${process.env.NEXT_PUBLIC_API_URL}${ApiRoutes.PRODUCTS}?title=${query}`,
-  );
-
-  return await response.data;
+  try {
+    const { data } = await axios(
+      `${process.env.NEXT_PUBLIC_API_URL}products/?title=${query}`,
+    ).catch((e) => {
+      throw new Error(e.message);
+    });
+    return await data;
+  } catch (e: any) {
+    const errorSearchProduct = {
+      ...ERROR_PRODUCT,
+      title: "Oops, something went wrong :(",
+    };
+    console.error("=== Product search Error: ", e.message);
+    return [errorSearchProduct];
+  }
 };
 
 export const ProductSearch: React.FC<Props> = ({ className = "" }) => {
