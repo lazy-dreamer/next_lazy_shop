@@ -9,6 +9,8 @@ import { useUserStore } from "../../store/user_store";
 import axios from "axios";
 import { createProductList } from "@/services/defaults/create_product_list";
 import { getRandomNumber } from "@/services/utils/random_number";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSearchValues } from "@/hooks/use_search_values";
 
 interface Props {
   className?: string;
@@ -24,6 +26,8 @@ export const HeaderUser = ({
   const [menuShown, setMenuShown] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const { setLogout } = useUserStore();
+  const { paramsString } = useSearchValues();
+  const queryClient = useQueryClient();
 
   let noAvatar = false;
   if (userName == null) {
@@ -68,20 +72,35 @@ export const HeaderUser = ({
     };
   }, []);
 
+  const mutation = useMutation({
+    mutationFn: async (productNumber: number) => {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}products/`,
+        createProductList[productNumber],
+      );
+      return response.data;
+    },
+    onError: (error: any) => {
+      console.log(`Error occurred: ${error.message || error}`);
+      toast.error("Product creation failed!", {
+        icon: "⛔️",
+      });
+    },
+    onSuccess: (data, variables, context) => {
+      queryClient.invalidateQueries({
+        queryKey: ["products, productsList", paramsString],
+        refetchType: "active",
+      });
+      toast.success("Product created successfully!", {
+        icon: "✅",
+      });
+    },
+  });
+
   const createProductsHandler = () => {
     const productNumber = getRandomNumber(createProductList.length);
 
-    axios
-      .post(
-        `${process.env.NEXT_PUBLIC_API_URL}products/`,
-        createProductList[productNumber],
-      )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error.messages);
-      });
+    mutation.mutate(productNumber);
   };
 
   return (

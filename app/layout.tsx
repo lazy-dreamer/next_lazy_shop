@@ -26,17 +26,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        <Header />
-        <main className="content" id="top">
-          <ReactQueryProvider>
+      <ReactQueryProvider>
+        <body className={montserrat.className}>
+          <Header />
+          <main className="content" id="top">
             {children}
             {modal}
-          </ReactQueryProvider>
-          <Toaster />
-        </main>
-        <Footer />
-      </body>
+            <Toaster />
+          </main>
+          <Footer />
+        </body>
+      </ReactQueryProvider>
     </html>
   );
 }
