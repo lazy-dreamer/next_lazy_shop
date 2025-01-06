@@ -39,7 +39,7 @@ export const ShopProducts: React.FC = memo(() => {
   };
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ["products, productsList", paramsString],
+    queryKey: ["products", "productsList", paramsString],
     queryFn: getProducts,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,

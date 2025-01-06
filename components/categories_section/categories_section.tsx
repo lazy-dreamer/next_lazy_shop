@@ -8,7 +8,7 @@ import { getCategories } from "@/services/api/request_functions";
 
 export const CategoriesSection: React.FC = () => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories, categoriesList"],
+    queryKey: ["categories", "categoriesList"],
     queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,

@@ -19,7 +19,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
   className = "",
 }) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories, categoriesList"],
+    queryKey: ["categories", "categoriesList"],
     queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,

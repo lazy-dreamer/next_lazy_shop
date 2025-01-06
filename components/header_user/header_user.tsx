@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import s from "./header_user.module.scss";
 import { signOut } from "firebase/auth";
-import { auth } from "../../services/firebase/firebase-config";
+import { auth } from "@/services/firebase/firebase-config";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { useUserStore } from "../../store/user_store";
+import { useUserStore } from "@/store/user_store";
 import axios from "axios";
 import { createProductList } from "@/services/defaults/create_product_list";
 import { getRandomNumber } from "@/services/utils/random_number";
@@ -88,7 +88,7 @@ export const HeaderUser = ({
     },
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({
-        queryKey: ["products, productsList", paramsString],
+        queryKey: ["products", "productsList", paramsString],
         refetchType: "active",
       });
       toast.success("Product created successfully!", {
