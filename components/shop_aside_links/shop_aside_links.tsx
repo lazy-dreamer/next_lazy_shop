@@ -8,16 +8,11 @@ import { Preloader } from "@/components/preloader/Preloader";
 import { ALL_CATEGORY } from "@/services/defaults/shop_defaults";
 
 export const ShopAsideLinks = () => {
-  const catDate = new Date().getMinutes();
-  const asideLinksLoader = async () => {
-    const cats = await getCategories();
-    return cats;
-  };
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList", catDate],
-    queryFn: asideLinksLoader,
+    queryKey: ["categories", "categoriesList"],
+    queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) {
