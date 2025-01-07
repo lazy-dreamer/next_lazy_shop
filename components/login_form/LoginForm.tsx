@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase/firebase-config";
-import toast from "react-hot-toast";
 import { Title } from "../ui/title";
 import { usePathname, useRouter } from "next/navigation";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -26,9 +26,7 @@ export const LoginForm: React.FC<Props> = ({
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        toast.success("Login successful!", {
-          icon: "✅",
-        });
+        toastMessage("Login successful!", "success");
         setEmail("");
         setPassword("");
         modalClose(false);
@@ -39,9 +37,7 @@ export const LoginForm: React.FC<Props> = ({
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
-        toast.error(errorMessage, {
-          icon: "⛔️",
-        });
+        toastMessage(errorMessage, "warn");
       });
   };
 

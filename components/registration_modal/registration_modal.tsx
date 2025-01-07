@@ -5,8 +5,8 @@ import { LoginForm } from "../login_form/LoginForm";
 import { RegForm } from "../reg_form/RegForm";
 import { signInWithPopup } from "firebase/auth";
 import { provider, auth } from "../../services/firebase/firebase-config";
-import toast from "react-hot-toast";
 import { usePathname, useRouter } from "next/navigation";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -24,9 +24,7 @@ export const RegistrationModal: React.FC<Props> = ({
   const googleAuthHandler = () => {
     signInWithPopup(auth, provider)
       .then(() => {
-        toast.success("Login successful!", {
-          icon: "✅",
-        });
+        toastMessage("Login successful!", "success");
         modalClose(false);
         if (pathname.includes("login")) {
           router.push("/checkout");
@@ -34,9 +32,7 @@ export const RegistrationModal: React.FC<Props> = ({
       })
       .catch((error) => {
         const errorMessage = error.message;
-        toast.error(errorMessage, {
-          icon: "⛔️",
-        });
+        toastMessage(errorMessage, "warn");
       });
   };
 

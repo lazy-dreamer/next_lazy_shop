@@ -4,7 +4,7 @@ import s from "./add_to_cart.module.scss";
 import Image from "next/image";
 import { IProduct } from "../../app/page";
 import { useUserStore } from "../../store/user_store";
-import toast from "react-hot-toast";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -51,10 +51,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
 
       changeLocalCart(cartArr);
     }
-
-    toast.success("Added to cart!", {
-      icon: "✅",
-    });
+    toastMessage("Added to cart!", "success");
   };
   const removeFromCart = () => {
     if (user) {
@@ -68,9 +65,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
       );
       changeLocalCart(cartArr);
     }
-    toast.success("Removed from cart!", {
-      icon: "✅",
-    });
+    toastMessage("Removed from cart!", "success");
   };
   const onCartClick = () => {
     if (isAuthCheck) {

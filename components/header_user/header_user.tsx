@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import s from "./header_user.module.scss";
 import { signOut } from "firebase/auth";
 import { auth } from "@/services/firebase/firebase-config";
-import toast from "react-hot-toast";
 import Link from "next/link";
 import { useUserStore } from "@/store/user_store";
 import axios from "axios";
@@ -11,6 +10,7 @@ import { createProductList } from "@/services/defaults/create_product_list";
 import { getRandomNumber } from "@/services/utils/random_number";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchValues } from "@/hooks/use_search_values";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -53,14 +53,10 @@ export const HeaderUser = ({
         setLogout();
         setMenuShown(false);
         localStorage.setItem("localCartItems", "[]");
-        toast.success("Successfully signed out!", {
-          icon: "✅",
-        });
+        toastMessage("Successfully signed out!", "success");
       })
       .catch(() => {
-        toast.error("Sign out failure :(", {
-          icon: "⛔️",
-        });
+        toastMessage("Sign out failure :(", "warn");
       });
   };
 
@@ -85,18 +81,14 @@ export const HeaderUser = ({
     },
     onError: (error: any) => {
       console.log(`Error occurred: ${error.message || error}`);
-      toast.error("Product creation failed!", {
-        icon: "⛔️",
-      });
+      toastMessage("Product creation failed!", "warn");
     },
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({
         queryKey: ["products", "productsList", paramsString],
         refetchType: "active",
       });
-      toast.success("Product created successfully!", {
-        icon: "✅",
-      });
+      toastMessage("Product created successfully!", "success");
     },
   });
   const categoryMutation = useMutation({
@@ -112,22 +104,16 @@ export const HeaderUser = ({
     },
     onError: (error: any) => {
       console.log(`Error occurred: ${error.message || error}`);
-      toast.error("Category creation failed!", {
-        icon: "⛔️",
-      });
+      toastMessage("Category creation failed!", "warn");
     },
     onSuccess: (data, variables, context) => {
-      toast.success("Category created successfully!", {
-        icon: "✅",
+      queryClient.invalidateQueries({
+        queryKey: ["categories", "categoriesList"],
+        refetchType: "active",
       });
+      toastMessage("Category created successfully!", "success");
     },
   });
-
-  const createProductsHandler = () => {
-    const productNumber = getRandomNumber(createProductList.length);
-
-    productMutation.mutate(productNumber);
-  };
 
   return (
     <div className={`${className} ${s.frame}`} ref={wrapperRef}>
@@ -166,7 +152,12 @@ export const HeaderUser = ({
         >
           Your orders
         </Link>
-        <button className={s.create} onClick={createProductsHandler}>
+        <button
+          className={s.create}
+          onClick={() =>
+            productMutation.mutate(getRandomNumber(createProductList.length))
+          }
+        >
           Create random product
         </button>
         <button className={s.create} onClick={() => categoryMutation.mutate()}>

@@ -3,7 +3,7 @@ import React from "react";
 import s from "./fav_btn.module.scss";
 import { useUserStore } from "../../store/user_store";
 import { IProduct } from "../../app/page";
-import toast from "react-hot-toast";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -18,24 +18,18 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
   const favAdd = () => {
     let favArr = [...favorites, product];
     changeFavorites(favArr);
-    toast.success("Added to favorites!", {
-      icon: "✅",
-    });
+    toastMessage("Added to favorites!", "success");
   };
   const favRemove = () => {
     let favArr = favorites.filter((el: IProduct) => el.id != product.id);
     changeFavorites(favArr);
-    toast.success("Removed from favorites!", {
-      icon: "✅",
-    });
+    toastMessage("Removed from favorites!", "success");
   };
   const onFavClick = () => {
     if (user) {
       isFav ? favRemove() : favAdd();
     } else {
-      toast.error("You should be logged in or registered!", {
-        icon: "⛔️",
-      });
+      toastMessage("You should be logged in or registered!", "warn");
     }
   };
 

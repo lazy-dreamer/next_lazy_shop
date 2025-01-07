@@ -9,8 +9,8 @@ import { Title } from "../ui/title";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "../../store/user_store";
 import { IFullUserInfo, saveUserInfo } from "../../services/firebase/user_info";
-import toast from "react-hot-toast";
 import { signOut } from "firebase/auth";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -94,23 +94,17 @@ export const PersonalSection: React.FC<Props> = ({ className = "" }) => {
   const onSubmit = (data: IFullUserInfo) => {
     setUserInfo(data);
     saveUserInfo(user.uid, data);
-    toast.success("Information successfully saved!", {
-      icon: "✅",
-    });
+    toastMessage("Information successfully saved!", "success");
   };
 
   const logOutHandler = () => {
     signOut(auth)
       .then(() => {
         setLogout();
-        toast.success("Successfully signed out!", {
-          icon: "✅",
-        });
+        toastMessage("Successfully signed out!", "success");
       })
       .catch((error) => {
-        toast.error("Sign out failure :(", {
-          icon: "⛔️",
-        });
+        toastMessage("Sign out failure :(", "warn");
       });
   };
 

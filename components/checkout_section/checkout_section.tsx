@@ -10,14 +10,14 @@ import { CartInfo } from "../cart_info/cart_info";
 import Link from "next/link";
 import { useUserStore } from "../../store/user_store";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import {
   ICheckoutForm,
   IOrder,
   saveUserOrders,
 } from "../../services/firebase/orders";
 import { MONTHS } from "../../services/constants";
-import { IFullUserInfo, saveUserInfo } from "../../services/firebase/user_info";
+import { saveUserInfo } from "../../services/firebase/user_info";
+import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
   className?: string;
@@ -115,10 +115,7 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
     setIsCheckout(true);
     setOrders([...orders, order]);
     saveUserOrders(user.uid, [...orders, order]);
-    toast.success("Your order has been sent!", {
-      icon: "✅",
-      duration: 4000,
-    });
+    toastMessage("Your order has been sent!", "success");
     router.push("/success");
   };
   return (
