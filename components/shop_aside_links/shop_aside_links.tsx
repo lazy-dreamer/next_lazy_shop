@@ -6,18 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "@/services/api/request_functions";
 import { Preloader } from "@/components/preloader/Preloader";
 import { ALL_CATEGORY } from "@/services/defaults/shop_defaults";
-import { useSearchValues } from "@/hooks/use_search_values";
 
 export const ShopAsideLinks = () => {
   const catDate = new Date().getMinutes();
-  const { paramsString } = useSearchValues();
-  console.log(paramsString);
   const asideLinksLoader = async () => {
     const cats = await getCategories();
     return cats;
   };
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList", paramsString],
+    queryKey: ["categories", "categoriesList", catDate],
     queryFn: asideLinksLoader,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: true,
