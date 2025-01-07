@@ -96,6 +96,33 @@ export const HeaderUser = ({
       });
     },
   });
+  const categoryMutation = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}categories/`,
+        {
+          name: `LS category ${new Date().toLocaleTimeString()}`,
+          image: "https://picsum.photos/640/640",
+        },
+      );
+      return response.data;
+    },
+    onError: (error: any) => {
+      console.log(`Error occurred: ${error.message || error}`);
+      toast.error("Product creation failed!", {
+        icon: "⛔️",
+      });
+    },
+    onSuccess: (data, variables, context) => {
+      // queryClient.invalidateQueries({
+      //   queryKey: ["products", "productsList", paramsString],
+      //   refetchType: "active",
+      // });
+      toast.success("Product created successfully!", {
+        icon: "✅",
+      });
+    },
+  });
 
   const createProductsHandler = () => {
     const productNumber = getRandomNumber(createProductList.length);
@@ -142,6 +169,9 @@ export const HeaderUser = ({
         </Link>
         <button className={s.create} onClick={createProductsHandler}>
           Create random product
+        </button>
+        <button className={s.create} onClick={() => categoryMutation.mutate()}>
+          Create new category
         </button>
         <button className={s.logout_btn} onClick={logOutHandler}>
           <span>Log out</span>

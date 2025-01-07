@@ -18,8 +18,9 @@ interface Props {
 export const CategoriesSliderSection: React.FC<Props> = ({
   className = "",
 }) => {
+  const catDate = new Date().getDate();
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList"],
+    queryKey: ["categories", "categoriesList", catDate],
     queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
