@@ -5,7 +5,10 @@ import { ApiRoutes } from "./../constants";
 export const getAll = async () => {
   try {
     const { data } = await axiosInstance
-      .get<ICategory[]>(ApiRoutes.CATEGORIES)
+      .get<ICategory[]>(ApiRoutes.CATEGORIES, {
+        adapter: "fetch",
+        fetchOptions: { cache: "no-cache" },
+      })
       .catch((e) => {
         throw new Error(e.message);
       });
