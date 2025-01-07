@@ -7,7 +7,7 @@ export const getAll = async () => {
     const { data } = await axiosInstance
       .get<ICategory[]>(ApiRoutes.CATEGORIES, {
         adapter: "fetch",
-        fetchOptions: { cache: "no-cache" },
+        fetchOptions: { cache: "no-store" },
       })
       .catch((e) => {
         throw new Error(e.message);

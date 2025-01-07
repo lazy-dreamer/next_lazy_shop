@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   title: `${SITE_TITLE} - Shop`,
 };
 
-export const revalidate = 60;
-
 export default function ShopPage() {
   return <Shop />;
 }
