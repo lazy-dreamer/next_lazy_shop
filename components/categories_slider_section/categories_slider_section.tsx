@@ -20,7 +20,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
 }) => {
   const catDate = new Date().getDate();
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList", catDate],
+    queryKey: ["categories", "categoriesListSlider", catDate],
     queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,

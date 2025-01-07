@@ -13,3 +13,11 @@ export const SHOP_DEFAULTS = {
     { value: "price_down", label: "Price from high to low" },
   ],
 };
+
+export const ALL_CATEGORY = {
+  id: "all",
+  name: "All categories",
+  image: "string placeholder",
+  creationAt: "string placeholder",
+  updatedAt: "string placeholder",
+};

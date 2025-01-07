@@ -9,7 +9,7 @@ import { getCategories } from "@/services/api/request_functions";
 export const CategoriesSection: React.FC = () => {
   const catDate = new Date().getDate();
   const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList", catDate],
+    queryKey: ["categories", "categoriesListSection", catDate],
     queryFn: getCategories,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
