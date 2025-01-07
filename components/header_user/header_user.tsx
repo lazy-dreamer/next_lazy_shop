@@ -28,6 +28,7 @@ export const HeaderUser = ({
   const { setLogout } = useUserStore();
   const { paramsString } = useSearchValues();
   const queryClient = useQueryClient();
+  const catDate = new Date().getMinutes();
 
   let noAvatar = false;
   if (userName == null) {
@@ -114,10 +115,10 @@ export const HeaderUser = ({
       });
     },
     onSuccess: (data, variables, context) => {
-      // queryClient.invalidateQueries({
-      //   queryKey: ["products", "productsList", paramsString],
-      //   refetchType: "active",
-      // });
+      queryClient.invalidateQueries({
+        queryKey: ["categories", "categoriesList", catDate],
+        refetchType: "active",
+      });
       toast.success("Product created successfully!", {
         icon: "✅",
       });
