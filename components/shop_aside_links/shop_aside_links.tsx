@@ -7,7 +7,7 @@ import { getCategories } from "@/services/api/request_functions";
 import { Preloader } from "@/components/preloader/Preloader";
 
 export const ShopAsideLinks = () => {
-  const catDate = new Date().getDate();
+  const catDate = new Date().getMinutes();
   const { data, error, isLoading } = useQuery({
     queryKey: ["categories", "categoriesList", catDate],
     queryFn: getCategories,
