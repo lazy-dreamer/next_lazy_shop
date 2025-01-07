@@ -6,6 +6,7 @@ export const getAll = async () => {
   try {
     const { data } = await axiosInstance
       .get<ICategory[]>(ApiRoutes.CATEGORIES, {
+        params: { query: new Date().getMinutes() },
         adapter: "fetch",
         fetchOptions: { cache: "no-store" },
       })
