@@ -8,8 +8,7 @@ import { CategoryBlock } from "../category_block/category_block";
 import { Preloader } from "../preloader/Preloader";
 import { Title } from "../ui/title";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "@/services/api/request_functions";
+import { useFetchCategories } from "@/hooks/use_fetch_categories";
 
 interface Props {
   className?: string;
@@ -18,12 +17,7 @@ interface Props {
 export const CategoriesSliderSection: React.FC<Props> = ({
   className = "",
 }) => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList"],
-    queryFn: getCategories,
-    staleTime: 5 * 60 * 1000,
-    refetchOnWindowFocus: false,
-  });
+  const { data, error, isLoading } = useFetchCategories();
   let catSlides = data?.slice(0, 10);
   if (!catSlides) {
     catSlides = [];

@@ -19,7 +19,6 @@ export const useQueryParamsUpdater = () => {
       }
     });
 
-    // Оновлюємо URL
     router.push(`?${currentParams.toString()}`);
   };
 

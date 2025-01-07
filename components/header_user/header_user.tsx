@@ -28,7 +28,6 @@ export const HeaderUser = ({
   const { setLogout } = useUserStore();
   const { paramsString } = useSearchValues();
   const queryClient = useQueryClient();
-  const catDate = new Date().getMinutes();
 
   let noAvatar = false;
   if (userName == null) {
@@ -73,11 +72,14 @@ export const HeaderUser = ({
     };
   }, []);
 
-  const mutation = useMutation({
+  const productMutation = useMutation({
     mutationFn: async (productNumber: number) => {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}products/`,
-        createProductList[productNumber],
+        {
+          ...createProductList[productNumber],
+          title: `LS product ${new Date().toLocaleTimeString()}`,
+        },
       );
       return response.data;
     },
@@ -110,16 +112,12 @@ export const HeaderUser = ({
     },
     onError: (error: any) => {
       console.log(`Error occurred: ${error.message || error}`);
-      toast.error("Product creation failed!", {
+      toast.error("Category creation failed!", {
         icon: "⛔️",
       });
     },
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({
-        queryKey: ["categories", "categoriesList", catDate],
-        refetchType: "active",
-      });
-      toast.success("Product created successfully!", {
+      toast.success("Category created successfully!", {
         icon: "✅",
       });
     },
@@ -128,7 +126,7 @@ export const HeaderUser = ({
   const createProductsHandler = () => {
     const productNumber = getRandomNumber(createProductList.length);
 
-    mutation.mutate(productNumber);
+    productMutation.mutate(productNumber);
   };
 
   return (

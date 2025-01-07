@@ -2,17 +2,11 @@
 import React from "react";
 import { Title } from "../ui/title";
 import { CategoryBlock } from "../category_block/category_block";
-import { useQuery } from "@tanstack/react-query";
 import { Preloader } from "@/components/preloader/Preloader";
-import { getCategories } from "@/services/api/request_functions";
+import { useFetchCategories } from "@/hooks/use_fetch_categories";
 
 export const CategoriesSection: React.FC = () => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["categories", "categoriesList"],
-    queryFn: getCategories,
-    staleTime: 5 * 60 * 1000,
-    refetchOnWindowFocus: false,
-  });
+  const { data, error, isLoading } = useFetchCategories();
 
   if (isLoading) {
     return <Preloader />;
