@@ -8,7 +8,7 @@ interface Props {
 
 export const MainLogo: React.FC<Props> = ({ className = "" }) => {
   return (
-    <Link href="/" className={` ${className ? className : ""} ${s.logo} `}>
+    <Link href="/" className={` ${className} ${s.logo} `}>
       LazyShop
     </Link>
   );

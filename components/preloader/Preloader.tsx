@@ -5,10 +5,7 @@ type TClass = {
   customClass?: string;
 };
 
-export const Preloader: React.FC<TClass> = ({ customClass }) => {
-  if (customClass === undefined) {
-    customClass = "";
-  }
+export const Preloader: React.FC<TClass> = ({ customClass = "" }) => {
   return (
     <div className={styles.preloader_wrapper + ` ` + customClass}>
       <div className={styles.ring} />

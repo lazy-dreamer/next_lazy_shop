@@ -4,19 +4,19 @@ import s from "./success_section.module.scss";
 import { Title } from "../ui/title";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "../../store/user_store";
-import { saveUserCart } from "../../services/firebase/cart";
+import { useUserStore } from "@/store/user_store";
+import { saveUserCart } from "@/services/firebase/cart";
 import { Preloader } from "../preloader/Preloader";
 import Image from "next/image";
 
 interface Props {
   className?: string;
 }
+type TInterval = ReturnType<typeof setInterval> | null;
 
 export const SuccessSection: React.FC<Props> = ({ className = "" }) => {
   let [counter, setCounter] = useState(10);
   const router = useRouter();
-  //success
   const { user, changeCart, isCheckout, setIsCheckout } = useUserStore();
 
   useEffect(() => {
@@ -31,7 +31,6 @@ export const SuccessSection: React.FC<Props> = ({ className = "" }) => {
     };
   }, []);
 
-  type TInterval = ReturnType<typeof setInterval> | null;
   useEffect(() => {
     const timer: TInterval =
       counter > 0
@@ -52,7 +51,7 @@ export const SuccessSection: React.FC<Props> = ({ className = "" }) => {
   }
 
   return (
-    <section className={`${className && className}`}>
+    <section className={`${className}`}>
       <div className="screen_content">
         <div className={s.image}>
           <Image

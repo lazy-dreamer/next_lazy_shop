@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { auth } from "../../services/firebase/firebase-config";
+import { auth } from "@/services/firebase/firebase-config";
 import { HeaderUser } from "../header_user/header_user";
 import s from "./header_auth_block.module.scss";
 import { ModalOverlay } from "../modal_overlay/modal_overlay";
 import { RegistrationModal } from "../registration_modal/registration_modal";
 import { onAuthStateChanged } from "@firebase/auth";
-import { useUserStore } from "../../store/user_store";
-import { saveUserFavorites } from "../../services/firebase/favorites";
-import { saveUserCart } from "../../services/firebase/cart";
+import { useUserStore } from "@/store/user_store";
+import { saveUserFavorites } from "@/services/firebase/favorites";
+import { saveUserCart } from "@/services/firebase/cart";
 import { getAllData } from "@/services/firebase/get_all_data";
 
 interface Props {
@@ -70,11 +70,13 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
       localStorage.setItem("localCartItems", JSON.stringify(localCart));
     }
   }, [localCart, localCartString]);
+
   useEffect(() => {
     if (isAuthCheck && user) {
       saveUserFavorites(user?.uid, favorites).then();
     }
   }, [favorites]);
+
   useEffect(() => {
     if (isAuthCheck && user) {
       saveUserCart(user?.uid, cart).then(() => {
@@ -84,7 +86,7 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
   }, [cart, cartString]);
 
   return (
-    <div className={`${className && className}`}>
+    <div className={`${className}`}>
       {showUserBlock ? (
         user != null ? (
           <HeaderUser userName={user.email} avatar={user.photoURL} />

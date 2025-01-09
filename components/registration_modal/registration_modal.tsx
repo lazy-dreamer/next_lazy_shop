@@ -4,7 +4,7 @@ import s from "./registration_modal.module.scss";
 import { LoginForm } from "../login_form/LoginForm";
 import { RegForm } from "../reg_form/RegForm";
 import { signInWithPopup } from "firebase/auth";
-import { provider, auth } from "../../services/firebase/firebase-config";
+import { provider, auth } from "@/services/firebase/firebase-config";
 import { usePathname, useRouter } from "next/navigation";
 import { toastMessage } from "@/services/utils/toast_message";
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const RegistrationModal: React.FC<Props> = ({
-  className,
+  className = "",
   modalClose,
 }) => {
   const [isRegistration, setIsRegistration] = useState(false);
@@ -37,7 +37,7 @@ export const RegistrationModal: React.FC<Props> = ({
   };
 
   return (
-    <div className={`${className ? className : ""} ${s.reg_modal}`}>
+    <div className={`${className} ${s.reg_modal}`}>
       <button className="modal_close" onClick={() => modalClose(false)} />
       {isRegistration ? (
         <RegForm

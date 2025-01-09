@@ -4,11 +4,7 @@ import { CategoriesSliderSection } from "../categories_slider_section/categories
 import { QuoteSection } from "../quote_section/quote_section";
 import { ContactsSection } from "../contacts_section/contacts_section";
 
-interface Props {
-  className?: string;
-}
-
-export const HomePage: React.FC<Props> = ({ className = "" }) => {
+export const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection className="no_paddings" />

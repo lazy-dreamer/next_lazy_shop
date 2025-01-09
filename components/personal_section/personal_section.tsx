@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "@firebase/auth";
-import { auth } from "../../services/firebase/firebase-config";
+import { auth } from "@/services/firebase/firebase-config";
 import { usePathname, useRouter } from "next/navigation";
 import { Preloader } from "../preloader/Preloader";
 import { UserCard } from "../user_card/user_card";
 import { Title } from "../ui/title";
 import { useForm } from "react-hook-form";
-import { useUserStore } from "../../store/user_store";
-import { IFullUserInfo, saveUserInfo } from "../../services/firebase/user_info";
+import { useUserStore } from "@/store/user_store";
+import { IFullUserInfo, saveUserInfo } from "@/services/firebase/user_info";
 import { signOut } from "firebase/auth";
 import { toastMessage } from "@/services/utils/toast_message";
 
@@ -109,7 +109,7 @@ export const PersonalSection: React.FC<Props> = ({ className = "" }) => {
   };
 
   return (
-    <section className={` ${className ? className : ""} `}>
+    <section className={` ${className} `}>
       <div className="screen_content">
         <div className="user_info_sides">
           <UserCard user={user} />

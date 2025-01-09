@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { onAuthStateChanged, User } from "@firebase/auth";
-import { auth } from "../../services/firebase/firebase-config";
-import { useUserStore } from "../../store/user_store";
+import { auth } from "@/services/firebase/firebase-config";
+import { useUserStore } from "@/store/user_store";
 import { Title } from "../ui/title";
 import { ProductBlock } from "../product_block/product_block";
 import { Preloader } from "../preloader/Preloader";
@@ -39,7 +39,7 @@ export const FavoritesSection: React.FC<Props> = ({ className = "" }) => {
   }
 
   return (
-    <section className={` ${className ? className : ""} `}>
+    <section className={` ${className} `}>
       <div className="screen_content">
         {isFavoritesLoaded &&
           (favorites.length > 0 ? (

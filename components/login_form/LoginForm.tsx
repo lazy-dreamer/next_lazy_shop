@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebase/firebase-config";
+import { auth } from "@/services/firebase/firebase-config";
 import { Title } from "../ui/title";
 import { usePathname, useRouter } from "next/navigation";
 import { toastMessage } from "@/services/utils/toast_message";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const LoginForm: React.FC<Props> = ({
-  className,
+  className = "",
   toggleForm,
   modalClose,
 }) => {

@@ -9,7 +9,7 @@ interface Props {
 
 export const CartSideItem: React.FC<Props> = ({ className = "", item }) => {
   return (
-    <div className={`${className && className} ${s.block}`}>
+    <div className={`${className} ${s.block}`}>
       <div
         className={`${s.image} bg_img`}
         style={{ backgroundImage: `url(${item.product.images[0]})` }}

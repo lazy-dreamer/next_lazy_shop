@@ -19,7 +19,7 @@ export const UserCard: React.FC<Props> = ({ className = "", user }) => {
     noAvatar = true;
   }
   return (
-    <div className={` ${className ? className : ""} ${s.frame}`}>
+    <div className={` ${className} ${s.frame}`}>
       <div className={`${s.avatar}`}>
         {noAvatar ? (
           <img src="/user-white.svg" alt="user" />

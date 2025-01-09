@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import s from "./fav_btn.module.scss";
-import { useUserStore } from "../../store/user_store";
-import { IProduct } from "../../app/page";
+import { useUserStore } from "@/store/user_store";
+import { IProduct } from "@/app/page";
 import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
@@ -35,7 +35,7 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
 
   return (
     <button
-      className={`${s.fav} ${className && className} ${isAuthCheck && (isFav ? "filled_fav" : "")}  `}
+      className={`${s.fav} ${className} ${isAuthCheck && (isFav ? "filled_fav" : "")}  `}
       onClick={onFavClick}
     >
       <svg

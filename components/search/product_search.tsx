@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import s from "./product_search.module.scss";
-import { IProduct } from "../../app/page";
+import { IProduct } from "@/app/page";
 import { Preloader } from "../preloader/Preloader";
-import { useDebounce } from "../../hooks/use_debounce";
+import { useDebounce } from "@/hooks/use_debounce";
 import { SearchItem } from "../search_item/search_item";
 import axios from "axios";
 import { ERROR_PRODUCT } from "@/services/defaults/error_product";
@@ -73,10 +73,7 @@ export const ProductSearch: React.FC<Props> = ({ className = "" }) => {
   };
 
   return (
-    <div
-      className={`${className && className} ${s.block} frame`}
-      ref={wrapperRef}
-    >
+    <div className={`${className} ${s.block} frame`} ref={wrapperRef}>
       <form className={s.search} autoComplete={"off"}>
         <input
           type="text"

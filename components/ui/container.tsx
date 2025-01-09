@@ -5,12 +5,8 @@ interface Props {
 }
 
 export const Container: React.FC<React.PropsWithChildren<Props>> = ({
-  className,
+  className = "",
   children,
 }) => {
-  return (
-    <div className={`screen_content ${className ? className : ""} `}>
-      {children}
-    </div>
-  );
+  return <div className={`screen_content ${className} `}>{children}</div>;
 };

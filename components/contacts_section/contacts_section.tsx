@@ -1,27 +1,16 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import s from "./contacts_section.module.scss";
 import { Title } from "../ui/title";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { stylers } from "../../services/defaults/map_stylers";
+import { STYLERS } from "@/services/defaults/map_stylers";
+import { MAP_SETTINGS } from "@/services/defaults/map_settings";
 
 interface Props {
   className?: string;
 }
 
-const mapContainerStyle = {
-  width: "100%",
-  height: "100%",
-};
-
-const iconUrl = "/map_pin.svg";
-
-const center = {
-  lat: 47.56194120128157,
-  lng: 13.649738679441052,
-};
-
-const mapStyles: any[] = stylers;
+const mapStyles: any[] = STYLERS;
 
 export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
   const key: string = process.env.NEXT_PUBLIC_MAP_KEY || "";
@@ -31,7 +20,7 @@ export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
   });
 
   return (
-    <section className={`${className && className} ${s.frame} `}>
+    <section className={`${className} ${s.frame} `}>
       <div className="screen_content">
         <Title text="Contact information" size="lg" />
         <div className="simple_text bottom_offset">
@@ -51,14 +40,17 @@ export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
         ) : (
           <div className={s.map}>
             <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={center}
-              zoom={14}
+              mapContainerStyle={MAP_SETTINGS.mapContainerStyle}
+              center={MAP_SETTINGS.center}
+              zoom={MAP_SETTINGS.zoom}
               options={{
                 styles: mapStyles,
               }}
             >
-              <Marker position={center} icon={iconUrl} />
+              <Marker
+                position={MAP_SETTINGS.center}
+                icon={MAP_SETTINGS.iconUrl}
+              />
             </GoogleMap>
           </div>
         )}

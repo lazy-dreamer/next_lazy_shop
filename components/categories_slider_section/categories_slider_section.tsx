@@ -53,7 +53,7 @@ export const CategoriesSliderSection: React.FC<Props> = ({
   }
 
   return (
-    <section className={`${className && className}`}>
+    <section className={`${className}`}>
       <div className="screen_content">
         <Title text="Popular Categories" size="lg" />
         {error ? (

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Title } from "../ui/title";
-import { useUserStore } from "../../store/user_store";
+import { useUserStore } from "@/store/user_store";
 import { Preloader } from "../preloader/Preloader";
 import { CartItem } from "../cart_item/cart_item";
 import s from "./cart_section.module.scss";
@@ -27,7 +27,7 @@ export const CartSection: React.FC<Props> = ({ className = "" }) => {
   if (!isAuthCheck) return <Preloader />;
 
   return (
-    <section className={`${className && className}`}>
+    <section className={`${className}`}>
       <div className="screen_content">
         <div className={s.sides}>
           <div className={s.blocks}>

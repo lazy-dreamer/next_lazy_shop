@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import s from "./quantity_block.module.scss";
-import { useUserStore } from "../../store/user_store";
+import { useUserStore } from "@/store/user_store";
 
 interface Props {
   className?: string;
@@ -45,7 +45,7 @@ export const QuantityBlock: React.FC<Props> = ({
   };
 
   return (
-    <div className={`${className && className} ${s.block}`}>
+    <div className={`${className} ${s.block}`}>
       <button
         type="button"
         className={`${s.btn} ${s.minus} ${quantity == 1 && "disabled"}`}

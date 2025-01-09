@@ -9,7 +9,7 @@ interface Props {
   title: string;
 }
 
-export const ProductLink: React.FC<Props> = ({ className, id, title }) => {
+export const ProductLink: React.FC<Props> = ({ className = "", id, title }) => {
   const { paramsString } = useSearchValues();
 
   return (

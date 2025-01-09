@@ -2,11 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-interface Props {
-  className?: string;
-}
-
-export const ProductModalClose: React.FC<Props> = ({ className = "" }) => {
+export const ProductModalClose: React.FC = () => {
   const router = useRouter();
   const handleClose = () => {
     router.back();

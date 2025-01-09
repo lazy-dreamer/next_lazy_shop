@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "@firebase/auth";
 import { usePathname, useRouter } from "next/navigation";
-import { useUserStore } from "../../store/user_store";
-import { auth } from "../../services/firebase/firebase-config";
+import { useUserStore } from "@/store/user_store";
+import { auth } from "@/services/firebase/firebase-config";
 import { Preloader } from "../preloader/Preloader";
 import { UserCard } from "../user_card/user_card";
 import { Title } from "../ui/title";
@@ -40,7 +40,7 @@ export const OrdersSection: React.FC<Props> = ({ className = "" }) => {
   }
 
   return (
-    <section className={`${className && className}`}>
+    <section className={`${className}`}>
       <div className="screen_content">
         <div className="user_info_sides">
           <UserCard user={user} />

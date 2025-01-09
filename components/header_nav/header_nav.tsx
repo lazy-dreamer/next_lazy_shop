@@ -29,7 +29,7 @@ export const HeaderNav: React.FC<Props> = ({ className = "" }) => {
   }
 
   return (
-    <nav className={` ${className ? className : ""} ${s.nav} `}>
+    <nav className={` ${className} ${s.nav} `}>
       <Link href="/" className={`${s.link} ${pathname == "/" ? "active" : ""}`}>
         Home
       </Link>

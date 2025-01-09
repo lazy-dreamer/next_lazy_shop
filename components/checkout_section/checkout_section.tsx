@@ -3,20 +3,20 @@ import React, { useEffect, useState } from "react";
 import s from "./checkout_section.module.scss";
 import { onAuthStateChanged, User } from "@firebase/auth";
 import { usePathname, useRouter } from "next/navigation";
-import { auth } from "../../services/firebase/firebase-config";
+import { auth } from "@/services/firebase/firebase-config";
 import { Preloader } from "../preloader/Preloader";
 import { Title } from "../ui/title";
 import { CartInfo } from "../cart_info/cart_info";
 import Link from "next/link";
-import { useUserStore } from "../../store/user_store";
+import { useUserStore } from "@/store/user_store";
 import { useForm } from "react-hook-form";
 import {
   ICheckoutForm,
   IOrder,
   saveUserOrders,
-} from "../../services/firebase/orders";
-import { MONTHS } from "../../services/constants";
-import { saveUserInfo } from "../../services/firebase/user_info";
+} from "@/services/firebase/orders";
+import { MONTHS } from "@/services/constants";
+import { saveUserInfo } from "@/services/firebase/user_info";
 import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
@@ -63,6 +63,7 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
       unsub();
     };
   }, []);
+
   useEffect(() => {
     if (userInfo) {
       reset({
@@ -77,9 +78,11 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
       });
     }
   }, [userInfo, reset]);
+
   if (user == null) {
     return <Preloader />;
   }
+
   const phoneKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "e" || e.key === "-") {
       e.preventDefault();
@@ -118,13 +121,13 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
     toastMessage("Your order has been sent!", "success");
     router.push("/success");
   };
+
   return (
-    <section className={`${className && className}`}>
+    <section className={`${className}`}>
       <div className="screen_content">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.sides}>
             <div className={s.blocks}>
-              {/*start fields*/}
               <Title text={"User information"} size={"xs"} />
               <div className="frame with_offset">
                 <div className="form_elements">

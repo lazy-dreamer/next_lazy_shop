@@ -1,5 +1,5 @@
 import React from "react";
-import { IProduct } from "../../app/page";
+import { IProduct } from "@/app/page";
 import s from "./product_block.module.scss";
 import { FavBtn } from "../fav_btn/fav_btn";
 import { AddToCart } from "../add_to_cart/add_to_cart";
@@ -22,11 +22,11 @@ export const ProductBlock: React.FC<Props> = ({
   }
   const descr =
     description.length > 35
-      ? description.substr(0, 35) + "..."
+      ? description.substring(0, 35) + "..."
       : description.length;
 
   return (
-    <div className={` ${className ? className : ""} ${s.item}`}>
+    <div className={` ${className} ${s.item}`}>
       <div
         className={`${s.image} bg_img`}
         style={{ backgroundImage: `url(${fixedImages[0]})` }}

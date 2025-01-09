@@ -7,7 +7,7 @@ interface Props {
 
 export const AboutSection: React.FC<Props> = ({ className = "" }) => {
   return (
-    <section className={` ${className ? className : ""} `}>
+    <section className={` ${className} `}>
       <div className="screen_content">
         <Title text="About page" size="xl" className="text_center" />
         <div className="simple_text text_container">

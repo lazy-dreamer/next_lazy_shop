@@ -9,9 +9,5 @@ export const ModalOverlay: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   className = "",
 }) => {
-  return (
-    <div className={`${s.modal_overlay} ${className ? className : ""}`}>
-      {children}
-    </div>
-  );
+  return <div className={`${s.modal_overlay} ${className}`}>{children}</div>;
 };

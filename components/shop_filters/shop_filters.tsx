@@ -9,15 +9,12 @@ import { useSearchValues } from "@/hooks/use_search_values";
 import { useDebounce } from "@/hooks/use_debounce";
 import { usePathname } from "next/navigation";
 
-interface Props {
-  className?: string;
-}
 export interface ISelectOption {
   value: string;
   label: string;
 }
 
-export const ShopFilters: React.FC<Props> = memo(() => {
+export const ShopFilters: React.FC = memo(() => {
   const { price_max, price_min, sort } = useSearchValues();
   const [range, setRange] = useState([Number(price_min), Number(price_max)]);
   const id = Date.now().toString();

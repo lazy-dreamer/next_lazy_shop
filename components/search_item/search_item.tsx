@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import s from "./search_item.module.scss";
-import { IProduct } from "../../app/page";
+import { IProduct } from "@/app/page";
 import { Title } from "../ui/title";
 import Link from "next/link";
 import { useSearchValues } from "@/hooks/use_search_values";
@@ -20,7 +20,7 @@ export const SearchItem: React.FC<Props> = ({ className = "", product }) => {
   return (
     <Link
       href={`/product/${id}?${paramsString}`}
-      className={`${className && className} ${s.block}`}
+      className={`${className} ${s.block}`}
     >
       <div
         className={`${s.img} bg_img`}

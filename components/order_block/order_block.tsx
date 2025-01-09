@@ -1,5 +1,5 @@
 import React from "react";
-import { IOrder } from "../../services/firebase/orders";
+import { IOrder } from "@/services/firebase/orders";
 import s from "./order_block.module.scss";
 import { Title } from "../ui/title";
 import { CartSideItem } from "../cart_side_item/cart_side_item";
@@ -28,7 +28,7 @@ export const OrderBlock: React.FC<Props> = ({
         order.orderTime.substring(order.orderTime.indexOf(":") + 1);
 
   return (
-    <div className={`${className && className} ${s.block} frame`}>
+    <div className={`${className} ${s.block} frame`}>
       <div className={s.title}>
         <Title text={`${index}`} size={"md"} className={"green"} />
         <p>

@@ -2,8 +2,8 @@
 import React from "react";
 import s from "./add_to_cart.module.scss";
 import Image from "next/image";
-import { IProduct } from "../../app/page";
-import { useUserStore } from "../../store/user_store";
+import { IProduct } from "@/app/page";
+import { useUserStore } from "@/store/user_store";
 import { toastMessage } from "@/services/utils/toast_message";
 
 interface Props {
@@ -74,16 +74,13 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
   };
 
   return (
-    <button
-      className={`green ${s.cart} ${className && className}`}
-      onClick={onCartClick}
-    >
+    <button className={`green ${s.cart} ${className}`} onClick={onCartClick}>
       {isInCart ? (
         <>
           <span>Remove from cart</span>
           <Image
             src="/remove_from_cart.svg"
-            alt="add to cart"
+            alt="remove from cart"
             width={10}
             height={20}
           />

@@ -1,4 +1,4 @@
-export const stylers = [
+export const STYLERS = [
   {
     featureType: "administrative",
     elementType: "all",

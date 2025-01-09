@@ -7,7 +7,7 @@ interface Props {
 
 export const QuoteSection: React.FC<Props> = ({ className = "" }) => {
   return (
-    <section className={` ${className ? className : ""} top_bordered`}>
+    <section className={` ${className} top_bordered`}>
       <div className="screen_content">
         <div className={s.quote}>
           <div className="simple_text">
