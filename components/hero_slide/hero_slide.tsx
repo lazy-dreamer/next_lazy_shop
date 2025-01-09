@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./hero_slide.module.scss";
-import { ISlide } from "../hero_section/hero_section";
 import { Title } from "../ui/title";
 import { Container } from "../ui/container";
+import { ISlide } from "@/services/defaults/hero_slides";
 
 interface Props {
   slide: ISlide;
