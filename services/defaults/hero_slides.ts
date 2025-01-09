@@ -1,4 +1,4 @@
-export interface ISlide {
+interface ISlide {
   image: string;
   title: string;
   subtitle: string;
