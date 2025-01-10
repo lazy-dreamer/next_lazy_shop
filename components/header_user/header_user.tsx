@@ -70,6 +70,7 @@ export const HeaderUser = ({
 
   const productMutation = useMutation({
     mutationFn: async (productNumber: number) => {
+      toastMessage("Product creating started...");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}products/`,
         {
@@ -83,16 +84,18 @@ export const HeaderUser = ({
       console.log(`Error occurred: ${error.message || error}`);
       toastMessage("Product creation failed!", "warn");
     },
-    onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({
-        queryKey: ["products", "productsList", paramsString],
-        refetchType: "active",
-      });
-      toastMessage("Product created successfully!");
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({
+          queryKey: ["products", "productsList", paramsString],
+          refetchType: "active",
+        })
+        .then(() => toastMessage("Product created successfully!"));
     },
   });
   const categoryMutation = useMutation({
     mutationFn: async () => {
+      toastMessage("Category creating started...");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}categories/`,
         {
@@ -106,12 +109,13 @@ export const HeaderUser = ({
       console.log(`Error occurred: ${error.message || error}`);
       toastMessage("Category creation failed!", "warn");
     },
-    onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({
-        queryKey: ["categories", "categoriesList"],
-        refetchType: "active",
-      });
-      toastMessage("Category created successfully!");
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({
+          queryKey: ["categories", "categoriesList"],
+          refetchType: "active",
+        })
+        .then(() => toastMessage("Category created successfully!"));
     },
   });
 

@@ -19,7 +19,7 @@ export const FavoritesSection: React.FC<Props> = ({ className = "" }) => {
   const { favorites, isAuthCheck, isFavoritesLoaded } = useUserStore();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       } else {
@@ -30,7 +30,7 @@ export const FavoritesSection: React.FC<Props> = ({ className = "" }) => {
     });
 
     return () => {
-      unsub();
+      unsubscribe();
     };
   }, []);
 

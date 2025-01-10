@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./cart_side_item.module.scss";
 import { ICartItem } from "../add_to_cart/add_to_cart";
+import { fixImageLinks } from "@/services/utils/fix_image_links";
 
 interface Props {
   className?: string;
@@ -12,7 +13,9 @@ export const CartSideItem: React.FC<Props> = ({ className = "", item }) => {
     <div className={`${className} ${s.block}`}>
       <div
         className={`${s.image} bg_img`}
-        style={{ backgroundImage: `url(${item.product.images[0]})` }}
+        style={{
+          backgroundImage: `url(${fixImageLinks(item.product.images)[0]})`,
+        }}
       />
       <div className={s.body}>
         <p className={s.title}>{item.product.title}</p>

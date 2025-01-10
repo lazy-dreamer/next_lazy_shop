@@ -3,15 +3,19 @@
 .cart {
   font-weight: 600;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
+  text-align: left;
+  > * {
+    flex-shrink: 0;
+    display: inline-block;
+  }
   > *:not(:last-child) {
     margin-right: 0.5rem;
   }
   img,
   svg {
-    width: auto;
-    height: auto;
-    max-width: 2.5rem;
-    max-height: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }

@@ -49,7 +49,7 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
   });
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       } else {
@@ -60,7 +60,7 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
     });
 
     return () => {
-      unsub();
+      unsubscribe();
     };
   }, []);
 
@@ -261,7 +261,6 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
                   </div>
                 </div>
               </div>
-              {/*end fields*/}
             </div>
             <div className={s.aside}>
               <Title text={"Order info"} size={"xs"} />

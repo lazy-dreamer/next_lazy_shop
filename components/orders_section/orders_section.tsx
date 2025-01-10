@@ -20,7 +20,7 @@ export const OrdersSection: React.FC<Props> = ({ className = "" }) => {
   const { orders, isOrdersLoaded } = useUserStore();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       } else {
@@ -31,7 +31,7 @@ export const OrdersSection: React.FC<Props> = ({ className = "" }) => {
     });
 
     return () => {
-      unsub();
+      unsubscribe();
     };
   }, []);
 

@@ -46,7 +46,7 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
       setIsInitiallyFetched(true);
     }
 
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         getAllData({
           user,
@@ -55,35 +55,36 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
           setOrders,
           changeCart,
           setUserInfo,
-        }).then();
-        setShowUserBlock(true);
+        }).then(() => setShowUserBlock(true));
       } else {
         setUser(null);
         setShowUserBlock(true);
         setIsCartLoaded(true);
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
     if (isInitiallyFetched && !user) {
       localStorage.setItem("localCartItems", JSON.stringify(localCart));
     }
-  }, [localCart, localCartString]);
+  }, [localCart, localCartString, user]);
 
   useEffect(() => {
     if (isAuthCheck && user) {
-      saveUserFavorites(user?.uid, favorites).then();
+      saveUserFavorites(user.uid, favorites);
     }
-  }, [favorites]);
+  }, [favorites, user]);
 
   useEffect(() => {
     if (isAuthCheck && user) {
-      saveUserCart(user?.uid, cart).then(() => {
+      saveUserCart(user.uid, cart).then(() => {
         localStorage.setItem("localCartItems", "[]");
       });
     }
-  }, [cart, cartString]);
+  }, [cart, cartString, user]);
 
   return (
     <div className={`${className}`}>
