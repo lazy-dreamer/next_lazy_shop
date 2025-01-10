@@ -26,7 +26,7 @@ export const RegForm: React.FC<Props> = ({
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        toastMessage("Registration successful!", "success");
+        toastMessage("Registration successful!");
         setEmail("");
         setPassword("");
         modalClose(false);

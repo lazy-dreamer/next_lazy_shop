@@ -6,7 +6,7 @@ import { Preloader } from "../preloader/Preloader";
 import { useDebounce } from "@/hooks/use_debounce";
 import { SearchItem } from "../search_item/search_item";
 import axios from "axios";
-import { ERROR_PRODUCT } from "@/services/defaults/error_product";
+import { ERROR_PRODUCT } from "@/services/mock/error_product";
 
 interface Props {
   className?: string;

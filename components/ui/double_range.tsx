@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { getTrackBackground, Range } from "react-range";
-import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
+import { SHOP_DEFAULTS } from "@/services/mock/shop_defaults";
 
 interface Props {
   vals: number[];

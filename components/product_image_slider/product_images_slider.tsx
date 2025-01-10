@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fixImageLinks } from "@/services/utils/fix_image_links";
-import { DEFAULT_PRODUCT_IMAGES } from "@/services/defaults/default_product_images";
+import { DEFAULT_PRODUCT_IMAGES } from "@/services/mock/default_product_images";
 
 interface Props {
   images: string[];

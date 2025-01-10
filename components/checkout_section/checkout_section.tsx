@@ -118,7 +118,7 @@ export const CheckoutSection: React.FC<Props> = ({ className = "" }) => {
     setIsCheckout(true);
     setOrders([...orders, order]);
     saveUserOrders(user.uid, [...orders, order]);
-    toastMessage("Your order has been sent!", "success");
+    toastMessage("Your order has been sent!");
     router.push("/success");
   };
 

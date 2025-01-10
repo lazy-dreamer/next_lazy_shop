@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
+import { SHOP_DEFAULTS } from "@/services/mock/shop_defaults";
 import { useMemo } from "react";
 
 export const useSearchValues = () => {

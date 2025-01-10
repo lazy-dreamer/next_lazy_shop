@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { HeroSlide } from "../hero_slide/hero_slide";
-import { HERO_SLIDES } from "@/services/defaults/hero_slides";
+import { HERO_SLIDES } from "@/services/mock/hero_slides";
 
 interface Props {
   className?: string;

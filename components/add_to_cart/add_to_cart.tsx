@@ -51,7 +51,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
 
       changeLocalCart(cartArr);
     }
-    toastMessage("Added to cart!", "success");
+    toastMessage("Added to cart!");
   };
   const removeFromCart = () => {
     if (user) {
@@ -65,7 +65,7 @@ export const AddToCart: React.FC<Props> = ({ className = "", product }) => {
       );
       changeLocalCart(cartArr);
     }
-    toastMessage("Removed from cart!", "success");
+    toastMessage("Removed from cart!");
   };
   const onCartClick = () => {
     if (isAuthCheck) {

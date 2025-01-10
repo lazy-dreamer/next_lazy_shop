@@ -18,12 +18,12 @@ export const FavBtn: React.FC<Props> = ({ className = "", product }) => {
   const favAdd = () => {
     let favArr = [...favorites, product];
     changeFavorites(favArr);
-    toastMessage("Added to favorites!", "success");
+    toastMessage("Added to favorites!");
   };
   const favRemove = () => {
     let favArr = favorites.filter((el: IProduct) => el.id != product.id);
     changeFavorites(favArr);
-    toastMessage("Removed from favorites!", "success");
+    toastMessage("Removed from favorites!");
   };
   const onFavClick = () => {
     if (user) {

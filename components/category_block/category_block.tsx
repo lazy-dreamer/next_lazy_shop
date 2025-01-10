@@ -3,7 +3,7 @@ import s from "./category_block.module.scss";
 import { ICategory } from "@/app/page";
 import { Title } from "../ui/title";
 import Link from "next/link";
-import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
+import { SHOP_DEFAULTS } from "@/services/mock/shop_defaults";
 
 interface Props {
   item: ICategory;

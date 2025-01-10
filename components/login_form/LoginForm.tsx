@@ -26,7 +26,7 @@ export const LoginForm: React.FC<Props> = ({
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        toastMessage("Login successful!", "success");
+        toastMessage("Login successful!");
         setEmail("");
         setPassword("");
         modalClose(false);

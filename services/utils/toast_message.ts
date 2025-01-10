@@ -1,6 +1,9 @@
 import toast from "react-hot-toast";
 
-export function toastMessage(title: string, type: "success" | "warn"): void {
+export function toastMessage(
+  title: string,
+  type: "success" | "warn" = "success",
+): void {
   switch (type) {
     case "success":
       toast.success(title, {
@@ -20,5 +23,4 @@ export function toastMessage(title: string, type: "success" | "warn"): void {
   }
 }
 
-// toastMessage("", "success");
 // toastMessage("", "warn");

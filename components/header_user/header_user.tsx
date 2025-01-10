@@ -6,7 +6,7 @@ import { auth } from "@/services/firebase/firebase-config";
 import Link from "next/link";
 import { useUserStore } from "@/store/user_store";
 import axios from "axios";
-import { createProductList } from "@/services/defaults/create_product_list";
+import { createProductList } from "@/services/mock/create_product_list";
 import { getRandomNumber } from "@/services/utils/random_number";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchValues } from "@/hooks/use_search_values";
@@ -53,7 +53,7 @@ export const HeaderUser = ({
         setLogout();
         setMenuShown(false);
         localStorage.setItem("localCartItems", "[]");
-        toastMessage("Successfully signed out!", "success");
+        toastMessage("Successfully signed out!");
       })
       .catch(() => {
         toastMessage("Sign out failure :(", "warn");
@@ -88,7 +88,7 @@ export const HeaderUser = ({
         queryKey: ["products", "productsList", paramsString],
         refetchType: "active",
       });
-      toastMessage("Product created successfully!", "success");
+      toastMessage("Product created successfully!");
     },
   });
   const categoryMutation = useMutation({
@@ -111,7 +111,7 @@ export const HeaderUser = ({
         queryKey: ["categories", "categoriesList"],
         refetchType: "active",
       });
-      toastMessage("Category created successfully!", "success");
+      toastMessage("Category created successfully!");
     },
   });
 

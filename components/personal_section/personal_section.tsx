@@ -94,14 +94,14 @@ export const PersonalSection: React.FC<Props> = ({ className = "" }) => {
   const onSubmit = (data: IFullUserInfo) => {
     setUserInfo(data);
     saveUserInfo(user.uid, data);
-    toastMessage("Information successfully saved!", "success");
+    toastMessage("Information successfully saved!");
   };
 
   const logOutHandler = () => {
     signOut(auth)
       .then(() => {
         setLogout();
-        toastMessage("Successfully signed out!", "success");
+        toastMessage("Successfully signed out!");
       })
       .catch((error) => {
         toastMessage("Sign out failure :(", "warn");

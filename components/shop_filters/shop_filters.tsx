@@ -3,7 +3,7 @@ import React, { useEffect, useState, memo } from "react";
 import s from "./shop_filters.module.scss";
 import Select from "react-select";
 import { DoubleRange } from "../ui/double_range";
-import { SHOP_DEFAULTS } from "@/services/defaults/shop_defaults";
+import { SHOP_DEFAULTS } from "@/services/mock/shop_defaults";
 import { useQueryParamsUpdater } from "@/hooks/use_query_params_updater";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { useDebounce } from "@/hooks/use_debounce";

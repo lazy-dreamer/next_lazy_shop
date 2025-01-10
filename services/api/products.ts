@@ -1,7 +1,7 @@
 import { axiosInstance } from "./request-instance";
 import { ApiRoutes } from "./../constants";
 import { IProduct } from "@/app/page";
-import { ERROR_PRODUCT } from "@/services/defaults/error_product";
+import { ERROR_PRODUCT } from "@/services/mock/error_product";
 
 export const search = async (query: string) => {
   try {

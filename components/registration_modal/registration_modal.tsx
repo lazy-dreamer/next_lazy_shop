@@ -24,7 +24,7 @@ export const RegistrationModal: React.FC<Props> = ({
   const googleAuthHandler = () => {
     signInWithPopup(auth, provider)
       .then(() => {
-        toastMessage("Login successful!", "success");
+        toastMessage("Login successful!");
         modalClose(false);
         if (pathname.includes("login")) {
           router.push("/checkout");

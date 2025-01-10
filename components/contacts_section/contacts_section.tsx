@@ -3,8 +3,8 @@ import React from "react";
 import s from "./contacts_section.module.scss";
 import { Title } from "../ui/title";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { STYLERS } from "@/services/defaults/map_stylers";
-import { MAP_SETTINGS } from "@/services/defaults/map_settings";
+import { STYLERS } from "@/services/mock/map_stylers";
+import { MAP_SETTINGS } from "@/services/mock/map_settings";
 
 interface Props {
   className?: string;

@@ -3,7 +3,7 @@ import React from "react";
 import s from "./shop_aside_links.module.scss";
 import { ShopAsideLink } from "../shop_aside_link/shop_aside_link";
 import { Preloader } from "@/components/preloader/Preloader";
-import { ALL_CATEGORY } from "@/services/defaults/shop_defaults";
+import { ALL_CATEGORY } from "@/services/mock/shop_defaults";
 import { useFetchCategories } from "@/hooks/use_fetch_categories";
 
 export const ShopAsideLinks = () => {
