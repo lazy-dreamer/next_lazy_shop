@@ -1,24 +1,13 @@
-"use client";
 import React from "react";
 import s from "./contacts_section.module.scss";
 import { Title } from "../ui/title";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
-import { STYLERS } from "@/services/mock/map_stylers";
-import { MAP_SETTINGS } from "@/services/mock/map_settings";
+import { ContactsMap } from "@/components/contacts_map/contacts_map";
 
 interface Props {
   className?: string;
 }
 
-const mapStyles: any[] = STYLERS;
-
 export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
-  const key: string = process.env.NEXT_PUBLIC_MAP_KEY || "";
-  const { isLoaded, loadError } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: key,
-  });
-
   return (
     <section className={`${className} ${s.frame} `}>
       <div className="screen_content">
@@ -33,27 +22,9 @@ export const ContactsSection: React.FC<Props> = ({ className = "" }) => {
             :)
           </p>
         </div>
-        {!isLoaded ? (
-          <div>Loading...</div>
-        ) : loadError ? (
-          <div>Error loading map</div>
-        ) : (
-          <div className={s.map}>
-            <GoogleMap
-              mapContainerStyle={MAP_SETTINGS.mapContainerStyle}
-              center={MAP_SETTINGS.center}
-              zoom={MAP_SETTINGS.zoom}
-              options={{
-                styles: mapStyles,
-              }}
-            >
-              <Marker
-                position={MAP_SETTINGS.center}
-                icon={MAP_SETTINGS.iconUrl}
-              />
-            </GoogleMap>
-          </div>
-        )}
+        <div className={s.map}>
+          <ContactsMap />
+        </div>
       </div>
     </section>
   );
