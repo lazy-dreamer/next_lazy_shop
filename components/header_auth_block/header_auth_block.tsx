@@ -10,6 +10,8 @@ import { useUserStore } from "@/store/user_store";
 import { saveUserFavorites } from "@/services/firebase/favorites";
 import { saveUserCart } from "@/services/firebase/cart";
 import { getAllData } from "@/services/firebase/get_all_data";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { ICartItem } from "@/components/add_to_cart/add_to_cart";
 
 interface Props {
   className?: string;
@@ -37,12 +39,11 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
   const cartString = JSON.stringify(cart);
   const localCartString = JSON.stringify(localCart);
 
+  const { localItems, setLocalItems } = useLocalStorage();
+
   useEffect(() => {
-    const cartItems = JSON.parse(
-      localStorage.getItem("localCartItems") || "[]",
-    );
-    if (cartItems) {
-      changeLocalCart(cartItems);
+    if (localItems) {
+      changeLocalCart(localItems as ICartItem[]);
       setIsInitiallyFetched(true);
     }
 
@@ -68,7 +69,7 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
 
   useEffect(() => {
     if (isInitiallyFetched && !user) {
-      localStorage.setItem("localCartItems", JSON.stringify(localCart));
+      setLocalItems(localCart);
     }
   }, [localCart, localCartString, user]);
 
@@ -81,7 +82,7 @@ export const HeaderAuthBlock: React.FC<Props> = ({ className = "" }) => {
   useEffect(() => {
     if (isAuthCheck && user) {
       saveUserCart(user.uid, cart).then(() => {
-        localStorage.setItem("localCartItems", "[]");
+        setLocalItems([]);
       });
     }
   }, [cart, cartString, user]);

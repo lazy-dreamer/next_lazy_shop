@@ -11,6 +11,7 @@ import { getRandomNumber } from "@/services/utils/random_number";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchValues } from "@/hooks/use_search_values";
 import { toastMessage } from "@/services/utils/toast_message";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface Props {
   className?: string;
@@ -28,6 +29,7 @@ export const HeaderUser = ({
   const { setLogout } = useUserStore();
   const { paramsString } = useSearchValues();
   const queryClient = useQueryClient();
+  const { setLocalItems } = useLocalStorage();
 
   let noAvatar = false;
   if (userName == null) {
@@ -52,7 +54,7 @@ export const HeaderUser = ({
       .then(() => {
         setLogout();
         setMenuShown(false);
-        localStorage.setItem("localCartItems", "[]");
+        setLocalItems([]);
         toastMessage("Successfully signed out!");
       })
       .catch(() => {
